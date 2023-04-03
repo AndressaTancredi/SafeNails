@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:safe_nails/image_picker_modal.dart';
 
 void main() {
   runApp(const MyApp());
@@ -47,21 +48,11 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+          children: const <Widget>[
+            Text('Testando pegar imagens'),
+            ImagePickerModal()
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
