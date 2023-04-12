@@ -6,7 +6,7 @@ class AppRouter {
   Route onGeneratedRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case '/home':
-        return MaterialPageRoute(builder: (_) => HomePage());
+        return MaterialPageRoute(builder: (_) => const HomePage());
       default:
         throw ArgumentError('Inexistent route: s${routeSettings.name}');
       }

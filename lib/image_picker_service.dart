@@ -7,7 +7,7 @@ import 'package:image_cropper/image_cropper.dart';
 class ImagePickerService {
   final _picker = ImagePicker();
 
-  ImagePickerService(MockImagePicker mockImagePicker);
+  ImagePickerService();
 
   Future<File?> pickImageFromGallery() async {
     try {
@@ -65,7 +65,4 @@ class ImagePickerService {
     if (croppedFile == null) throw Exception('Erro ao recortar imagem');
     return croppedFile;
   }
-}
-
-class MockImagePicker {
 }
