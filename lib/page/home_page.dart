@@ -22,73 +22,94 @@ class _MyHomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Nails", style:
+        elevation: 0,
+        backgroundColor: Colors.blueGrey[300],
+        title: Center(
+          child: Text("Safe Nails", style:
       TextStyle(
       fontFamily: TTTravels.bold.familyName,
-        fontWeight: TTTravels.bold.weight,
-        color: Colors.white,
-        fontStyle: FontStyle.normal,
-        fontSize: 24,
+          fontWeight: TTTravels.bold.weight,
+          color: Colors.white,
+          fontStyle: FontStyle.normal,
+          fontSize: 24,
       ),),
+        ),
       ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             children: <Widget>[
               Container(
-                margin: const EdgeInsets.all(20.0),
+                margin: const EdgeInsets.all(24.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
-                        child: Text(
-                          'Adicione uma foto para entender se esse esmalte é seguro ou não para a sua saúde e a do planeta.',
-                          style: TextStyle(fontSize: 20),
-            ),
+                      Text(
+                        'Verifique se o esmalte é seguro ou não para a sua saúde e a do planeta.',
+                        style:
+                        TextStyle(
+                          fontFamily: TTTravels.bold.familyName,
+                          fontWeight: TTTravels.bold.weight,
+                          color: Colors.blueGrey[300],
+                          fontStyle: FontStyle.normal,
+                          fontSize: 20,
+                        )
                       ),
+                      const SizedBox(height: 30),
                       if (textScanning) const CircularProgressIndicator(),
                       if (!textScanning && imageFile == null)
-                        Container(
-                        width: 300,
-                        height: 300,
-                        color: Colors.grey[300]!,
+                      Container(
+                        decoration: BoxDecoration( borderRadius:  BorderRadius.circular(8.0), color: Colors.grey[300]!),
+                        width: 200,
+                        height: 200,
+                        child: const Icon(Icons.image_search_outlined, color: Colors.grey, size: 100.0,),
+                        // color: Colors.grey[300]!,
                       ),
                       if (imageFile != null)
                         Image.file(
                           File(imageFile!.path),
                           fit: BoxFit.fill,
-                          width: 300,
-                          height: 300,
+                          width: 250,
+                          height: 250,
                         ),
+                      const SizedBox(height: 30),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          TextButton.icon(
-                            onPressed: () => _pickImage(ImageSource.camera),
-                            icon: const Icon(Icons.camera_alt),
-                            label: const Text('Câmera'),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: ElevatedButton.icon(
+                              onPressed: () => _pickImage(ImageSource.camera),
+                              icon: const Icon(Icons.camera_alt),
+                              label: const Text('Câmera'),
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)),
+                              ),
+                            ),
+                          ),
+                          // const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: ElevatedButton.icon(
+                              onPressed: () => _pickImage(ImageSource.gallery),
+                              icon: const Icon(Icons.photo_library),
+                              label: const Text('Galeria'),
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)),
+                              ),
+                            ),
                           ),
                           const SizedBox(height: 8),
-                          TextButton.icon(
-                            onPressed: () => _pickImage(ImageSource.gallery),
-                            icon: const Icon(Icons.photo_library),
-                            label: const Text('Galeria'),
-                          ),
                         ],
                       ),
                       const SizedBox(
                         height: 20,
                       ),
-
-                      if (_getIngredientResult(scannedText))
-                        const Icon(Icons.do_not_touch, color: Colors.black, size: 100.0,),
-                      if (!_getIngredientResult(scannedText))
-                        const Icon(Icons.check_circle, color: Colors.green, size: 100.0,),
-                      // Text(
-                      //   scannedText,
-                      //   style: const TextStyle(fontSize: 20),
-                      // ),
+                      _result(imageFile, scannedText),
+                      Text(
+                        scannedText,
+                        style: const TextStyle(fontSize: 20),
+                      ),
                     ],
                   )
               ),
@@ -141,8 +162,9 @@ class _MyHomePageState extends State<HomePage> {
     super.initState();
   }
 
-  bool _getIngredientResult(String scannedText) {
+  bool? _getIngredientResult(String scannedText) {
     final List<String> unhealthyIngredients = [
+      "ter",
       "Tolueno",
       "Formaldeído",
       "Dibutilftalato (DBP)",
@@ -163,10 +185,23 @@ class _MyHomePageState extends State<HomePage> {
    for (var ingredient in unhealthyIngredients) {
      if (scannedText.contains(ingredient)) {
        return true;
-     } if (!scannedText.contains(ingredient)){
+     } else {
        return false;
      }
    }
-    return false;
+   return null;
+    }
+
+    Widget _result(imageFile, scannedText) {
+      if (imageFile == null) {
+        return const SizedBox.shrink();
+      }
+      if (_getIngredientResult(scannedText) == true) {
+        return const Icon(Icons.do_not_touch, color: Colors.black, size: 100.0);
+      }
+      if (_getIngredientResult(scannedText) == false) {
+        return const Icon(Icons.check_circle, color: Colors.green, size: 100.0);
+      }
+      return const SizedBox.shrink();
     }
   }

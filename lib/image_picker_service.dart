@@ -54,7 +54,7 @@ class ImagePickerService {
       maxWidth: 800,
       aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
       compressQuality: 80,
-      androidUiSettings: AndroidUiSettings(
+      androidUiSettings: const AndroidUiSettings(
         toolbarTitle: 'Editar imagem',
         toolbarColor: Colors.blue,
         toolbarWidgetColor: Colors.white,
