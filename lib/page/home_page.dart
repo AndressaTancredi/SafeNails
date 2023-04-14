@@ -20,19 +20,28 @@ class _MyHomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    int appAcolor = 0xfffa2d9a6;
+
     return Scaffold(
-      appBar: AppBar(
+      appBar: PreferredSize(
+        preferredSize: const Size(100, 80),
+        child: AppBar(
         elevation: 0,
-        backgroundColor: Colors.blueGrey[300],
-        title: Center(
-          child: Text("Safe Nails", style:
-      TextStyle(
-      fontFamily: TTTravels.bold.familyName,
-          fontWeight: TTTravels.bold.weight,
-          color: Colors.white,
-          fontStyle: FontStyle.normal,
-          fontSize: 24,
-      ),),
+          backgroundColor: Color(appAcolor),
+          title: Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: Text("Safe Nails", style:
+        TextStyle(
+        fontFamily: TTTravels.bold.familyName,
+              fontWeight: TTTravels.bold.weight,
+              color: Colors.white,
+              fontStyle: FontStyle.normal,
+              fontSize: 24,
+        ),),
+            ),
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -44,25 +53,26 @@ class _MyHomePageState extends State<HomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      const SizedBox(height: 20),
                       Text(
-                        'Verifique se o esmalte é seguro ou não para a sua saúde e a do planeta.',
+                        'Verifique se o esmalte é seguro para a sua saúde e a do planeta.',
                         style:
                         TextStyle(
                           fontFamily: TTTravels.bold.familyName,
                           fontWeight: TTTravels.bold.weight,
-                          color: Colors.blueGrey[300],
+                          color: Color(appAcolor),
                           fontStyle: FontStyle.normal,
                           fontSize: 20,
                         )
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 50),
                       if (textScanning) const CircularProgressIndicator(),
                       if (!textScanning && imageFile == null)
                       Container(
-                        decoration: BoxDecoration( borderRadius:  BorderRadius.circular(8.0), color: Colors.grey[300]!),
+                        decoration: BoxDecoration( borderRadius:  BorderRadius.circular(8.0), color: Colors.grey[200]!),
                         width: 200,
                         height: 200,
-                        child: const Icon(Icons.image_search_outlined, color: Colors.grey, size: 100.0,),
+                        child: Icon(Icons.image_search_outlined, color: Colors.grey.shade100, size: 100.0,),
                         // color: Colors.grey[300]!,
                       ),
                       if (imageFile != null)
@@ -72,7 +82,7 @@ class _MyHomePageState extends State<HomePage> {
                           width: 250,
                           height: 250,
                         ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 50),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -83,7 +93,9 @@ class _MyHomePageState extends State<HomePage> {
                               icon: const Icon(Icons.camera_alt),
                               label: const Text('Câmera'),
                               style: ButtonStyle(
-                                padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)),
+                                padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)
+                                ),
+                                backgroundColor: MaterialStateProperty.all(Color(appAcolor))
                               ),
                             ),
                           ),
@@ -96,16 +108,15 @@ class _MyHomePageState extends State<HomePage> {
                               label: const Text('Galeria'),
                               style: ButtonStyle(
                                 padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)),
+                                backgroundColor: MaterialStateProperty.all(Color(appAcolor))
                               ),
                             ),
                           ),
-                          const SizedBox(height: 8),
                         ],
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                      const SizedBox(height: 40),
                       _result(imageFile, scannedText),
+                      Icon(Icons.check_circle, color: Color(appAcolor), size: 100.0),
                       Text(
                         scannedText,
                         style: const TextStyle(fontSize: 20),
@@ -197,7 +208,7 @@ class _MyHomePageState extends State<HomePage> {
         return const SizedBox.shrink();
       }
       if (_getIngredientResult(scannedText) == true) {
-        return const Icon(Icons.do_not_touch, color: Colors.black, size: 100.0);
+        return const Icon(Icons.do_not_touch, color: Colors.black26, size: 100.0);
       }
       if (_getIngredientResult(scannedText) == false) {
         return const Icon(Icons.check_circle, color: Colors.green, size: 100.0);
