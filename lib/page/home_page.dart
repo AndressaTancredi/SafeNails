@@ -212,10 +212,10 @@ class _MyHomePageState extends State<HomePage> {
       if (imageFile == null) {
         return const SizedBox.shrink();
       }
-      if (_getIngredientResult(scannedText) == false) {
+      if (_getIngredientResult(scannedText) == true) {
         return const Icon(Icons.do_not_touch, color: Colors.black26, size: 100.0);
       }
-      if (_getIngredientResult(scannedText) == true) {
+      if (_getIngredientResult(scannedText) == false) {
         return const Icon(Icons.check_circle, color: Colors.green, size: 100.0);
       }
       return const SizedBox.shrink();
