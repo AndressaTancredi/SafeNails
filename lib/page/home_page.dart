@@ -21,7 +21,7 @@ class _MyHomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    int appAcolor = 0xfffa2d9a6;
+    int appAcolor = 0xfff97d5b1;
 
     return Scaffold(
       appBar: PreferredSize(
@@ -48,81 +48,82 @@ class _MyHomePageState extends State<HomePage> {
         child: Center(
           child: Column(
             children: <Widget>[
-              Container(
-                margin: const EdgeInsets.all(24.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 20),
-                      Text(
-                        'Verifique se o esmalte é seguro para a sua saúde e a do planeta.',
-                        style:
-                        TextStyle(
-                          fontFamily: TTTravels.bold.familyName,
-                          fontWeight: TTTravels.bold.weight,
-                          color: Color(appAcolor),
-                          fontStyle: FontStyle.normal,
-                          fontSize: 20,
-                        )
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 30),
+                    Text(
+                      'Verifique se o esmalte é seguro para a sua saúde e a do planeta.',
+                      style:
+                      TextStyle(
+                        fontFamily: TTTravels.bold.familyName,
+                        fontWeight: TTTravels.bold.weight,
+                        color: Color(appAcolor),
+                        fontStyle: FontStyle.normal,
+                        fontSize: 20,
                       ),
-                      const SizedBox(height: 50),
-                      if (textScanning) const CircularProgressIndicator(),
-                      if (!textScanning && imageFile == null)
-                      Container(
-                        decoration: BoxDecoration( borderRadius:  BorderRadius.circular(8.0), color: Colors.grey[200]!),
-                        width: 200,
-                        height: 200,
-                        child: Icon(Icons.image_search_outlined, color: Colors.grey.shade100, size: 100.0,),
-                        // color: Colors.grey[300]!,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 50),
+                    if (textScanning) const CircularProgressIndicator(),
+                    if (!textScanning && imageFile == null)
+                    Container(
+                      decoration: BoxDecoration( borderRadius:  BorderRadius.circular(8.0), color: Colors.grey[200]!),
+                      width: 200,
+                      height: 200,
+                      child: Icon(Icons.image_search_outlined, color: Colors.grey.shade100, size: 100.0,),
+                      // color: Colors.grey[300]!,
+                    ),
+                    if (imageFile != null)
+                      Image.file(
+                        File(imageFile!.path),
+                        fit: BoxFit.fill,
+                        width: 250,
+                        height: 250,
                       ),
-                      if (imageFile != null)
-                        Image.file(
-                          File(imageFile!.path),
-                          fit: BoxFit.fill,
-                          width: 250,
-                          height: 250,
+                    const SizedBox(height: 50),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: ElevatedButton.icon(
+                            onPressed: () => _pickImage(ImageSource.camera),
+                            icon: const Icon(Icons.camera_alt),
+                            label: const Text('Câmera'),
+                            style: ButtonStyle(
+                              padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)
+                              ),
+                              backgroundColor: MaterialStateProperty.all(Color(appAcolor))
+                            ),
+                          ),
                         ),
-                      const SizedBox(height: 50),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: ElevatedButton.icon(
-                              onPressed: () => _pickImage(ImageSource.camera),
-                              icon: const Icon(Icons.camera_alt),
-                              label: const Text('Câmera'),
-                              style: ButtonStyle(
-                                padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)
-                                ),
-                                backgroundColor: MaterialStateProperty.all(Color(appAcolor))
-                              ),
+                        // const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: ElevatedButton.icon(
+                            onPressed: () => _pickImage(ImageSource.gallery),
+                            icon: const Icon(Icons.photo_library),
+                            label: const Text('Galeria'),
+                            style: ButtonStyle(
+                              padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)),
+                              backgroundColor: MaterialStateProperty.all(Color(appAcolor))
                             ),
                           ),
-                          // const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: ElevatedButton.icon(
-                              onPressed: () => _pickImage(ImageSource.gallery),
-                              icon: const Icon(Icons.photo_library),
-                              label: const Text('Galeria'),
-                              style: ButtonStyle(
-                                padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)),
-                                backgroundColor: MaterialStateProperty.all(Color(appAcolor))
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 40),
-                      _result(imageFile, scannedText),
-                      Icon(Icons.check_circle, color: Color(appAcolor), size: 100.0),
-                      Text(
-                        scannedText,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    ],
-                  )
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 40),
+                    _result(imageFile, scannedText),
+                    Text(
+                      scannedText,
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
