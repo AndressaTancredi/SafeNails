@@ -118,10 +118,10 @@ class _MyHomePageState extends State<HomePage> {
                     ),
                     const SizedBox(height: 40),
                     _result(imageFile, scannedText),
-                    Text(
-                      scannedText,
-                      style: const TextStyle(fontSize: 20),
-                    ),
+                    // Text(
+                    //   scannedText,
+                    //   style: const TextStyle(fontSize: 20),
+                    // ),
                   ],
                 ),
               ),
@@ -176,7 +176,6 @@ class _MyHomePageState extends State<HomePage> {
 
   bool? _getIngredientResult(String scannedText) {
     final List<String> unhealthyIngredients = [
-      "ter",
       "Tolueno",
       "Formaldeído",
       "Dibutilftalato (DBP)",
