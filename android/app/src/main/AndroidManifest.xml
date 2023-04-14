@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.nails">
    <application
-        android:label="nails"
+        android:label="Safe Nails"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
