@@ -78,11 +78,14 @@ class _MyHomePageState extends State<HomePage> {
                       // color: Colors.grey[300]!,
                     ),
                     if (imageFile != null)
-                      Image.file(
-                        File(imageFile!.path),
-                        fit: BoxFit.fill,
-                        width: 250,
-                        height: 250,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                        child: Image.file(
+                          File(imageFile!.path),
+                          fit: BoxFit.fill,
+                          width: 200,
+                          height: 200,
+                        ),
                       ),
                     const SizedBox(height: 50),
                     Row(
@@ -194,7 +197,9 @@ class _MyHomePageState extends State<HomePage> {
     ];
 
    for (var ingredient in unhealthyIngredients) {
-     if (scannedText.contains(ingredient)) {
+     String scannedTextLowerCase = scannedText.toLowerCase();
+     String ingredientLowerCase = ingredient.toLowerCase();
+     if (scannedTextLowerCase.contains(ingredientLowerCase)) {
        return true;
      } else {
        return false;

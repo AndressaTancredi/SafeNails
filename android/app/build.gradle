@@ -70,3 +70,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.google.mlkit:text-recognition:16.0.0-beta5'
 }
+
+apply plugin: 'com.google.gms.google-services'
