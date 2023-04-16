@@ -1,4 +1,4 @@
-package com.example.nails
+package com.safe.nails
 
 import io.flutter.embedding.android.FlutterActivity
 
