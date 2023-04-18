@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:image_picker/image_picker.dart';
 import '../common/fonts.dart';
 import '../image_picker_service.dart';
@@ -13,6 +14,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<HomePage> {
+  final BannerAd myBanner = BannerAd(
+    adUnitId: 'ca-app-pub-6850065566204568/5619356631',
+    size: AdSize.banner,
+    request: AdRequest(),
+    listener: BannerAdListener(),
+  );
+
+  @override
+  void initState(){
+    super.initState();
+    myBanner.dispose();
+    myBanner.load();
+  }
+
   bool textScanning = false;
   File? imageFile;
   String scannedText = "";
@@ -44,93 +59,107 @@ class _MyHomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 30),
-                    Text(
-                      'Verifique se o esmalte é seguro para a sua saúde e a do planeta.',
-                      style:
-                      TextStyle(
-                        fontFamily: TTTravels.bold.familyName,
-                        fontWeight: TTTravels.bold.weight,
-                        color: Color(appAcolor),
-                        fontStyle: FontStyle.normal,
-                        fontSize: 20,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 50),
-                    if (textScanning) const CircularProgressIndicator(),
-                    if (!textScanning && imageFile == null)
-                    Container(
-                      decoration: BoxDecoration( borderRadius:  BorderRadius.circular(8.0), color: Colors.grey[200]!),
-                      width: 200,
-                      height: 200,
-                      child: Icon(Icons.image_search_outlined, color: Colors.grey.shade100, size: 100.0,),
-                      // color: Colors.grey[300]!,
-                    ),
-                    if (imageFile != null)
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                        child: Image.file(
-                          File(imageFile!.path),
-                          fit: BoxFit.fill,
-                          width: 200,
-                          height: 200,
-                        ),
-                      ),
-                    const SizedBox(height: 50),
-                    Row(
+      body: Column(
+        // mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: ElevatedButton.icon(
-                            onPressed: () => _pickImage(ImageSource.camera),
-                            icon: const Icon(Icons.camera_alt),
-                            label: const Text('Câmera'),
-                            style: ButtonStyle(
-                              padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)
+                        const SizedBox(height: 30),
+                        Text(
+                          'Verifique se o esmalte é seguro para a sua saúde e a do planeta.',
+                          style:
+                          TextStyle(
+                            fontFamily: TTTravels.bold.familyName,
+                            fontWeight: TTTravels.bold.weight,
+                            color: Color(appAcolor),
+                            fontStyle: FontStyle.normal,
+                            fontSize: 20,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 50),
+                        if (textScanning) const CircularProgressIndicator(),
+                        if (!textScanning && imageFile == null)
+                        Container(
+                          decoration: BoxDecoration( borderRadius:  BorderRadius.circular(8.0), color: Colors.grey[200]!),
+                          width: 200,
+                          height: 200,
+                          child: Icon(Icons.image_search_outlined, color: Colors.grey.shade100, size: 100.0,),
+                          // color: Colors.grey[300]!,
+                        ),
+                        if (imageFile != null)
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                            child: Image.file(
+                              File(imageFile!.path),
+                              fit: BoxFit.fill,
+                              width: 200,
+                              height: 200,
+                            ),
+                          ),
+                        const SizedBox(height: 30),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                              child: ElevatedButton.icon(
+                                onPressed: () => _pickImage(ImageSource.camera),
+                                icon: const Icon(Icons.camera_alt),
+                                label: const Text('Câmera'),
+                                style: ButtonStyle(
+                                  padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)
+                                  ),
+                                  backgroundColor: MaterialStateProperty.all(Color(appAcolor))
+                                ),
                               ),
-                              backgroundColor: MaterialStateProperty.all(Color(appAcolor))
                             ),
-                          ),
-                        ),
-                        // const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: ElevatedButton.icon(
-                            onPressed: () => _pickImage(ImageSource.gallery),
-                            icon: const Icon(Icons.photo_library),
-                            label: const Text('Galeria'),
-                            style: ButtonStyle(
-                              padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)),
-                              backgroundColor: MaterialStateProperty.all(Color(appAcolor))
+                            // const Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                              child: ElevatedButton.icon(
+                                onPressed: () => _pickImage(ImageSource.gallery),
+                                icon: const Icon(Icons.photo_library),
+                                label: const Text('Galeria'),
+                                style: ButtonStyle(
+                                  padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)),
+                                  backgroundColor: MaterialStateProperty.all(Color(appAcolor))
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
                         ),
+                        const SizedBox(height: 20),
+                        _result(imageFile, scannedText),
+                        // Text(
+                        //   scannedText,
+                        //   style: const TextStyle(fontSize: 20),
+                        // ),
                       ],
+
                     ),
-                    const SizedBox(height: 40),
-                    _result(imageFile, scannedText),
-                    // Text(
-                    //   scannedText,
-                    //   style: const TextStyle(fontSize: 20),
-                    // ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: SizedBox(
+                width: 468, height: 60, child: AdWidget( ad: myBanner),
+              ),
+            ),
+          )
+        ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
@@ -170,11 +199,6 @@ class _MyHomePageState extends State<HomePage> {
     }
     textScanning = false;
     setState(() {});
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 
   bool? _getIngredientResult(String scannedText) {

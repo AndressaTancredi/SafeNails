@@ -3,10 +3,14 @@ import 'package:safe_nails/page/home_page.dart';
 import 'common/app_router.dart';
 import 'package:firebase_core/firebase_core.dart';
 // import 'firebase_options.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
 Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
