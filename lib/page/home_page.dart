@@ -20,9 +20,10 @@ class _MyHomePageState extends State<HomePage> {
     request: AdRequest(),
     listener: BannerAdListener(),
   );
+  List<String> unhealthyIngredientsFounded = [];
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     myBanner.dispose();
     myBanner.load();
@@ -30,31 +31,30 @@ class _MyHomePageState extends State<HomePage> {
 
   bool textScanning = false;
   File? imageFile;
-  String scannedText = "";
+  List<String> scannedText = [""];
   IconData? iconResult;
 
   @override
   Widget build(BuildContext context) {
-
     int appAcolor = 0xfff97d5b1;
 
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size(100, 80),
         child: AppBar(
-        elevation: 0,
+          elevation: 0,
           backgroundColor: Color(appAcolor),
           title: Center(
             child: Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: Text("Safe Nails", style:
-        TextStyle(
-        fontFamily: TTTravels.bold.familyName,
-              fontWeight: TTTravels.bold.weight,
-              color: Colors.white,
-              fontStyle: FontStyle.normal,
-              fontSize: 24,
-        ),),
+              TextStyle(
+                fontFamily: TTTravels.bold.familyName,
+                fontWeight: TTTravels.bold.weight,
+                color: Colors.white,
+                fontStyle: FontStyle.normal,
+                fontSize: 24,
+              ),),
             ),
           ),
         ),
@@ -88,16 +88,18 @@ class _MyHomePageState extends State<HomePage> {
                         const SizedBox(height: 50),
                         if (textScanning) const CircularProgressIndicator(),
                         if (!textScanning && imageFile == null)
-                        Container(
-                          decoration: BoxDecoration( borderRadius:  BorderRadius.circular(8.0), color: Colors.grey[200]!),
-                          width: 200,
-                          height: 200,
-                          child: Icon(Icons.image_search_outlined, color: Colors.grey.shade100, size: 100.0,),
-                          // color: Colors.grey[300]!,
-                        ),
+                          Container(
+                            decoration: BoxDecoration(borderRadius: BorderRadius
+                                .circular(8.0), color: Colors.grey[200]!),
+                            width: 200,
+                            height: 200,
+                            child: Icon(Icons.image_search_outlined,
+                              color: Colors.grey.shade100, size: 100.0,),
+                            // color: Colors.grey[300]!,
+                          ),
                         if (imageFile != null)
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
                             child: Image.file(
                               File(imageFile!.path),
                               fit: BoxFit.fill,
@@ -110,28 +112,37 @@ class _MyHomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16.0),
                               child: ElevatedButton.icon(
                                 onPressed: () => _pickImage(ImageSource.camera),
                                 icon: const Icon(Icons.camera_alt),
                                 label: const Text('Câmera'),
                                 style: ButtonStyle(
-                                  padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)
-                                  ),
-                                  backgroundColor: MaterialStateProperty.all(Color(appAcolor))
+                                    padding: MaterialStateProperty.all<
+                                        EdgeInsets>(const EdgeInsets.symmetric(
+                                        horizontal: 16.0, vertical: 8.0)
+                                    ),
+                                    backgroundColor: MaterialStateProperty.all(
+                                        Color(appAcolor))
                                 ),
                               ),
                             ),
                             // const Spacer(),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16.0),
                               child: ElevatedButton.icon(
-                                onPressed: () => _pickImage(ImageSource.gallery),
+                                onPressed: () =>
+                                    _pickImage(ImageSource.gallery),
                                 icon: const Icon(Icons.photo_library),
                                 label: const Text('Galeria'),
                                 style: ButtonStyle(
-                                  padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)),
-                                  backgroundColor: MaterialStateProperty.all(Color(appAcolor))
+                                    padding: MaterialStateProperty.all<
+                                        EdgeInsets>(const EdgeInsets.symmetric(
+                                        horizontal: 16.0, vertical: 8.0)),
+                                    backgroundColor: MaterialStateProperty.all(
+                                        Color(appAcolor))
                                 ),
                               ),
                             ),
@@ -140,11 +151,10 @@ class _MyHomePageState extends State<HomePage> {
                         const SizedBox(height: 20),
                         _result(imageFile, scannedText),
                         // Text(
-                        //   scannedText,
+                        //   unhealthyIngredientsFounded.toString(),
                         //   style: const TextStyle(fontSize: 20),
                         // ),
                       ],
-
                     ),
                   ),
                 ],
@@ -155,7 +165,7 @@ class _MyHomePageState extends State<HomePage> {
             child: Align(
               alignment: Alignment.bottomLeft,
               child: SizedBox(
-                width: 468, height: 60, child: AdWidget( ad: myBanner),
+                width: 728, height: 90, child: AdWidget(ad: myBanner),
               ),
             ),
           )
@@ -181,7 +191,6 @@ class _MyHomePageState extends State<HomePage> {
     } catch (e) {
       textScanning = false;
       imageFile = null;
-      scannedText = "Error occured while scanning";
       setState(() {});
     }
   }
@@ -189,55 +198,68 @@ class _MyHomePageState extends State<HomePage> {
   void getRecognisedText(File image) async {
     final inputImage = InputImage.fromFilePath(image.path);
     final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
-    final RecognizedText recognizedText = await textRecognizer.processImage(inputImage);
+    final RecognizedText recognizedText = await textRecognizer.processImage(
+        inputImage);
     await textRecognizer.close();
-    scannedText = "";
+    scannedText = [""];
     for (TextBlock block in recognizedText.blocks) {
       for (TextLine line in block.lines) {
-        scannedText = "$scannedText${line.text}\n";
+        scannedText.add(line.text);
       }
     }
     textScanning = false;
     setState(() {});
   }
 
-  bool? _getIngredientResult(String scannedText) {
+  List<String> scannedTextToUpperCase(scannedText){
+    List<String> scannedTextUpperCase = [];
+    for (String text in scannedText){
+      scannedTextUpperCase.add(text.toUpperCase());
+    }
+    return scannedTextUpperCase;
+  }
+
+  bool? _getIngredientResult(List<String> scannedText) {
     final List<String> unhealthyIngredients = [
-      "Tolueno",
-      "Formaldeído",
-      "Dibutilftalato (DBP)",
-      "Resina de formaldeído",
-      "Cânfora",
-      "Xileno",
-      "Etil tosilamida",
-      "Trifenilfosfato (TPHP)",
-      "Parabenos",
-      "Acetona",
-      "Sulfato de níquel",
-      "Sulfato de cobalto",
-      "Óleo mineral",
-      "Glúten",
-      "Produtos derivados de animais"
+      "TOLUENO",
+      "FORMALDEÍDO",
+      "DIBUTILFTALATO (DBP)",
+      "RESINA DE FORMALDEÍDO",
+      "CÂNFORA",
+      "XILENO",
+      "ETIL TOSILAMIDA",
+      "TRIFENILFOSFATO (TPHP)",
+      "PARABENOS",
+      "ACETONA",
+      "SULFATO DE NÍQUEL",
+      "SULFATO DE COBALTO",
+      "ÓLEO MINERAL",
+      "GLÚTEN",
+      "PRODUTOS DERIVADOS DE ANIMAIS"
     ];
 
-   for (var ingredient in unhealthyIngredients) {
-     String scannedTextLowerCase = scannedText.toLowerCase();
-     String ingredientLowerCase = ingredient.toLowerCase();
-     if (scannedTextLowerCase.contains(ingredientLowerCase)) {
-       return true;
-     } else {
-       return false;
-     }
-   }
-   return null;
+    List<String> scannedTextUpperCased = scannedTextToUpperCase(scannedText);
+
+    for (String ingredient in unhealthyIngredients) {
+      if (scannedTextUpperCased.contains(ingredient)) {
+        unhealthyIngredientsFounded.add(ingredient);
+      }
     }
+
+    if (unhealthyIngredientsFounded.isNotEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
     Widget _result(imageFile, scannedText) {
       if (imageFile == null) {
         return const SizedBox.shrink();
       }
       if (_getIngredientResult(scannedText) == true) {
-        return const Icon(Icons.do_not_touch, color: Colors.black26, size: 100.0);
+        return const Icon(
+            Icons.do_not_touch, color: Colors.black26, size: 100.0);
       }
       if (_getIngredientResult(scannedText) == false) {
         return const Icon(Icons.check_circle, color: Colors.green, size: 100.0);
