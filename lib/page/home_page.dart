@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:safe_nails/common/common_strings.dart';
 import '../common/fonts.dart';
 import '../image_picker_service.dart';
 
@@ -47,7 +48,7 @@ class _MyHomePageState extends State<HomePage> {
           title: Center(
             child: Padding(
               padding: const EdgeInsets.only(top: 16.0),
-              child: Text("Safe Nails", style:
+              child: Text(CommonStrings.title, style:
               TextStyle(
                 fontFamily: TTTravels.bold.familyName,
                 fontWeight: TTTravels.bold.weight,
@@ -74,7 +75,7 @@ class _MyHomePageState extends State<HomePage> {
                       children: [
                         const SizedBox(height: 30),
                         Text(
-                          'Verifique se o esmalte é seguro para a sua saúde e a do planeta.',
+                          CommonStrings.subTitle,
                           style:
                           TextStyle(
                             fontFamily: TTTravels.bold.familyName,
@@ -117,7 +118,7 @@ class _MyHomePageState extends State<HomePage> {
                               child: ElevatedButton.icon(
                                 onPressed: () => _pickImage(ImageSource.camera),
                                 icon: const Icon(Icons.camera_alt),
-                                label: const Text('Câmera'),
+                                label: Text(CommonStrings.camera),
                                 style: ButtonStyle(
                                     padding: MaterialStateProperty.all<
                                         EdgeInsets>(const EdgeInsets.symmetric(
@@ -136,7 +137,7 @@ class _MyHomePageState extends State<HomePage> {
                                 onPressed: () =>
                                     _pickImage(ImageSource.gallery),
                                 icon: const Icon(Icons.photo_library),
-                                label: const Text('Galeria'),
+                                label: Text(CommonStrings.gallery),
                                 style: ButtonStyle(
                                     padding: MaterialStateProperty.all<
                                         EdgeInsets>(const EdgeInsets.symmetric(
@@ -220,27 +221,9 @@ class _MyHomePageState extends State<HomePage> {
   }
 
   bool? _getIngredientResult(List<String> scannedText) {
-    final List<String> unhealthyIngredients = [
-      "TOLUENO",
-      "FORMALDEÍDO",
-      "DIBUTILFTALATO (DBP)",
-      "RESINA DE FORMALDEÍDO",
-      "CÂNFORA",
-      "XILENO",
-      "ETIL TOSILAMIDA",
-      "TRIFENILFOSFATO (TPHP)",
-      "PARABENOS",
-      "ACETONA",
-      "SULFATO DE NÍQUEL",
-      "SULFATO DE COBALTO",
-      "ÓLEO MINERAL",
-      "GLÚTEN",
-      "PRODUTOS DERIVADOS DE ANIMAIS"
-    ];
-
     List<String> scannedTextUpperCased = scannedTextToUpperCase(scannedText);
 
-    for (String ingredient in unhealthyIngredients) {
+    for (String ingredient in CommonStrings.unhealthyIngredients) {
       if (scannedTextUpperCased.contains(ingredient)) {
         unhealthyIngredientsFounded.add(ingredient);
       }
