@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:safe_nails/page/home_page.dart';
-import 'common/app_router.dart';
 import 'package:firebase_core/firebase_core.dart';
-// import 'firebase_options.dart';
+import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:safe_nails/common/app_router.dart';
+import 'package:safe_nails/page/old_home_page.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -40,12 +39,10 @@ class _MyAppState extends State<MyApp> {
               theme: ThemeData(
                 primarySwatch: Colors.blue,
               ),
-              home: const HomePage(),
+              home: const OldHomePage(),
             onGenerateRoute: _appRouter.onGeneratedRoute,
             navigatorKey: navigatorKey,
           );
 
   }
 }
-
-

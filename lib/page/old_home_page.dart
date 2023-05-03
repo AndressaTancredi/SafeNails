@@ -4,22 +4,22 @@ import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:safe_nails/common/common_strings.dart';
-import '../common/fonts.dart';
-import '../image_picker_service.dart';
+import 'package:safe_nails/common/fonts.dart';
+import 'package:safe_nails/common/image_picker_service.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class ANTIGAHomePage extends StatefulWidget {
+  const ANTIGAHomePage({super.key});
 
   @override
-  State<HomePage> createState() => _MyHomePageState();
+  State<ANTIGAHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<HomePage> {
+class _MyHomePageState extends State<ANTIGAHomePage> {
   final BannerAd myBanner = BannerAd(
     adUnitId: 'ca-app-pub-6850065566204568/5619356631',
     size: AdSize.banner,
-    request: AdRequest(),
-    listener: BannerAdListener(),
+    request: const AdRequest(),
+    listener: const BannerAdListener(),
   );
   List<String> unhealthyIngredientsFounded = [];
 
@@ -37,14 +37,14 @@ class _MyHomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    int appAcolor = 0xfff97d5b1;
+    const int appAcolor = 0xfff97d5b1;
 
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size(100, 80),
         child: AppBar(
           elevation: 0,
-          backgroundColor: Color(appAcolor),
+          backgroundColor: const Color(appAcolor),
           title: Center(
             child: Padding(
               padding: const EdgeInsets.only(top: 16.0),
@@ -70,7 +70,6 @@ class _MyHomePageState extends State<HomePage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const SizedBox(height: 30),
@@ -80,7 +79,7 @@ class _MyHomePageState extends State<HomePage> {
                           TextStyle(
                             fontFamily: TTTravels.bold.familyName,
                             fontWeight: TTTravels.bold.weight,
-                            color: Color(appAcolor),
+                            color: const Color(appAcolor),
                             fontStyle: FontStyle.normal,
                             fontSize: 20,
                           ),
@@ -125,7 +124,7 @@ class _MyHomePageState extends State<HomePage> {
                                         horizontal: 16.0, vertical: 8.0)
                                     ),
                                     backgroundColor: MaterialStateProperty.all(
-                                        Color(appAcolor))
+                                        const Color(appAcolor))
                                 ),
                               ),
                             ),
@@ -143,7 +142,7 @@ class _MyHomePageState extends State<HomePage> {
                                         EdgeInsets>(const EdgeInsets.symmetric(
                                         horizontal: 16.0, vertical: 8.0)),
                                     backgroundColor: MaterialStateProperty.all(
-                                        Color(appAcolor))
+                                        const Color(appAcolor))
                                 ),
                               ),
                             ),
@@ -151,10 +150,10 @@ class _MyHomePageState extends State<HomePage> {
                         ),
                         const SizedBox(height: 20),
                         _result(imageFile, scannedText),
-                        // Text(
-                        //   unhealthyIngredientsFounded.toString(),
-                        //   style: const TextStyle(fontSize: 20),
-                        // ),
+                        Text(
+                          unhealthyIngredientsFounded.toString(),
+                          style: const TextStyle(fontSize: 20),
+                        ),
                       ],
                     ),
                   ),
@@ -187,7 +186,7 @@ class _MyHomePageState extends State<HomePage> {
         textScanning = true;
         imageFile = pickedImage;
         setState(() {});
-        getRecognisedText(pickedImage);
+        // getRecognisedText(pickedImage);
       }
     } catch (e) {
       textScanning = false;
@@ -196,35 +195,28 @@ class _MyHomePageState extends State<HomePage> {
     }
   }
 
-  void getRecognisedText(File image) async {
+  List<String> getRecognisedText(File image) {
     final inputImage = InputImage.fromFilePath(image.path);
-    final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
-    final RecognizedText recognizedText = await textRecognizer.processImage(
+    final textRecognizer = TextRecognizer();
+    final RecognizedText recognizedText =  textRecognizer.processImage(
         inputImage);
-    await textRecognizer.close();
-    scannedText = [""];
-    for (TextBlock block in recognizedText.blocks) {
-      for (TextLine line in block.lines) {
+     textRecognizer.close();
+    scannedText = [];
+    for (final TextBlock block in recognizedText.blocks) {
+      for (final TextLine line in block.lines) {
         scannedText.add(line.text);
       }
     }
     textScanning = false;
     setState(() {});
+    return scannedText;
   }
 
-  List<String> scannedTextToUpperCase(scannedText){
-    List<String> scannedTextUpperCase = [];
-    for (String text in scannedText){
-      scannedTextUpperCase.add(text.toUpperCase());
-    }
-    return scannedTextUpperCase;
-  }
+  bool _getIngredientResult(List<String> scannedText, File pickedImage) {
+    final List<String> scannedText = getRecognisedText(pickedImage);
 
-  bool? _getIngredientResult(List<String> scannedText) {
-    List<String> scannedTextUpperCased = scannedTextToUpperCase(scannedText);
-
-    for (String ingredient in CommonStrings.unhealthyIngredients) {
-      if (scannedTextUpperCased.contains(ingredient)) {
+    for (final String ingredient in CommonStrings.unhealthyIngredients) {
+      if (scannedText.contains(ingredient)) {
         unhealthyIngredientsFounded.add(ingredient);
       }
     }
@@ -240,11 +232,11 @@ class _MyHomePageState extends State<HomePage> {
       if (imageFile == null) {
         return const SizedBox.shrink();
       }
-      if (_getIngredientResult(scannedText) == true) {
+      if (_getIngredientResult(scannedText, imageFile)) {
         return const Icon(
             Icons.do_not_touch, color: Colors.black26, size: 100.0);
       }
-      if (_getIngredientResult(scannedText) == false) {
+      if (_getIngredientResult(scannedText, imageFile) == false) {
         return const Icon(Icons.check_circle, color: Colors.green, size: 100.0);
       }
       return const SizedBox.shrink();
