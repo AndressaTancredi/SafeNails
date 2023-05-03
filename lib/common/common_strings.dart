@@ -3,6 +3,7 @@ class CommonStrings {
   static String get subTitle => 'Verifique se o esmalte é seguro para a sua saúde e a do planeta.';
   static String get camera => "Câmera";
   static String get gallery => "Galeria";
+  static String get howToTitle => "Como usar esse aplicativo";
 
   static List<String> get unhealthyIngredients => [
     "TOLUENO",
