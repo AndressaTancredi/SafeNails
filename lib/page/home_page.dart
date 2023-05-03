@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
@@ -17,11 +18,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.background,
         elevation: 0,
         title: Center(
           child: Padding(
             padding: const EdgeInsets.only(top: 16.0),
-            child: Text(CommonStrings.howToTitle),
+            child: Text(CommonStrings.howToTitle, style: titlePageStyle,),
           ),
         ),
       ),

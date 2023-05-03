@@ -2,7 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:safe_nails/common/app_router.dart';
-import 'package:safe_nails/page/old_home_page.dart';
+import 'package:safe_nails/common/injection_container.dart' as get_it;
+import 'package:safe_nails/page/home_page.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -12,6 +13,7 @@ Future main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await get_it.init();
 
   runApp(const MyApp());
 }
@@ -39,7 +41,7 @@ class _MyAppState extends State<MyApp> {
               theme: ThemeData(
                 primarySwatch: Colors.blue,
               ),
-              home: const OldHomePage(),
+              home: const HomePage(),
             onGenerateRoute: _appRouter.onGeneratedRoute,
             navigatorKey: navigatorKey,
           );
