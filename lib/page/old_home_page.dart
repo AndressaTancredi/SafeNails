@@ -7,14 +7,14 @@ import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/fonts.dart';
 import 'package:safe_nails/common/image_picker_service.dart';
 
-class ANTIGAHomePage extends StatefulWidget {
-  const ANTIGAHomePage({super.key});
+class OldHomePage extends StatefulWidget {
+  const OldHomePage({super.key});
 
   @override
-  State<ANTIGAHomePage> createState() => _MyHomePageState();
+  State<OldHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<ANTIGAHomePage> {
+class _MyHomePageState extends State<OldHomePage> {
   final BannerAd myBanner = BannerAd(
     adUnitId: 'ca-app-pub-6850065566204568/5619356631',
     size: AdSize.banner,
@@ -37,14 +37,14 @@ class _MyHomePageState extends State<ANTIGAHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    const int appAcolor = 0xfff97d5b1;
+    const int appColor = 0xfff97d5b1;
 
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size(100, 80),
         child: AppBar(
           elevation: 0,
-          backgroundColor: const Color(appAcolor),
+          backgroundColor: const Color(appColor),
           title: Center(
             child: Padding(
               padding: const EdgeInsets.only(top: 16.0),
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<ANTIGAHomePage> {
                           TextStyle(
                             fontFamily: TTTravels.bold.familyName,
                             fontWeight: TTTravels.bold.weight,
-                            color: const Color(appAcolor),
+                            color: const Color(appColor),
                             fontStyle: FontStyle.normal,
                             fontSize: 20,
                           ),
@@ -124,7 +124,7 @@ class _MyHomePageState extends State<ANTIGAHomePage> {
                                         horizontal: 16.0, vertical: 8.0)
                                     ),
                                     backgroundColor: MaterialStateProperty.all(
-                                        const Color(appAcolor))
+                                        const Color(appColor))
                                 ),
                               ),
                             ),
@@ -142,7 +142,7 @@ class _MyHomePageState extends State<ANTIGAHomePage> {
                                         EdgeInsets>(const EdgeInsets.symmetric(
                                         horizontal: 16.0, vertical: 8.0)),
                                     backgroundColor: MaterialStateProperty.all(
-                                        const Color(appAcolor))
+                                        const Color(appColor))
                                 ),
                               ),
                             ),
@@ -150,10 +150,10 @@ class _MyHomePageState extends State<ANTIGAHomePage> {
                         ),
                         const SizedBox(height: 20),
                         _result(imageFile, scannedText),
-                        Text(
-                          unhealthyIngredientsFounded.toString(),
-                          style: const TextStyle(fontSize: 20),
-                        ),
+                        // Text(
+                        //   unhealthyIngredientsFounded.toString(),
+                        //   style: const TextStyle(fontSize: 20),
+                        // ),
                       ],
                     ),
                   ),
@@ -186,7 +186,7 @@ class _MyHomePageState extends State<ANTIGAHomePage> {
         textScanning = true;
         imageFile = pickedImage;
         setState(() {});
-        // getRecognisedText(pickedImage);
+        getRecognisedText(pickedImage);
       }
     } catch (e) {
       textScanning = false;
@@ -195,13 +195,13 @@ class _MyHomePageState extends State<ANTIGAHomePage> {
     }
   }
 
-  List<String> getRecognisedText(File image) {
+  void getRecognisedText(File image) async {
     final inputImage = InputImage.fromFilePath(image.path);
     final textRecognizer = TextRecognizer();
-    final RecognizedText recognizedText =  textRecognizer.processImage(
+    final RecognizedText recognizedText = await textRecognizer.processImage(
         inputImage);
-     textRecognizer.close();
-    scannedText = [];
+    await textRecognizer.close();
+    scannedText = [""];
     for (final TextBlock block in recognizedText.blocks) {
       for (final TextLine line in block.lines) {
         scannedText.add(line.text);
@@ -209,12 +209,9 @@ class _MyHomePageState extends State<ANTIGAHomePage> {
     }
     textScanning = false;
     setState(() {});
-    return scannedText;
   }
 
-  bool _getIngredientResult(List<String> scannedText, File pickedImage) {
-    final List<String> scannedText = getRecognisedText(pickedImage);
-
+  bool? _getIngredientResult(List<String> scannedText) {
     for (final String ingredient in CommonStrings.unhealthyIngredients) {
       if (scannedText.contains(ingredient)) {
         unhealthyIngredientsFounded.add(ingredient);
@@ -228,17 +225,17 @@ class _MyHomePageState extends State<ANTIGAHomePage> {
     }
   }
 
-    Widget _result(imageFile, scannedText) {
-      if (imageFile == null) {
-        return const SizedBox.shrink();
-      }
-      if (_getIngredientResult(scannedText, imageFile)) {
-        return const Icon(
-            Icons.do_not_touch, color: Colors.black26, size: 100.0);
-      }
-      if (_getIngredientResult(scannedText, imageFile) == false) {
-        return const Icon(Icons.check_circle, color: Colors.green, size: 100.0);
-      }
+  Widget _result(imageFile, scannedText) {
+    if (imageFile == null) {
       return const SizedBox.shrink();
     }
+    if (_getIngredientResult(scannedText) == true) {
+      return const Icon(
+          Icons.do_not_touch, color: Colors.black26, size: 100.0);
+    }
+    if (_getIngredientResult(scannedText) == false) {
+      return const Icon(Icons.check_circle, color: Colors.green, size: 100.0);
+    }
+    return const SizedBox.shrink();
   }
+}
