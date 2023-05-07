@@ -23,8 +23,8 @@ class TextStyles {
   final pageTitle = TextStyle(
     fontFamily: Suprapower.bold.familyName,
     fontWeight: Suprapower.light.weight,
-    color: Colors.white,
+    color: Colors.black,
     fontStyle: FontStyle.normal,
-    fontSize: 14,
+    fontSize: 24,
   );
 }

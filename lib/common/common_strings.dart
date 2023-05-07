@@ -7,6 +7,11 @@ class CommonStrings {
   static String get howToTitle => "Como Usar Esse Aplicativo";
   static String get getStarted => "GET STARTED";
   static String get welcomeSubtitle => "Discover ingredients and choose healthy and sustainable nail polishes.";
+  static String get stepOne => "Primeiro Passo";
+  static String get stepOneDescription => "Tire uma foto do rótulo do esmalte com a câmera do seu smartphone ou selecione uma foto da galeria.";
+  static String get stepTwo => "Segundo Passo";
+  static String get stepTwoDescription => "O aplicativo analisará os ingredientes e fornecerá informações sobre a segurança e sustentabilidade do produto.";
+  static String get choose => "Escolha";
 
   static List<String> get unhealthyIngredients => [
     "TOLUENO",

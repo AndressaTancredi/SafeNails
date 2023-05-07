@@ -34,7 +34,7 @@ class _WelcomePageState extends State<WelcomePage> {
               Padding(
                 padding: const EdgeInsets.only(top: 66.0, bottom: 20.0 ),
                 child: Text(CommonStrings.welcomeTitle,
-                  style: titlePageStyle.copyWith(fontSize: 40.0, color: Colors.black),
+                  style: titlePageStyle.copyWith(fontSize: 40.0),
                 ),
               ),
               Padding(
@@ -50,7 +50,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   padding: const EdgeInsets.only(bottom: 36.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
+                      backgroundColor: Colors.white,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0)),

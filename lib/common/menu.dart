@@ -59,7 +59,7 @@ class _AnimatedTabMenuState extends State<AnimatedTabMenu>
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
               blurRadius: 10,
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
             ),
           ],
           color: widget.backgroundColor,
