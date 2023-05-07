@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:safe_nails/ui/pages/home_page.dart';
 import 'package:safe_nails/ui/pages/old_home_page.dart';
 import 'package:safe_nails/ui/pages/test_page.dart';
+import 'package:safe_nails/ui/pages/welcome_page.dart';
 
 class AnimatedTabMenu extends StatefulWidget {
   static final List<IconData> icons = [
@@ -11,7 +11,7 @@ class AnimatedTabMenu extends StatefulWidget {
   ];
 
   static final List<Widget> pages = [
-    const HomePage(),
+    const WelcomePage(),
     const OldHomePage(),
     const TestePage(),
   ];

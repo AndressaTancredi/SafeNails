@@ -4,7 +4,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:safe_nails/common/app_router.dart';
 import 'package:safe_nails/common/injection_container.dart' as get_it;
 import 'package:safe_nails/firebase_options.dart';
-import 'package:safe_nails/ui/pages/home_page.dart';
+import 'package:safe_nails/ui/pages/welcome_page.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
               theme: ThemeData(
                 primarySwatch: Colors.blue,
               ),
-              home: const HomePage(),
+              home: const WelcomePage(),
             onGenerateRoute: _appRouter.onGeneratedRoute,
             navigatorKey: navigatorKey,
           );

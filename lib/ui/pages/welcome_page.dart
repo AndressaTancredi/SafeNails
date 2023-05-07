@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class WelcomePage extends StatefulWidget {
+  const WelcomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<WelcomePage> createState() => _WelcomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _WelcomePageState extends State<WelcomePage> {
   TextStyle get buttonTextStyle => sl<TextStyles>().buttonText;
   TextStyle get titlePageStyle => sl<TextStyles>().pageTitle;
   TextStyle get subtitlePageStyle => sl<TextStyles>().body;
