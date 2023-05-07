@@ -11,12 +11,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   cupertino_icons: ^1.0.2
   image_picker: ^0.8.4+3
   image_cropper: ^1.4.0
   google_mlkit_text_recognition: ^0.5.0
   firebase_core: ^2.9.0
   google_mobile_ads: ^2.4.0
+  motion_tab_bar_v2: ^0.2.3
 
 dev_dependencies:
   flutter_test:
@@ -27,3 +29,13 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+  fonts:
+    - family: TTTravels
+      fonts:
+        - asset: assets/fonts/TTTravels-Regular.otf
+          weight: 400
+    - family: Suprapower
+      fonts:
+        - asset: assets/fonts/Suprapower-Heavy.ttf

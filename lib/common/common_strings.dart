@@ -1,9 +1,12 @@
 class CommonStrings {
+  static String get welcomeTitle => "Welcome";
   static String get title => "Safe Nails";
   static String get subTitle => 'Verifique se o esmalte é seguro para a sua saúde e a do planeta.';
   static String get camera => "Câmera";
   static String get gallery => "Galeria";
-  static String get howToTitle => "Como usar esse aplicativo";
+  static String get howToTitle => "Como Usar Esse Aplicativo";
+  static String get getStarted => "GET STARTED";
+  static String get welcomeSubtitle => "Discover ingredients and choose healthy and sustainable nail polishes.";
 
   static List<String> get unhealthyIngredients => [
     "TOLUENO",

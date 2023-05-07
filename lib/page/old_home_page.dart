@@ -31,7 +31,7 @@ class _MyHomePageState extends State<OldHomePage> {
   }
 
   bool textScanning = false;
-  File? imageFile;
+  XFile? imageFile;
   List<String> scannedText = [""];
   IconData? iconResult;
 
@@ -195,8 +195,8 @@ class _MyHomePageState extends State<OldHomePage> {
     }
   }
 
-  void getRecognisedText(File image) async {
-    final inputImage = InputImage.fromFilePath(image.path);
+  void getRecognisedText(XFile? image) async {
+    final inputImage = InputImage.fromFilePath(image!.path);
     final textRecognizer = TextRecognizer();
     final RecognizedText recognizedText = await textRecognizer.processImage(
         inputImage);

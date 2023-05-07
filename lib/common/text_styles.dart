@@ -12,11 +12,19 @@ class TextStyles {
     color: AppColors.primary,
   );
 
+  final buttonText = TextStyle(
+    fontFamily: Suprapower.bold.familyName,
+    fontWeight: Suprapower.light.weight,
+    color: AppColors.primary,
+    fontStyle: FontStyle.normal,
+    fontSize: 14,
+  );
+
   final pageTitle = TextStyle(
     fontFamily: Suprapower.bold.familyName,
-    fontWeight: Suprapower.bold.weight,
+    fontWeight: Suprapower.light.weight,
     color: Colors.white,
     fontStyle: FontStyle.normal,
-    fontSize: 16,
+    fontSize: 14,
   );
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:safe_nails/common/app_router.dart';
 import 'package:safe_nails/common/injection_container.dart' as get_it;
+import 'package:safe_nails/firebase_options.dart';
 import 'package:safe_nails/page/home_page.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -12,7 +13,9 @@ Future main() async {
   MobileAds.instance.initialize();
 
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await get_it.init();
 
   runApp(const MyApp());

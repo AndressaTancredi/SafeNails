@@ -324,6 +324,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.4.0"
+  motion_tab_bar_v2:
+    dependency: "direct main"
+    description:
+      name: motion_tab_bar_v2
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.6"
   package_config:
     dependency: transitive
     description:
