@@ -38,7 +38,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-          return MaterialApp(
+    precacheImage(const AssetImage('assets/images/nailPolish.jpg'), context);
+
+    return MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Nails',
               theme: ThemeData(

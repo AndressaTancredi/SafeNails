@@ -56,7 +56,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         borderRadius: BorderRadius.circular(10.0)),
                         minimumSize: const Size(180, 45),
                     ),
-                    onPressed: () {},
+                    onPressed: () => Navigator.of(context).pushNamed('/home_page'),
                     child: Text(CommonStrings.getStarted,
                       style: buttonTextStyle,
                     ),
