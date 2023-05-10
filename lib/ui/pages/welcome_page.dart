@@ -11,9 +11,9 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-  TextStyle get buttonTextStyle => sl<TextStyles>().buttonText;
-  TextStyle get titlePageStyle => sl<TextStyles>().pageTitle;
-  TextStyle get subtitlePageStyle => sl<TextStyles>().body;
+  TextStyle get title => sl<TextStyles>().principalTitle;
+  TextStyle get subtitle => sl<TextStyles>().subTitle;
+  TextStyle get button => sl<TextStyles>().buttonText;
 
   @override
   Widget build(BuildContext context) {
@@ -32,22 +32,22 @@ class _WelcomePageState extends State<WelcomePage> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 66.0, bottom: 20.0 ),
+                padding: const EdgeInsets.only(top: 84.0, bottom: 20.0 ),
                 child: Text(CommonStrings.welcomeTitle,
-                  style: titlePageStyle.copyWith(fontSize: 40.0),
+                  style: title,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 36.0),
                 child: Text(CommonStrings.welcomeSubtitle,
-                  style: subtitlePageStyle,
+                  style: subtitle,
                   textAlign: TextAlign.center,
                 ),
               ),
               const Spacer(),
               Center(
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 36.0),
+                  padding: const EdgeInsets.only(bottom: 44.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
@@ -58,7 +58,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     ),
                     onPressed: () => Navigator.of(context).pushNamed('/home_page'),
                     child: Text(CommonStrings.getStarted,
-                      style: buttonTextStyle,
+                      style: button,
                     ),
                   ),
                 ),

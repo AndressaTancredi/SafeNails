@@ -4,7 +4,6 @@ import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:safe_nails/common/common_strings.dart';
-import 'package:safe_nails/common/fonts.dart';
 import 'package:safe_nails/common/image_picker_service.dart';
 
 class OldHomePage extends StatefulWidget {
@@ -48,14 +47,7 @@ class _MyHomePageState extends State<OldHomePage> {
           title: Center(
             child: Padding(
               padding: const EdgeInsets.only(top: 16.0),
-              child: Text(CommonStrings.title, style:
-              TextStyle(
-                fontFamily: TTTravels.bold.familyName,
-                fontWeight: TTTravels.bold.weight,
-                color: Colors.white,
-                fontStyle: FontStyle.normal,
-                fontSize: 24,
-              ),),
+              child: Text(CommonStrings.title),
             ),
           ),
         ),
@@ -75,14 +67,6 @@ class _MyHomePageState extends State<OldHomePage> {
                         const SizedBox(height: 30),
                         Text(
                           CommonStrings.subTitle,
-                          style:
-                          TextStyle(
-                            fontFamily: TTTravels.bold.familyName,
-                            fontWeight: TTTravels.bold.weight,
-                            color: const Color(appColor),
-                            fontStyle: FontStyle.normal,
-                            fontSize: 20,
-                          ),
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 50),
