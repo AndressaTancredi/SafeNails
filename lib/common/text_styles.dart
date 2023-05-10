@@ -11,7 +11,7 @@ class TextStyles {
     fontSize: 44
   );
 
-  final subTitle = const TextStyle(
+  final principalSubTitle = const TextStyle(
     fontFamily: "DMSans",
     fontWeight: FontWeight.w400,
     color: AppColors.regularGrey,
@@ -29,10 +29,26 @@ class TextStyles {
 
   final pageTitle = const TextStyle(
     fontFamily: "Cosmetic",
-    fontWeight: FontWeight.w900,
-    color: AppColors.black,
+    fontWeight: FontWeight.w700,
+    color: AppColors.regularBlack,
     fontStyle: FontStyle.normal,
-    fontSize: 44,
+    fontSize: 24,
+  );
+
+  final subTitle = const TextStyle(
+    fontFamily: "Cosmetic",
+    fontWeight: FontWeight.w700,
+    color: AppColors.boldBlack,
+    fontStyle: FontStyle.normal,
+    fontSize: 18,
+  );
+
+  final bodyDescription = const TextStyle(
+    fontFamily: "DMSans",
+    fontWeight: FontWeight.w400,
+    color: AppColors.lightGrey,
+    fontStyle: FontStyle.normal,
+    fontSize: 16,
   );
 
   final body = const TextStyle(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
@@ -13,26 +14,27 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-  TextStyle get titlePageStyle => sl<TextStyles>().pageTitle;
+  TextStyle get title => sl<TextStyles>().pageTitle;
+  TextStyle get subTitle => sl<TextStyles>().subTitle;
+  TextStyle get bodyDescription => sl<TextStyles>().bodyDescription;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
       body:  Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 22.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 44.0, bottom: 20.0),
+              padding: const EdgeInsets.only(top: 34.0, bottom: 26.0),
               child: Text(
                 CommonStrings.howToTitle,
-                style: titlePageStyle),
+                style: title),
             ),
             Container(
-              padding: const EdgeInsets.all(16.0 ),
+              padding: const EdgeInsets.all(20.0 ),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16.0),
@@ -40,15 +42,19 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(CommonStrings.stepOne),
-                  const SizedBox(height: 12.0),
-                  Text(CommonStrings.stepOneDescription),
+                  Text(CommonStrings.stepOne, style: subTitle),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0, right: 4.0),
+                    child: Text(CommonStrings.stepOneDescription, style: bodyDescription),
+                  ),
                   const SizedBox(height: 8.0),
-                  const Divider(thickness: 0.8, color: Colors.black38,),
+                  const Divider(thickness: 1, color: AppColors.grey,),
                   const SizedBox(height: 8.0),
-                  Text(CommonStrings.stepTwo),
-                  const SizedBox(height: 12.0),
-                  Text(CommonStrings.stepTwoDescription),
+                  Text(CommonStrings.stepTwo, style: subTitle),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0, right: 4.0),
+                    child: Text(CommonStrings.stepTwoDescription, style: bodyDescription),
+                  ),
                 ],
               ),
             ),
@@ -56,11 +62,11 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.only(top: 20.0, bottom: 16.0),
               child: Text(
                   CommonStrings.choose,
-                  style: titlePageStyle.copyWith(fontSize: 20.0)),
+                  style: title),
             ),
-            ImageSource(title: CommonStrings.camera, icon: Icons.camera_alt_outlined),
+            ImageSource(title: CommonStrings.camera, iconPath: 'assets/icons/camera.svg'),
             const SizedBox(height: 12.0),
-            ImageSource(title: CommonStrings.gallery, icon: Icons.image_outlined)
+            ImageSource(title: CommonStrings.gallery, iconPath: 'assets/icons/gallery.svg')
           ],
         ),
       ),

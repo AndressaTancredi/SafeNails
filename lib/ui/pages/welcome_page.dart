@@ -12,7 +12,7 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePageState extends State<WelcomePage> {
   TextStyle get title => sl<TextStyles>().principalTitle;
-  TextStyle get subtitle => sl<TextStyles>().subTitle;
+  TextStyle get subtitle => sl<TextStyles>().principalSubTitle;
   TextStyle get button => sl<TextStyles>().buttonText;
 
   @override

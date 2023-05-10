@@ -4,7 +4,7 @@ class CommonStrings {
   static String get subTitle => 'Verifique se o esmalte é seguro para a sua saúde e a do planeta.';
   static String get camera => "Câmera";
   static String get gallery => "Galeria";
-  static String get howToTitle => "Como Usar Esse Aplicativo";
+  static String get howToTitle => "Como Utilizar Este Aplicativo";
   static String get getStarted => "COMEÇAR";
   static String get welcomeSubtitle => "Conheça os ingredientes e escolha esmaltes saudáveis e sustentáveis.";
   static String get stepOne => "Primeiro Passo";
