@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/ui/widgets/image_source.dart';
+import 'package:safe_nails/ui/widgets/loading.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -59,6 +59,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
+              // const Loading(),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0, bottom: 16.0),
                 child: Text(

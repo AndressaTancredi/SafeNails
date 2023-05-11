@@ -12,6 +12,7 @@ class CommonStrings {
   static String get stepTwo => "Segundo Passo";
   static String get stepTwoDescription => "O aplicativo analisará os ingredientes e fornecerá informações sobre a segurança e sustentabilidade do produto.";
   static String get choose => "Escolha";
+  static String get loadingMessage => "Processando o resultado...";
 
   static List<String> get unhealthyIngredients => [
     "TOLUENO",

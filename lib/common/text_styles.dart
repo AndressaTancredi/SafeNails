@@ -51,6 +51,14 @@ class TextStyles {
     fontSize: 16,
   );
 
+  final resultBody = const TextStyle(
+    fontFamily: "DMSans",
+    fontWeight: FontWeight.w400,
+    color: AppColors.softGrey,
+    fontStyle: FontStyle.normal,
+    fontSize: 16,
+  );
+
   final body = const TextStyle(
     fontFamily: "Cosmetic",
     fontWeight: FontWeight.w900,
