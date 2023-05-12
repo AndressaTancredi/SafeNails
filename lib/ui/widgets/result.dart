@@ -5,6 +5,8 @@ import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
 
+import 'button.dart';
+
 class Result extends StatefulWidget {
   final bool positiveResult;
   const Result({required this.positiveResult});
@@ -19,9 +21,27 @@ class _ResultState extends State<Result> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Column(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(14.0),
+          height: 350,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16.0)
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16.0),
+            child: Image.asset(
+              'assets/images/nail_polish.jpg',
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        const SizedBox(height: 16.0),
+        Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
@@ -45,8 +65,11 @@ class _ResultState extends State<Result> {
               ],
             ),
           ),
+          const SizedBox(height: 16.0),
+          Center(child: Button(buttonText: CommonStrings.restarted, routePath: '/welcome_page'))
         ],
       ),
+    ]
     );
   }
 

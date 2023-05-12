@@ -6,6 +6,7 @@ class CommonStrings {
   static String get gallery => "Galeria";
   static String get howToTitle => "Como Utilizar Este Aplicativo";
   static String get getStarted => "COMEÇAR";
+  static String get restarted => "RECOMEÇAR";
   static String get welcomeSubtitle => "Conheça os ingredientes e escolha esmaltes saudáveis e sustentáveis.";
   static String get stepOne => "Primeiro Passo";
   static String get stepOneDescription => "Tire uma foto do rótulo do esmalte com a câmera do seu smartphone ou selecione uma foto da galeria.";

@@ -4,3 +4,5 @@ abstract class AnalysisState extends Equatable {
   @override
   List<Object?> get props => [];
 }
+
+class GetImageAnalysisState extends AnalysisState {}

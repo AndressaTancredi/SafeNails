@@ -28,53 +28,58 @@ class _HomePageState extends State<HomePage> {
         body:  Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 34.0, bottom: 26.0),
-                child: Text(
-                  CommonStrings.howToTitle,
-                  style: title),
-              ),
-              Container(
-                padding: const EdgeInsets.all(20.0 ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(CommonStrings.stepOne, style: subTitle),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0, right: 4.0),
-                      child: Text(CommonStrings.stepOneDescription, style: bodyDescription),
-                    ),
-                    const SizedBox(height: 8.0),
-                    const Divider(thickness: 1, color: AppColors.grey,),
-                    const SizedBox(height: 8.0),
-                    Text(CommonStrings.stepTwo, style: subTitle),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0, right: 4.0),
-                      child: Text(CommonStrings.stepTwoDescription, style: bodyDescription),
-                    ),
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 26.0),
-                child: Result(positiveResult: true),
-              ),
-              // const Loading(),
               // Padding(
-              //   padding: const EdgeInsets.only(top: 20.0, bottom: 16.0),
-              //   child: Text(
-              //       CommonStrings.choose,
-              //       style: title),
+              // padding: EdgeInsets.symmetric(vertical: 16.0),
+              // child: Result(positiveResult: false),
               // ),
-              // ImageSource(title: CommonStrings.camera, iconPath: 'assets/icons/camera.svg'),
-              // const SizedBox(height: 12.0),
-              // ImageSource(title: CommonStrings.gallery, iconPath: 'assets/icons/gallery.svg')
+              //     Padding(
+              //       padding: EdgeInsets.symmetric(vertical: 16.0),
+              //       child: const Loading(),
+              //     ),
+
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16.0),
+                    child: Container(
+                      padding: const EdgeInsets.all(14.0),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16.0),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(CommonStrings.stepOne, style: subTitle),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0, right: 4.0),
+                            child: Text(CommonStrings.stepOneDescription, style: bodyDescription),
+                          ),
+                          const SizedBox(height: 8.0),
+                          const Divider(thickness: 1, color: AppColors.grey,),
+                          const SizedBox(height: 8.0),
+                          Text(CommonStrings.stepTwo, style: subTitle),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0, right: 4.0),
+                            child: Text(CommonStrings.stepTwoDescription, style: bodyDescription),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0, bottom: 16.0),
+                    child: Text(
+                        CommonStrings.choose,
+                        style: title),
+                  ),
+                  ImageSource(title: CommonStrings.camera, iconPath: 'assets/icons/camera.svg'),
+                  const SizedBox(height: 12.0),
+                  ImageSource(title: CommonStrings.gallery, iconPath: 'assets/icons/gallery.svg')
+                ],
+              ),
             ],
           ),
         ),

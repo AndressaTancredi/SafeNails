@@ -19,7 +19,7 @@ class _ImageSourceState extends State<ImageSource> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(13.0 ),
+      padding: const EdgeInsets.all(14.0),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16.0),
@@ -31,9 +31,9 @@ class _ImageSourceState extends State<ImageSource> {
           Row(
             children: [
               Container(
-                height: 80.0,
-                width: 80.0,
-                padding: const EdgeInsets.all(23.0),
+                height: 70.0,
+                width: 70.0,
+                padding: const EdgeInsets.all(20.0),
                 decoration: BoxDecoration(
                   color: AppColors.backgroundIcon,
                   borderRadius: BorderRadius.circular(16.0),
