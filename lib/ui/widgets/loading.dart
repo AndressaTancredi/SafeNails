@@ -23,10 +23,31 @@ class _LoadingState extends State<Loading> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
+            padding: const EdgeInsets.only(top: 24.0),
+            child: Container(
+              padding: const EdgeInsets.all(14.0 ),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16.0)
+              ),
+              child: Shimmer.fromColors(
+                baseColor: Colors.grey.shade200,
+                highlightColor: AppColors.background,
+                child: Container(
+                  height: 350,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16.0)
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
-                CommonStrings.loadingMessage,
-                style: title
+              CommonStrings.loadingMessage,
+              style: title
             ),
           ),
           Container(
@@ -39,11 +60,11 @@ class _LoadingState extends State<Loading> {
               baseColor: Colors.grey.shade200,
               highlightColor: AppColors.background,
               child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16.0)
-                ),
                 height: 110,
+                decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16.0)
+                ),
               ),
             ),
           ),
