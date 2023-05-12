@@ -35,7 +35,7 @@ class _ResultState extends State<Result> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16.0),
             child: Image.asset(
-              'assets/images/nail_polish.jpg',
+              'assets/images/nail_polish_ingredients.jpg',
               fit: BoxFit.cover,
             ),
           ),
