@@ -14,4 +14,6 @@ class AppColors {
   static const background = Color(0xffFAF6F6);
   static const backgroundIcon = Color(0xffFFF7F7);
   static const pink = Color(0xffE79698);
+  static const red = Color(0xffEF565A);
+  static const green = Color(0xff54B68C);
 }

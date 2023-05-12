@@ -43,7 +43,7 @@ class _LoadingState extends State<Loading> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16.0)
                 ),
-                height: 100,
+                height: 110,
               ),
             ),
           ),

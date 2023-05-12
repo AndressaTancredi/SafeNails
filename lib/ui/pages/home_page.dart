@@ -6,6 +6,8 @@ import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/ui/widgets/image_source.dart';
 import 'package:safe_nails/ui/widgets/loading.dart';
 
+import '../widgets/result.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -59,16 +61,20 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              // const Loading(),
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0, bottom: 16.0),
-                child: Text(
-                    CommonStrings.choose,
-                    style: title),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 26.0),
+                child: Result(positiveResult: true),
               ),
-              ImageSource(title: CommonStrings.camera, iconPath: 'assets/icons/camera.svg'),
-              const SizedBox(height: 12.0),
-              ImageSource(title: CommonStrings.gallery, iconPath: 'assets/icons/gallery.svg')
+              // const Loading(),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 20.0, bottom: 16.0),
+              //   child: Text(
+              //       CommonStrings.choose,
+              //       style: title),
+              // ),
+              // ImageSource(title: CommonStrings.camera, iconPath: 'assets/icons/camera.svg'),
+              // const SizedBox(height: 12.0),
+              // ImageSource(title: CommonStrings.gallery, iconPath: 'assets/icons/gallery.svg')
             ],
           ),
         ),
