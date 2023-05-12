@@ -51,36 +51,28 @@ class _ResultState extends State<Result> {
   }
 
   Widget _valueResult({required bool positiveResult}) {
+    String iconPath;
+    Color? textColor;
+
     if (positiveResult == true) {
-      return Row(
-        children: [
-          SvgPicture.asset(
-              "assets/icons/tick_circle.svg"
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Text(
-              CommonStrings.safeResult,
-              style: bodyDescription.copyWith(color: AppColors.green),
-            ),
-          ),
-        ],
-      );
+      iconPath = "assets/icons/tick_circle.svg";
+      textColor = AppColors.green;
     } else {
-        return Row(
-          children: [
-            SvgPicture.asset(
-                "assets/icons/close_circle.svg"
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Text(
-                CommonStrings.notSafeResult,
-                style: bodyDescription.copyWith(color: AppColors.red),
-              ),
-            ),
-          ],
-        );
+      iconPath = "assets/icons/close_circle.svg";
+      textColor = AppColors.red;
     }
-}
+
+    return Row(
+      children: [
+        SvgPicture.asset(iconPath),
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Text(
+            CommonStrings.safeResult,
+            style: bodyDescription.copyWith(color: textColor),
+          ),
+        ),
+      ],
+    );
+  }
 }
