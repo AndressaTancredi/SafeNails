@@ -1,8 +1,18 @@
 import 'package:equatable/equatable.dart';
+import 'package:image_picker/image_picker.dart';
 
 abstract class AnalysisState extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-class GetImageAnalysisState extends AnalysisState {}
+class AnalysisEmptyState extends AnalysisState {}
+
+class AnalysisLoadingState extends AnalysisState {}
+
+class ResultState extends AnalysisState {
+  late final XFile? photo;
+  late final bool positiveResult;
+
+  ResultState({required this.photo, required this.positiveResult});
+}

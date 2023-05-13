@@ -20,6 +20,7 @@ dependencies:
   google_mobile_ads: ^2.4.0
   motion_tab_bar_v2: ^0.2.3
   bloc: ^8.1.1
+  flutter_bloc: ^8.1.1
   equatable: ^2.0.5
   get_it: 7.2.0
   flutter_svg: ^1.1.4

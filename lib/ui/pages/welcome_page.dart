@@ -3,8 +3,6 @@ import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
 
-import '../widgets/button.dart';
-
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
 
@@ -13,6 +11,7 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+  TextStyle get button => sl<TextStyles>().buttonText;
   TextStyle get title => sl<TextStyles>().principalTitle;
   TextStyle get subtitle => sl<TextStyles>().principalSubTitle;
 
@@ -49,21 +48,20 @@ class _WelcomePageState extends State<WelcomePage> {
               Center(
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 44.0),
-                  child: Button(buttonText:CommonStrings.getStarted, routePath: '/home_page'),
-
-                  // ElevatedButton(
-                  //   style: ElevatedButton.styleFrom(
-                  //     backgroundColor: Colors.white,
-                  //     elevation: 0,
-                  //     shape: RoundedRectangleBorder(
-                  //       borderRadius: BorderRadius.circular(10.0)),
-                  //       minimumSize: const Size(180, 45),
-                  //   ),
-                  //   onPressed: () => Navigator.of(context).pushNamed('/home_page'),
-                  //   child: Text(CommonStrings.getStarted,
-                  //     style: button,
-                  //   ),
-                  // ),
+                  child:
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                          minimumSize: const Size(180, 45),
+                      ),
+                      onPressed: () => Navigator.of(context).pushNamed('/home_page'),
+                      child: Text(CommonStrings.getStarted,
+                        style: button,
+                      ),
+                ),
                 ),
               ),
             ],
