@@ -54,7 +54,8 @@ class _HomePageState extends State<HomePage> {
             );
           }
           if (state is ResultState) {
-            var photo = state.photo;
+            final photo = state.photo;
+            final isSafe = state.isSafe;
             return SafeArea(
               child: Scaffold(
                 backgroundColor: AppColors.background,
@@ -64,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        child: Result(positiveResult: false, photo: photo),
+                        child: Result(isSafe: isSafe, photo: photo),
                       ),
                     ],
                   ),

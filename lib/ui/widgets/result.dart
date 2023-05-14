@@ -12,8 +12,8 @@ import 'package:safe_nails/ui/bloc/analysis_event.dart';
 
 class Result extends StatefulWidget {
   final XFile? photo;
-  final bool positiveResult;
-  const Result({required this.positiveResult, required this.photo});
+  final bool isSafe;
+  const Result({required this.isSafe, required this.photo});
 
   @override
   State<Result> createState() => _ResultState();
@@ -62,7 +62,7 @@ class _ResultState extends State<Result> {
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: Text(CommonStrings.result, style: title),
                   ),
-                  _valueResult(positiveResult: widget.positiveResult)
+                  _valueResult(isSafe: widget.isSafe)
                 ],
               ),
             ),
@@ -89,12 +89,12 @@ class _ResultState extends State<Result> {
     );
   }
 
-  Widget _valueResult({required bool positiveResult}) {
+  Widget _valueResult({required bool isSafe}) {
     String iconPath;
     Color? textColor;
     String messageResult;
 
-    if (positiveResult == true) {
+    if (isSafe == true) {
       iconPath = "assets/icons/tick_circle.svg";
       textColor = AppColors.green;
       messageResult = CommonStrings.safeResult;

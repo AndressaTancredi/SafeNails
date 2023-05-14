@@ -32,10 +32,6 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
 
     emit(AnalysisLoadingState());
 
-    // if (pickedImage != null) {
-    //   Pensar quando der erro
-    // }
-
     final inputImage = InputImage.fromFilePath(pickedImage!.path);
     final textRecognizer = TextRecognizer();
     final RecognizedText recognizedText =
@@ -54,7 +50,7 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
         }
       }
 
-      if (unhealthyIngredientsFounded.isNotEmpty) {
+      if (unhealthyIngredientsFounded.isEmpty) {
         return true;
       } else {
         return false;
@@ -63,6 +59,6 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
 
     final bool result = getIngredientResult();
 
-    emit(ResultState(photo: pickedImage, positiveResult: result));
+    emit(ResultState(photo: pickedImage, isSafe: result));
   }
 }

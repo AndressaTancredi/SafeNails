@@ -41,15 +41,14 @@ class _MyAppState extends State<MyApp> {
     precacheImage(const AssetImage('assets/images/nail_polish.jpg'), context);
 
     return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Nails',
-              theme: ThemeData(
-                primarySwatch: Colors.blue,
-              ),
-              home: const WelcomePage(),
-            onGenerateRoute: _appRouter.onGeneratedRoute,
-            navigatorKey: navigatorKey,
-          );
-
+      debugShowCheckedModeBanner: false,
+      title: 'Nails',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const WelcomePage(),
+      onGenerateRoute: _appRouter.onGeneratedRoute,
+      navigatorKey: navigatorKey,
+    );
   }
 }
