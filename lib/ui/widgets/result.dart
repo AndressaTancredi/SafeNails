@@ -60,7 +60,21 @@ class _ResultState extends State<Result> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
-                    child: Text(CommonStrings.result, style: title),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(CommonStrings.result, style: title),
+                        GestureDetector(
+                          onTap: () =>
+                              Navigator.of(context).pushNamed('/result_detail'),
+                          child: Text(CommonStrings.seeMore,
+                              style: bodyDescription.copyWith(
+                                color: AppColors.lightBlack,
+                                decoration: TextDecoration.underline,
+                              )),
+                        )
+                      ],
+                    ),
                   ),
                   _valueResult(isSafe: widget.isSafe)
                 ],
@@ -94,7 +108,7 @@ class _ResultState extends State<Result> {
     Color? textColor;
     String messageResult;
 
-    if (isSafe == true) {
+    if (isSafe == false) {
       iconPath = "assets/icons/tick_circle.svg";
       textColor = AppColors.green;
       messageResult = CommonStrings.safeResult;

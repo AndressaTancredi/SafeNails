@@ -7,11 +7,10 @@ import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/ui/bloc/analysis_bloc.dart';
 import 'package:safe_nails/ui/bloc/analysis_event.dart';
 import 'package:safe_nails/ui/bloc/analysis_state.dart';
+import 'package:safe_nails/ui/widgets/banner_ad.dart';
 import 'package:safe_nails/ui/widgets/image_source.dart';
 import 'package:safe_nails/ui/widgets/loading.dart';
 import 'package:safe_nails/ui/widgets/result.dart';
-
-import '../widgets/banner_ad.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,25 +20,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // final BannerAd myBanner = BannerAd(
-  //   adUnitId: 'ca-app-pub-6850065566204568/5619356631',
-  //   size: AdSize.banner,
-  //   request: const AdRequest(),
-  //   listener: const BannerAdListener(),
-  // );
-
   final analysisBloc = sl<AnalysisBloc>();
 
   TextStyle get title => sl<TextStyles>().pageTitle;
   TextStyle get subTitle => sl<TextStyles>().subTitle;
   TextStyle get bodyDescription => sl<TextStyles>().bodyDescription;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   myBanner.dispose();
-  //   myBanner.load();
-  // }
 
   @override
   Widget build(BuildContext context) {

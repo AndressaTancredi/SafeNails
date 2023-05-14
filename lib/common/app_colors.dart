@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 /// Named [AppColors] in order to avoid conflicts with Colors in UI packages.
 class AppColors {
   static const black = Color(0xff191919);
+  static const lightBlack = Color(0xff393939);
   static const regularBlack = Color(0xff1F1F1F);
   static const boldBlack = Color(0xff363636);
   static const regularGrey = Color(0xff454545);
