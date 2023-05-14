@@ -51,7 +51,7 @@ class _ResultState extends State<Result> {
           children: [
             Container(
               padding: const EdgeInsets.all(14.0),
-              height: 110,
+              height: 100,
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16.0)),

@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/image_picker_service.dart';
+import 'package:safe_nails/data/datasources/ingredients_data.dart';
 import 'package:safe_nails/ui/bloc/analysis_event.dart';
 import 'package:safe_nails/ui/bloc/analysis_state.dart';
 
@@ -44,7 +44,7 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
     }
 
     bool getIngredientResult() {
-      for (final String ingredient in CommonStrings.unhealthyIngredients) {
+      for (final String ingredient in IngredientsData.unhealthyIngredients) {
         if (scannedText.contains(ingredient)) {
           unhealthyIngredientsFounded.add(ingredient);
         }

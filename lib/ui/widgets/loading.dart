@@ -44,7 +44,7 @@ class _LoadingState extends State<Loading> {
             baseColor: Colors.grey.shade200,
             highlightColor: AppColors.background,
             child: Container(
-              height: 110,
+              height: 100,
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16.0)),

@@ -1,10 +1,12 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/image_picker_service.dart';
+import 'package:safe_nails/data/datasources/ingredients_data.dart';
 
 class OldHomePage extends StatefulWidget {
   const OldHomePage({super.key});
@@ -73,12 +75,16 @@ class _MyHomePageState extends State<OldHomePage> {
                         if (textScanning) const CircularProgressIndicator(),
                         if (!textScanning && imageFile == null)
                           Container(
-                            decoration: BoxDecoration(borderRadius: BorderRadius
-                                .circular(8.0), color: Colors.grey[200]!),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                color: Colors.grey[200]!),
                             width: 200,
                             height: 200,
-                            child: Icon(Icons.image_search_outlined,
-                              color: Colors.grey.shade100, size: 100.0,),
+                            child: Icon(
+                              Icons.image_search_outlined,
+                              color: Colors.grey.shade100,
+                              size: 100.0,
+                            ),
                             // color: Colors.grey[300]!,
                           ),
                         if (imageFile != null)
@@ -96,38 +102,39 @@ class _MyHomePageState extends State<OldHomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16.0),
                               child: ElevatedButton.icon(
                                 onPressed: () => _pickImage(ImageSource.camera),
                                 icon: const Icon(Icons.camera_alt),
                                 label: Text(CommonStrings.camera),
                                 style: ButtonStyle(
-                                    padding: MaterialStateProperty.all<
-                                        EdgeInsets>(const EdgeInsets.symmetric(
-                                        horizontal: 16.0, vertical: 8.0)
-                                    ),
+                                    padding:
+                                        MaterialStateProperty.all<EdgeInsets>(
+                                            const EdgeInsets.symmetric(
+                                                horizontal: 16.0,
+                                                vertical: 8.0)),
                                     backgroundColor: MaterialStateProperty.all(
-                                        const Color(appColor))
-                                ),
+                                        const Color(appColor))),
                               ),
                             ),
                             // const Spacer(),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16.0),
                               child: ElevatedButton.icon(
                                 onPressed: () =>
                                     _pickImage(ImageSource.gallery),
                                 icon: const Icon(Icons.photo_library),
                                 label: Text(CommonStrings.gallery),
                                 style: ButtonStyle(
-                                    padding: MaterialStateProperty.all<
-                                        EdgeInsets>(const EdgeInsets.symmetric(
-                                        horizontal: 16.0, vertical: 8.0)),
+                                    padding:
+                                        MaterialStateProperty.all<EdgeInsets>(
+                                            const EdgeInsets.symmetric(
+                                                horizontal: 16.0,
+                                                vertical: 8.0)),
                                     backgroundColor: MaterialStateProperty.all(
-                                        const Color(appColor))
-                                ),
+                                        const Color(appColor))),
                               ),
                             ),
                           ],
@@ -149,7 +156,9 @@ class _MyHomePageState extends State<OldHomePage> {
             child: Align(
               alignment: Alignment.bottomLeft,
               child: SizedBox(
-                width: 728, height: 90, child: AdWidget(ad: myBanner),
+                width: 728,
+                height: 90,
+                child: AdWidget(ad: myBanner),
               ),
             ),
           )
@@ -182,8 +191,8 @@ class _MyHomePageState extends State<OldHomePage> {
   void getRecognisedText(XFile? image) async {
     final inputImage = InputImage.fromFilePath(image!.path);
     final textRecognizer = TextRecognizer();
-    final RecognizedText recognizedText = await textRecognizer.processImage(
-        inputImage);
+    final RecognizedText recognizedText =
+        await textRecognizer.processImage(inputImage);
     await textRecognizer.close();
     scannedText = [""];
     for (final TextBlock block in recognizedText.blocks) {
@@ -196,7 +205,7 @@ class _MyHomePageState extends State<OldHomePage> {
   }
 
   bool? _getIngredientResult(List<String> scannedText) {
-    for (final String ingredient in CommonStrings.unhealthyIngredients) {
+    for (final String ingredient in IngredientsData.unhealthyIngredients) {
       if (scannedText.contains(ingredient)) {
         unhealthyIngredientsFounded.add(ingredient);
       }
@@ -214,8 +223,7 @@ class _MyHomePageState extends State<OldHomePage> {
       return const SizedBox.shrink();
     }
     if (_getIngredientResult(scannedText) == true) {
-      return const Icon(
-          Icons.do_not_touch, color: Colors.black26, size: 100.0);
+      return const Icon(Icons.do_not_touch, color: Colors.black26, size: 100.0);
     }
     if (_getIngredientResult(scannedText) == false) {
       return const Icon(Icons.check_circle, color: Colors.green, size: 100.0);
