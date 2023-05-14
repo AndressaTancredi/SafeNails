@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:safe_nails/ui/pages/old_home_page.dart';
 import 'package:safe_nails/ui/pages/welcome_page.dart';
 
 class AnimatedTabMenu extends StatefulWidget {
@@ -11,7 +10,6 @@ class AnimatedTabMenu extends StatefulWidget {
 
   static final List<Widget> pages = [
     const WelcomePage(),
-    const OldHomePage(),
   ];
 
   final Color? backgroundColor;

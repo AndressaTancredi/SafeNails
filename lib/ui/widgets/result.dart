@@ -78,7 +78,7 @@ class _ResultState extends State<Result> {
                 ),
                 onPressed: () => analysisBloc.add(ClearResultEvent()),
                 child: Text(
-                  'RECOMEÇAR',
+                  CommonStrings.restarted,
                   style: button,
                 ),
               ),
