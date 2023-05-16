@@ -22,4 +22,7 @@ class CommonStrings {
   static String get notSafeResult => "Este esmalte não é seguro!";
   static String get safeResult => "Este esmalte é seguro!";
   static String get seeMore => "Veja Mais";
+  static String get resultDetailTitle => "Análise de Resultados";
+  static String get badIngredientsNotFound => "Ingredientes Nocivos Ausentes";
+  static String get badIngredientsFounded => "Ingredientes Nocivos Encontrados";
 }

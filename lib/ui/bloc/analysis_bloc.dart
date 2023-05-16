@@ -59,6 +59,9 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
 
     final bool result = getIngredientResult();
 
-    emit(ResultState(photo: pickedImage, isSafe: result));
+    emit(ResultState(
+        photo: pickedImage,
+        isSafe: result,
+        unhealthyIngredientsFounded: unhealthyIngredientsFounded));
   }
 }

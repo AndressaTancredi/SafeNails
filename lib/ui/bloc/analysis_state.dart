@@ -13,6 +13,10 @@ class AnalysisLoadingState extends AnalysisState {}
 class ResultState extends AnalysisState {
   late final XFile? photo;
   late final bool isSafe;
+  late final List<String> unhealthyIngredientsFounded;
 
-  ResultState({required this.photo, required this.isSafe});
+  ResultState(
+      {required this.photo,
+      required this.isSafe,
+      required this.unhealthyIngredientsFounded});
 }

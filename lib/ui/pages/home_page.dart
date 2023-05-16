@@ -57,6 +57,8 @@ class _HomePageState extends State<HomePage> {
           if (state is ResultState) {
             final photo = state.photo;
             final isSafe = state.isSafe;
+            final unhealthyIngredientsFounded =
+                state.unhealthyIngredientsFounded;
             return SafeArea(
               child: Scaffold(
                 backgroundColor: AppColors.background,
@@ -65,7 +67,12 @@ class _HomePageState extends State<HomePage> {
                       const EdgeInsets.only(right: 22.0, left: 22.0, top: 22.0),
                   child: Column(
                     children: [
-                      Result(isSafe: isSafe, photo: photo),
+                      Result(
+                        isSafe: isSafe,
+                        photo: photo,
+                        unhealthyIngredientsFounded:
+                            unhealthyIngredientsFounded,
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 14.0),
                         child: BannerAdmob(),
