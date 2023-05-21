@@ -30,7 +30,9 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
         ? imagePickerService.pickImageFromCamera()
         : imagePickerService.pickImageFromGallery());
 
-    emit(AnalysisLoadingState());
+    if (pickedImage != null) {
+      emit(AnalysisLoadingState());
+    }
 
     final inputImage = InputImage.fromFilePath(pickedImage!.path);
     final textRecognizer = TextRecognizer();

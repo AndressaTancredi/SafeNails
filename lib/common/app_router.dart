@@ -11,11 +11,16 @@ class AppRouter {
       case '/home_page':
         return MaterialPageRoute(builder: (_) => const HomePage());
       case '/result_detail':
+        final List<String> unhealthyIngredientsFounded =
+            (routeSettings.arguments!
+                    as Map<String, dynamic>)['unhealthyIngredientsFounded']
+                as List<String>;
+        final String photoPath = (routeSettings.arguments!
+            as Map<String, dynamic>)['photoPath'] as String;
         return MaterialPageRoute(
             builder: (_) => ResultDetail(
-                unhealthyIngredientsFounded2:
-                    routeSettings.arguments! as Map<String, List<String>>,
-                photo: routeSettings.arguments! as Map<String, List<String>>));
+                unhealthyIngredientsFounded: unhealthyIngredientsFounded,
+                photoPath: photoPath));
       default:
         throw ArgumentError('Inexistent route: s${routeSettings.name}');
     }

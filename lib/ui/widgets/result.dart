@@ -84,9 +84,9 @@ class _ResultState extends State<Result> {
                                   onTap: () => Navigator.pushNamed(
                                       context, '/result_detail',
                                       arguments: {
-                                        "unhealthyIngredientsFounded2":
+                                        "unhealthyIngredientsFounded":
                                             widget.unhealthyIngredientsFounded,
-                                        "photoPath": [widget.photo!.path]
+                                        "photoPath": widget.photo!.path
                                       }),
                                   child: Text(CommonStrings.seeMore,
                                       style: bodyDescription.copyWith(

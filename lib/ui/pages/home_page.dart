@@ -37,13 +37,13 @@ class _HomePageState extends State<HomePage> {
         bloc: analysisBloc,
         builder: (context, state) {
           if (state is AnalysisLoadingState) {
-            return SafeArea(
+            return const SafeArea(
               child: Scaffold(
                 backgroundColor: AppColors.background,
                 body: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                  padding: EdgeInsets.symmetric(horizontal: 22.0),
                   child: Column(
-                    children: const [
+                    children: [
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 16.0),
                         child: Loading(),
