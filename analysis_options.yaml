@@ -1,5 +1,3 @@
-include: package:lint/analysis_options.yaml
-
 analyzer:
   exclude:
     - test/mocks.mocks.dart
@@ -26,4 +24,3 @@ linter:
     avoid_function_literals_in_foreach_calls: false
     prefer_const_constructors_in_immutables: false
     unnecessary_null_checks: false
-    implicit-casts: false

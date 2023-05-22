@@ -47,7 +47,7 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
 
     bool getIngredientResult() {
       for (final String ingredient in IngredientsData.unhealthyIngredients) {
-        if (scannedText.contains(ingredient)) {
+        if (scannedText.contains(ingredient.toUpperCase())) {
           unhealthyIngredientsFounded.add(ingredient);
         }
       }

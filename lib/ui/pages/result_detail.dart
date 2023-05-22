@@ -305,7 +305,7 @@ class _ResultDetailState extends State<ResultDetail> {
     final List<String> ingredientDescriptionList = [];
     for (final ingredient in unhealthyIngredientsFounded) {
       IngredientType.values.forEach((element) {
-        if (element.name.toUpperCase() == ingredient) {
+        if (element.name.toUpperCase() == ingredient.toUpperCase()) {
           ingredientDescriptionList.add(element.type);
         }
       });
