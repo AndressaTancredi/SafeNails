@@ -78,7 +78,7 @@ class _ResultDetailState extends State<ResultDetail> {
                       ),
                     ),
                   ),
-                  _met(widget.unhealthyIngredientsFounded),
+                  _buildIngredientsWidget(widget.unhealthyIngredientsFounded),
                   BlocBuilder<AnalysisBloc, AnalysisState>(
                     bloc: analysisBloc,
                     builder: (context, state) {
@@ -86,77 +86,75 @@ class _ResultDetailState extends State<ResultDetail> {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 22.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const SizedBox(
-                                    height: 16.0,
-                                  ),
-                                  ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: widget
-                                        .unhealthyIngredientsFounded.length,
-                                    itemBuilder: (context, index) {
-                                      return Column(
-                                        children: [
-                                          Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              SvgPicture.asset(
-                                                "assets/icons/close_circle.svg",
-                                                color: AppColors.pink,
-                                                height: 18,
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 8.0, bottom: 4.0),
-                                                child: Text(
-                                                  widget.unhealthyIngredientsFounded[
-                                                      index],
-                                                  style: bodyDescription
-                                                      .copyWith(fontSize: 14.0),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 4,
-                                          ),
-                                          Container(
-                                            padding: const EdgeInsets.all(16.0),
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(
+                                  height: 16.0,
+                                ),
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount:
+                                      widget.unhealthyIngredientsFounded.length,
+                                  itemBuilder: (context, index) {
+                                    return Column(
+                                      children: [
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            SvgPicture.asset(
+                                              "assets/icons/close_circle.svg",
+                                              color: AppColors.pink,
+                                              height: 18,
                                             ),
-                                            child: SizedBox(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.8,
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 8.0, bottom: 4.0),
                                               child: Text(
-                                                _metodo(widget
-                                                        .unhealthyIngredientsFounded)[
-                                                    index],
+                                                widget
+                                                    .unhealthyIngredientsFounded[
+                                                        index]
+                                                    .toLowerCase(),
                                                 style: bodyDescription.copyWith(
                                                     fontSize: 14.0),
                                               ),
                                             ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 4,
+                                        ),
+                                        Container(
+                                          padding: const EdgeInsets.all(16.0),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
                                           ),
-                                        ],
-                                      );
-                                    },
-                                  ),
-                                ],
-                              ),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.8,
+                                            child: Text(
+                                              _getIngredientDescriptionList(widget
+                                                      .unhealthyIngredientsFounded)[
+                                                  index],
+                                              style: bodyDescription.copyWith(
+                                                  fontSize: 14.0),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 22.0, vertical: 16.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 16.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -165,46 +163,62 @@ class _ResultDetailState extends State<ResultDetail> {
                                   const SizedBox(
                                     height: 16.0,
                                   ),
-                                  ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: _badIngredientsNotFound(
-                                            widget.unhealthyIngredientsFounded)
-                                        .length,
-                                    itemBuilder: (context, index) {
-                                      return Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 4.0),
-                                        child: Container(
-                                          padding: const EdgeInsets.all(4.0),
-                                          // height: 400,
-                                          decoration: BoxDecoration(
+                                  SingleChildScrollView(
+                                    child: ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: (_getRemainingBadIngredients(widget
+                                                      .unhealthyIngredientsFounded)
+                                                  .length /
+                                              3)
+                                          .ceil(),
+                                      itemBuilder: (context, index) {
+                                        final startIndex = index * 3;
+                                        final endIndex = (startIndex + 3).clamp(
+                                            0,
+                                            _getRemainingBadIngredients(widget
+                                                    .unhealthyIngredientsFounded)
+                                                .length);
+                                        final rowIngredients =
+                                            _getRemainingBadIngredients(widget
+                                                    .unhealthyIngredientsFounded)
+                                                .sublist(startIndex, endIndex);
+
+                                        return Container(
+                                          decoration: const BoxDecoration(
                                             color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
                                           ),
-                                          child: Row(
-                                            children: [
-                                              const Icon(
-                                                Icons.adjust_rounded,
-                                                color: AppColors.pink,
-                                                size: 20.0,
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 4.0),
-                                                child: Text(
-                                                  _badIngredientsNotFound(widget
-                                                          .unhealthyIngredientsFounded)[
-                                                      index],
-                                                  style: bodyDescription
-                                                      .copyWith(fontSize: 12.0),
+                                          child: Wrap(
+                                            spacing: 4.0,
+                                            runSpacing: 4.0,
+                                            children: rowIngredients
+                                                .map((ingredient) {
+                                              return Container(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    const Icon(
+                                                      Icons.adjust_rounded,
+                                                      color: AppColors.pink,
+                                                      size: 14.0,
+                                                    ),
+                                                    const SizedBox(width: 4.0),
+                                                    Text(
+                                                      ingredient,
+                                                      style: bodyDescription
+                                                          .copyWith(
+                                                              fontSize: 12.0),
+                                                    ),
+                                                  ],
                                                 ),
-                                              )
-                                            ],
+                                              );
+                                            }).toList(),
                                           ),
-                                        ),
-                                      );
-                                    },
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ],
                               ),
@@ -224,7 +238,7 @@ class _ResultDetailState extends State<ResultDetail> {
     );
   }
 
-  Widget _met(List<String> unhealthyIngredientsFounded) {
+  Widget _buildIngredientsWidget(List<String> unhealthyIngredientsFounded) {
     if (unhealthyIngredientsFounded.isNotEmpty) {
       return Column(
         children: [
@@ -270,29 +284,32 @@ class _ResultDetailState extends State<ResultDetail> {
     }
   }
 
-  List<String> _badIngredientsNotFound(
+  List<String> _getRemainingBadIngredients(
       List<String> unhealthyIngredientsFounded) {
     if (unhealthyIngredientsFounded.isEmpty) {
       return IngredientsData.unhealthyIngredients;
     } else {
-      final mergedList = IngredientsData.unhealthyIngredients;
-      unhealthyIngredientsFounded
-          .where((element) =>
-              !IngredientsData.unhealthyIngredients.contains(element))
-          .toList();
-      return mergedList;
+      final remainingBadIngredients = IngredientsData.unhealthyIngredients;
+
+      unhealthyIngredientsFounded.forEach((element) {
+        if (IngredientsData.unhealthyIngredients.contains(element)) {
+          remainingBadIngredients.remove(element);
+        }
+      });
+      return remainingBadIngredients;
     }
   }
 
-  List<String> _metodo(List<String> unhealthyIngredientsFounded) {
-    final List<String> descriptionList = [];
-    for (final ingre in unhealthyIngredientsFounded) {
+  List<String> _getIngredientDescriptionList(
+      List<String> unhealthyIngredientsFounded) {
+    final List<String> ingredientDescriptionList = [];
+    for (final ingredient in unhealthyIngredientsFounded) {
       IngredientType.values.forEach((element) {
-        if (element.name.toUpperCase() == ingre) {
-          descriptionList.add(element.type);
+        if (element.name.toUpperCase() == ingredient) {
+          ingredientDescriptionList.add(element.type);
         }
       });
     }
-    return descriptionList;
+    return ingredientDescriptionList;
   }
 }

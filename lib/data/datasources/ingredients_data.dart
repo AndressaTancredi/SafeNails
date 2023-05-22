@@ -1,20 +1,20 @@
 class IngredientsData {
   static List<String> get unhealthyIngredients => [
-        "TOLUENO",
-        "FORMALDEÍDO",
-        "DIBUTILFTALATO (DBP)",
-        "RESINA DE FORMALDEÍDO",
-        "CÂNFORA",
-        "XILENO",
-        "ETIL TOSILAMIDA",
-        "TRIFENILFOSFATO (TPHP)",
-        "PARABENOS",
-        "ACETONA",
-        "SULFATO DE NÍQUEL",
-        "SULFATO DE COBALTO",
-        "ÓLEO MINERAL",
-        "GLÚTEN",
-        "PRODUTOS DERIVADOS DE ANIMAIS"
+        "Glúten",
+        "Xileno",
+        "Acetona",
+        "Parabenos",
+        "Cânfora",
+        "Tolueno",
+        "Óleo Mineral",
+        "Sulfato de Cobalto",
+        "Sulfato de Níquel",
+        "Formaldeído",
+        "Etil Tosilamida",
+        "Resina de Formaldeído",
+        "Dibutilftalato (DBP)",
+        "Trifenilfosfato (TPHP)",
+        "Produtos Derivados de Animais"
       ];
 
   static String get tolueno => "Tolueno";
