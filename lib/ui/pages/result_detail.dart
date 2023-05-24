@@ -17,10 +17,11 @@ class ResultDetail extends StatefulWidget {
   final List<String> unhealthyIngredientsFounded;
   final String photoPath;
 
-  const ResultDetail(
-      {super.key,
-      required this.unhealthyIngredientsFounded,
-      required this.photoPath});
+  const ResultDetail({
+    Key? key,
+    required this.unhealthyIngredientsFounded,
+    required this.photoPath,
+  }) : super(key: key);
 
   @override
   State<ResultDetail> createState() => _ResultDetailState();
@@ -68,8 +69,9 @@ class _ResultDetailState extends State<ResultDetail> {
                     height: 330,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16.0)),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(16.0),
                       child: Image.file(
@@ -89,9 +91,7 @@ class _ResultDetailState extends State<ResultDetail> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const SizedBox(
-                                  height: 16.0,
-                                ),
+                                const SizedBox(height: 16.0),
                                 ListView.builder(
                                   shrinkWrap: true,
                                   itemCount:
@@ -122,9 +122,7 @@ class _ResultDetailState extends State<ResultDetail> {
                                             ),
                                           ],
                                         ),
-                                        const SizedBox(
-                                          height: 4,
-                                        ),
+                                        const SizedBox(height: 4),
                                         Container(
                                           padding: const EdgeInsets.all(16.0),
                                           decoration: BoxDecoration(
@@ -146,6 +144,7 @@ class _ResultDetailState extends State<ResultDetail> {
                                             ),
                                           ),
                                         ),
+                                        SizedBox(height: 8),
                                       ],
                                     );
                                   },
@@ -154,73 +153,54 @@ class _ResultDetailState extends State<ResultDetail> {
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(vertical: 16.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(CommonStrings.badIngredientsNotFound,
-                                      style: title.copyWith(fontSize: 20.0)),
-                                  const SizedBox(
-                                    height: 16.0,
-                                  ),
-                                  SingleChildScrollView(
-                                    child: ListView.builder(
+                                  const EdgeInsets.symmetric(vertical: 8.0),
+                              child: Container(
+                                padding: const EdgeInsets.all(16.0),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(16.0),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Center(
+                                      child: Text(
+                                        CommonStrings.badIngredientsNotFound,
+                                        style: title.copyWith(fontSize: 20.0),
+                                      ),
+                                    ),
+                                    Divider(),
+                                    const SizedBox(height: 8.0),
+                                    ListView.builder(
                                       shrinkWrap: true,
-                                      itemCount: (_getRemainingBadIngredients(widget
-                                                      .unhealthyIngredientsFounded)
-                                                  .length /
-                                              3)
-                                          .ceil(),
+                                      itemCount: _getRemainingBadIngredients(
+                                              widget
+                                                  .unhealthyIngredientsFounded)
+                                          .length,
                                       itemBuilder: (context, index) {
-                                        final startIndex = index * 3;
-                                        final endIndex = (startIndex + 3).clamp(
-                                            0,
-                                            _getRemainingBadIngredients(widget
-                                                    .unhealthyIngredientsFounded)
-                                                .length);
-                                        final rowIngredients =
-                                            _getRemainingBadIngredients(widget
-                                                    .unhealthyIngredientsFounded)
-                                                .sublist(startIndex, endIndex);
-
-                                        return Container(
-                                          decoration: const BoxDecoration(
-                                            color: Colors.white,
-                                          ),
-                                          child: Wrap(
-                                            spacing: 4.0,
-                                            runSpacing: 4.0,
-                                            children: rowIngredients
-                                                .map((ingredient) {
-                                              return Container(
-                                                padding:
-                                                    const EdgeInsets.all(4.0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  children: [
-                                                    const Icon(
-                                                      Icons.adjust_rounded,
-                                                      color: AppColors.pink,
-                                                      size: 14.0,
-                                                    ),
-                                                    const SizedBox(width: 4.0),
-                                                    Text(
-                                                      ingredient,
-                                                      style: bodyDescription
-                                                          .copyWith(
-                                                              fontSize: 12.0),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            }).toList(),
-                                          ),
+                                        return Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            const Icon(
+                                              Icons.adjust_rounded,
+                                              color: AppColors.pink,
+                                              size: 14.0,
+                                            ),
+                                            const SizedBox(width: 4.0),
+                                            Text(
+                                              _getRemainingBadIngredients(widget
+                                                      .unhealthyIngredientsFounded)[
+                                                  index],
+                                              style: bodyDescription.copyWith(
+                                                  fontSize: 12.0),
+                                            ),
+                                          ],
                                         );
                                       },
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ],
@@ -251,8 +231,10 @@ class _ResultDetailState extends State<ResultDetail> {
               ),
             ),
           ),
-          Text(CommonStrings.badIngredientsFounded,
-              style: title.copyWith(fontSize: 20.0)),
+          Text(
+            CommonStrings.badIngredientsFounded,
+            style: title.copyWith(fontSize: 20.0),
+          ),
         ],
       );
     } else {
@@ -260,28 +242,31 @@ class _ResultDetailState extends State<ResultDetail> {
         children: [
           SizedBox(height: 20),
           Container(
-              padding: const EdgeInsets.all(8.0),
-              height: 150,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16.0)),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12.0),
-                    child: Image.asset(
-                      "assets/images/check.png",
-                      fit: BoxFit.cover,
-                    ),
+            padding: const EdgeInsets.all(8.0),
+            height: 150,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12.0),
+                  child: Image.asset(
+                    "assets/images/check.png",
+                    fit: BoxFit.cover,
                   ),
-                  Center(
-                      child: Text(
+                ),
+                Center(
+                  child: Text(
                     CommonStrings.congratulations,
                     style: title.copyWith(fontSize: 14.0),
-                  ))
-                ],
-              )),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       );
     }
@@ -299,6 +284,7 @@ class _ResultDetailState extends State<ResultDetail> {
           remainingBadIngredients.remove(element);
         }
       });
+
       return remainingBadIngredients;
     }
   }
