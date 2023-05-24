@@ -74,7 +74,7 @@ class _ResultDetailState extends State<ResultDetail> {
                       borderRadius: BorderRadius.circular(16.0),
                       child: Image.file(
                         File(widget.photoPath),
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -256,30 +256,33 @@ class _ResultDetailState extends State<ResultDetail> {
         ],
       );
     } else {
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 30.0),
-        child: Container(
-            padding: const EdgeInsets.all(8.0),
-            height: 150,
-            width: double.infinity,
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(16.0)),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12.0),
-                  child: Image.asset(
-                    "assets/images/check.png",
-                    fit: BoxFit.cover,
+      return Column(
+        children: [
+          SizedBox(height: 20),
+          Container(
+              padding: const EdgeInsets.all(8.0),
+              height: 150,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16.0)),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12.0),
+                    child: Image.asset(
+                      "assets/images/check.png",
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                Center(
-                    child: Text(
-                  CommonStrings.congratulations,
-                  style: title.copyWith(fontSize: 14.0),
-                ))
-              ],
-            )),
+                  Center(
+                      child: Text(
+                    CommonStrings.congratulations,
+                    style: title.copyWith(fontSize: 14.0),
+                  ))
+                ],
+              )),
+        ],
       );
     }
   }
