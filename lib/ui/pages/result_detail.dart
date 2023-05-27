@@ -13,21 +13,21 @@ import 'package:safe_nails/ui/bloc/analysis_bloc.dart';
 import 'package:safe_nails/ui/bloc/analysis_event.dart';
 import 'package:safe_nails/ui/bloc/analysis_state.dart';
 
-class ResultDetail extends StatefulWidget {
+class ResultDetailPage extends StatefulWidget {
   final List<String> unhealthyIngredientsFounded;
   final String photoPath;
 
-  const ResultDetail({
+  const ResultDetailPage({
     Key? key,
     required this.unhealthyIngredientsFounded,
     required this.photoPath,
   }) : super(key: key);
 
   @override
-  State<ResultDetail> createState() => _ResultDetailState();
+  State<ResultDetailPage> createState() => _ResultDetailPageState();
 }
 
-class _ResultDetailState extends State<ResultDetail> {
+class _ResultDetailPageState extends State<ResultDetailPage> {
   final analysisBloc = sl<AnalysisBloc>();
 
   TextStyle get title => sl<TextStyles>().pageTitle;
@@ -112,10 +112,9 @@ class _ResultDetailState extends State<ResultDetail> {
                                               padding: const EdgeInsets.only(
                                                   left: 8.0, bottom: 4.0),
                                               child: Text(
-                                                widget
-                                                    .unhealthyIngredientsFounded[
-                                                        index]
-                                                    .toLowerCase(),
+                                                capitalize(widget
+                                                        .unhealthyIngredientsFounded[
+                                                    index]),
                                                 style: bodyDescription.copyWith(
                                                     fontSize: 14.0),
                                               ),
@@ -300,5 +299,12 @@ class _ResultDetailState extends State<ResultDetail> {
       });
     }
     return ingredientDescriptionList;
+  }
+
+  String capitalize(String word) {
+    if (word.isEmpty) {
+      return "";
+    }
+    return "${word[0].toUpperCase()}${word.substring(1).toLowerCase()}";
   }
 }

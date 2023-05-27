@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 34),
+                          SizedBox(height: 14),
                           GestureDetector(
                             onTap: () {
                               analysisBloc

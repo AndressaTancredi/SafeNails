@@ -47,8 +47,8 @@ class _ResultState extends State<Result> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.all(14.0),
-                  height: 350,
+                  padding: const EdgeInsets.all(10.0),
+                  height: 300,
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: Colors.white,
