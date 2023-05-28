@@ -3,13 +3,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
 
-class CategoryCard extends StatelessWidget {
+class CategoryTip extends StatelessWidget {
   final Color titleColor;
   final List<Color> backgroundColor;
   final Color iconBackgroundColor;
   final String title;
   final String icon;
-  const CategoryCard(
+  const CategoryTip(
       {Key? key,
       required this.title,
       required this.icon,

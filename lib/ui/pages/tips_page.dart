@@ -3,7 +3,7 @@ import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
-import 'package:safe_nails/ui/widgets/category_card.dart';
+import 'package:safe_nails/ui/widgets/category_tip.dart';
 
 class TipsPage extends StatefulWidget {
   const TipsPage({Key? key}) : super(key: key);
@@ -43,7 +43,7 @@ class _TipsPageState extends State<TipsPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  child: CategoryCard(
+                  child: CategoryTip(
                     title: CommonStrings.hydration,
                     icon: "assets/icons/hydration.svg",
                     titleColor: titleColor,
@@ -60,7 +60,7 @@ class _TipsPageState extends State<TipsPage> {
                       ];
                     });
                   },
-                  child: CategoryCard(
+                  child: CategoryTip(
                     title: CommonStrings.cleansing,
                     icon: "assets/icons/cleansing.svg",
                     titleColor: titleColor,
@@ -68,7 +68,7 @@ class _TipsPageState extends State<TipsPage> {
                     iconBackgroundColor: iconBackgroundColor,
                   ),
                 ),
-                CategoryCard(
+                CategoryTip(
                   title: CommonStrings.protection,
                   icon: "assets/icons/protection.svg",
                   titleColor: titleColor,
