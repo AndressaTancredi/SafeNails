@@ -25,4 +25,8 @@ class CommonStrings {
   static String get badIngredientsNotFound => "Ingredientes Nocivos Ausentes";
   static String get badIngredientsFounded => "Ingredientes Nocivos Encontrados";
   static String get congratulations => "Parabéns pela escolha consciente!";
+  static String get careTips => "Cuidados Essenciais";
+  static String get hydration => "Hidratação";
+  static String get cleansing => "Limpeza";
+  static String get protection => "Proteção";
 }

@@ -49,10 +49,10 @@ class _ResultState extends State<Result> {
                   height: 350,
                   width: double.infinity,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12.0),
+                    borderRadius: BorderRadius.circular(16.0),
                     child: Image.file(
                       File(widget.photo!.path),
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
@@ -64,7 +64,7 @@ class _ResultState extends State<Result> {
                       height: 100,
                       decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(12.0)),
+                          borderRadius: BorderRadius.circular(16.0)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

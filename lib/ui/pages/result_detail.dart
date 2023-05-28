@@ -63,6 +63,7 @@ class _ResultDetailPageState extends State<ResultDetailPage> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 22.0, vertical: 4),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     height: 330,
@@ -71,7 +72,7 @@ class _ResultDetailPageState extends State<ResultDetailPage> {
                       borderRadius: BorderRadius.circular(12.0),
                       child: Image.file(
                         File(widget.photoPath),
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                       ),
                     ),
                   ),
@@ -81,10 +82,8 @@ class _ResultDetailPageState extends State<ResultDetailPage> {
                     builder: (context, state) {
                       if (state is ResultState) {
                         return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const SizedBox(height: 16.0),
                                 ListView.builder(
@@ -94,31 +93,9 @@ class _ResultDetailPageState extends State<ResultDetailPage> {
                                   itemBuilder: (context, index) {
                                     return Column(
                                       children: [
-                                        Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            SvgPicture.asset(
-                                              "assets/icons/close_circle.svg",
-                                              color: AppColors.pink,
-                                              height: 18,
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 8.0, bottom: 4.0),
-                                              child: Text(
-                                                capitalize.firstWord(widget
-                                                        .unhealthyIngredientsFounded[
-                                                    index]),
-                                                style: bodyDescription.copyWith(
-                                                    fontSize: 14.0),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(height: 4),
                                         Container(
-                                          padding: const EdgeInsets.all(16.0),
+                                          width: double.infinity,
+                                          padding: const EdgeInsets.all(12.0),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
                                             borderRadius:
@@ -129,12 +106,43 @@ class _ResultDetailPageState extends State<ResultDetailPage> {
                                                     .size
                                                     .width *
                                                 0.8,
-                                            child: Text(
-                                              _getIngredientDescriptionList(widget
-                                                      .unhealthyIngredientsFounded)[
-                                                  index],
-                                              style: bodyDescription.copyWith(
-                                                  fontSize: 14.0),
+                                            child: Column(
+                                              children: [
+                                                Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    SvgPicture.asset(
+                                                      "assets/icons/close_circle.svg",
+                                                      color: AppColors.pink,
+                                                      height: 18,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 8.0,
+                                                              bottom: 4.0),
+                                                      child: Text(
+                                                        capitalize.firstWord(
+                                                            widget.unhealthyIngredientsFounded[
+                                                                index]),
+                                                        style: bodyDescription
+                                                            .copyWith(
+                                                                fontSize: 14.0),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 4),
+                                                Text(
+                                                  _getIngredientDescriptionList(
+                                                          widget
+                                                              .unhealthyIngredientsFounded)[
+                                                      index],
+                                                  style: bodyDescription
+                                                      .copyWith(fontSize: 14.0),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ),
@@ -153,16 +161,14 @@ class _ResultDetailPageState extends State<ResultDetailPage> {
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius: BorderRadius.circular(16.0),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Center(
-                                      child: Text(
-                                        CommonStrings.badIngredientsNotFound,
-                                        style: title.copyWith(fontSize: 20.0),
-                                      ),
+                                    Text(
+                                      CommonStrings.badIngredientsNotFound,
+                                      style: title.copyWith(fontSize: 20.0),
                                     ),
                                     Divider(),
                                     const SizedBox(height: 8.0),
@@ -214,22 +220,12 @@ class _ResultDetailPageState extends State<ResultDetailPage> {
 
   Widget _buildIngredientsWidget(List<String> unhealthyIngredientsFounded) {
     if (unhealthyIngredientsFounded.isNotEmpty) {
-      return Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text(
-              "${widget.unhealthyIngredientsFounded.length}/15",
-              style: bodyDescription.copyWith(
-                color: AppColors.lightBlack,
-              ),
-            ),
-          ),
-          Text(
-            CommonStrings.badIngredientsFounded,
-            style: title.copyWith(fontSize: 20.0),
-          ),
-        ],
+      return Padding(
+        padding: const EdgeInsets.only(top: 8.0, left: 15),
+        child: Text(
+          CommonStrings.badIngredientsFounded,
+          style: title.copyWith(fontSize: 20.0),
+        ),
       );
     } else {
       return Column(

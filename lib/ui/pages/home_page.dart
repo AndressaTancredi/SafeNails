@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                       return Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 44.0),
+                            padding: const EdgeInsets.only(top: 38.0),
                             child: Container(
                               padding: const EdgeInsets.all(14.0),
                               decoration: BoxDecoration(
