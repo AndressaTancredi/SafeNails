@@ -7,6 +7,9 @@ import 'package:safe_nails/ui/pages/home_page.dart';
 import 'package:safe_nails/ui/pages/store_page.dart';
 import 'package:safe_nails/ui/pages/tips_page.dart';
 
+import '../bloc/analysis_bloc.dart';
+import '../bloc/analysis_event.dart';
+
 class HomeScreenPage extends StatefulWidget {
   @override
   _HomeScreenPageState createState() => _HomeScreenPageState();
@@ -15,6 +18,8 @@ class HomeScreenPage extends StatefulWidget {
 class _HomeScreenPageState extends State<HomeScreenPage> {
   TextStyle get bodyDescription =>
       sl<TextStyles>().bodyDescription.copyWith(fontSize: 14.0);
+
+  final analysisBloc = sl<AnalysisBloc>();
 
   int _actualIndex = 1;
   final List<Widget> _screens = [
@@ -98,6 +103,9 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
 
   void onTabTapped(int index) {
     setState(() {
+      if (_actualIndex == 1) {
+        analysisBloc.add(ClearResultEvent());
+      }
       _actualIndex = index;
     });
   }

@@ -46,7 +46,7 @@ class _ResultState extends State<Result> {
             return Column(
               children: [
                 Container(
-                  height: 300,
+                  height: 350,
                   width: double.infinity,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12.0),
@@ -58,14 +58,13 @@ class _ResultState extends State<Result> {
                 ),
                 const SizedBox(height: 16.0),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       padding: const EdgeInsets.all(14.0),
                       height: 100,
                       decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(16.0)),
+                          borderRadius: BorderRadius.circular(12.0)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -107,23 +106,6 @@ class _ResultState extends State<Result> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 16.0),
-                    Center(
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
-                          minimumSize: const Size(180, 45),
-                        ),
-                        onPressed: () => analysisBloc.add(ClearResultEvent()),
-                        child: Text(
-                          CommonStrings.restarted,
-                          style: button,
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ],

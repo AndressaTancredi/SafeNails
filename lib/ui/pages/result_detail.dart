@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:safe_nails/common/app_colors.dart';
+import 'package:safe_nails/common/capitalize.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
@@ -29,6 +30,7 @@ class ResultDetailPage extends StatefulWidget {
 
 class _ResultDetailPageState extends State<ResultDetailPage> {
   final analysisBloc = sl<AnalysisBloc>();
+  final capitalize = Capitalize();
 
   TextStyle get title => sl<TextStyles>().pageTitle;
   TextStyle get bodyDescription => sl<TextStyles>().bodyDescription;
@@ -49,9 +51,7 @@ class _ResultDetailPageState extends State<ResultDetailPage> {
             centerTitle: true,
             elevation: 0,
             leading: InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
+              onTap: () => Navigator.pop(context),
               child: const Icon(
                 Icons.arrow_back,
                 color: Colors.black54,
@@ -107,7 +107,7 @@ class _ResultDetailPageState extends State<ResultDetailPage> {
                                               padding: const EdgeInsets.only(
                                                   left: 8.0, bottom: 4.0),
                                               child: Text(
-                                                capitalize(widget
+                                                capitalize.firstWord(widget
                                                         .unhealthyIngredientsFounded[
                                                     index]),
                                                 style: bodyDescription.copyWith(
@@ -294,12 +294,5 @@ class _ResultDetailPageState extends State<ResultDetailPage> {
       });
     }
     return ingredientDescriptionList;
-  }
-
-  String capitalize(String word) {
-    if (word.isEmpty) {
-      return "";
-    }
-    return "${word[0].toUpperCase()}${word.substring(1).toLowerCase()}";
   }
 }
