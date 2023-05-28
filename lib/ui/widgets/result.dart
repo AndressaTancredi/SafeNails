@@ -44,17 +44,12 @@ class _ResultState extends State<Result> {
           bloc: analysisBloc,
           builder: (context, state) {
             return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.all(10.0),
                   height: 300,
                   width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16.0)),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16.0),
+                    borderRadius: BorderRadius.circular(12.0),
                     child: Image.file(
                       File(widget.photo!.path),
                       fit: BoxFit.cover,

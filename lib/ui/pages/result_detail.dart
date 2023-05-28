@@ -65,15 +65,10 @@ class _ResultDetailPageState extends State<ResultDetailPage> {
               child: Column(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(14.0),
                     height: 330,
                     width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16.0),
-                    ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16.0),
+                      borderRadius: BorderRadius.circular(12.0),
                       child: Image.file(
                         File(widget.photoPath),
                         fit: BoxFit.cover,

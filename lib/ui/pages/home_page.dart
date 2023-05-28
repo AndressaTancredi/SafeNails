@@ -55,8 +55,7 @@ class _HomePageState extends State<HomePage> {
                       final unhealthyIngredientsFounded =
                           state.unhealthyIngredientsFounded;
                       return Padding(
-                        padding: const EdgeInsets.only(
-                            right: 22.0, left: 22.0, top: 44.0),
+                        padding: const EdgeInsets.only(top: 44.0),
                         child: Column(
                           children: [
                             Result(
