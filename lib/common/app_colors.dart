@@ -18,3 +18,8 @@ class AppColors {
   static const red = Color(0xffEF565A);
   static const green = Color(0xff54B68C);
 }
+
+// backgroundColor = [
+// Color(0xffF3BABC),
+// Color(0xffE79597).withOpacity(0.8)
+// ];

@@ -8,9 +8,9 @@ import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
-import 'package:safe_nails/ui/bloc/analysis_bloc.dart';
-import 'package:safe_nails/ui/bloc/analysis_event.dart';
-import 'package:safe_nails/ui/bloc/analysis_state.dart';
+import 'package:safe_nails/ui/bloc/analysis/analysis_bloc.dart';
+import 'package:safe_nails/ui/bloc/analysis/analysis_event.dart';
+import 'package:safe_nails/ui/bloc/analysis/analysis_state.dart';
 
 class Result extends StatefulWidget {
   final XFile? photo;

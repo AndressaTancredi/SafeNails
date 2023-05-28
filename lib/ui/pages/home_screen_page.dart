@@ -3,12 +3,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
+import 'package:safe_nails/ui/bloc/analysis/analysis_bloc.dart';
+import 'package:safe_nails/ui/bloc/analysis/analysis_event.dart';
 import 'package:safe_nails/ui/pages/home_page.dart';
 import 'package:safe_nails/ui/pages/store_page.dart';
 import 'package:safe_nails/ui/pages/tips_page.dart';
-
-import '../bloc/analysis_bloc.dart';
-import '../bloc/analysis_event.dart';
 
 class HomeScreenPage extends StatefulWidget {
   @override

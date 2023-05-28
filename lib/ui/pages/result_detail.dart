@@ -10,9 +10,9 @@ import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/data/datasources/Ingredients_type.dart';
 import 'package:safe_nails/data/datasources/ingredients_data.dart';
-import 'package:safe_nails/ui/bloc/analysis_bloc.dart';
-import 'package:safe_nails/ui/bloc/analysis_event.dart';
-import 'package:safe_nails/ui/bloc/analysis_state.dart';
+import 'package:safe_nails/ui/bloc/analysis/analysis_bloc.dart';
+import 'package:safe_nails/ui/bloc/analysis/analysis_event.dart';
+import 'package:safe_nails/ui/bloc/analysis/analysis_state.dart';
 
 class ResultDetailPage extends StatefulWidget {
   final List<String> unhealthyIngredientsFounded;
