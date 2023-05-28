@@ -28,11 +28,7 @@ class CategoryTip extends StatelessWidget {
         gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            colors: backgroundColor
-            // Color(0xffF3BABC),
-            // Color(0xffE79597).withOpacity(0.8),
-
-            ),
+            colors: backgroundColor),
         borderRadius: BorderRadius.circular(16.0),
       ),
       child: Column(

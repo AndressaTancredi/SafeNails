@@ -6,3 +6,7 @@ abstract class TipsState extends Equatable {
 }
 
 class HydrationState extends TipsState {}
+
+class CleansingState extends TipsState {}
+
+class ProtectionState extends TipsState {}
