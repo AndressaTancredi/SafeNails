@@ -8,6 +8,7 @@ import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/data/datasources/tips_data.dart';
 import 'package:safe_nails/ui/bloc/tips/tips_bloc.dart';
 import 'package:safe_nails/ui/bloc/tips/tips_state.dart';
+import 'package:safe_nails/ui/widgets/banner_ad.dart';
 import 'package:safe_nails/ui/widgets/category_tip.dart';
 
 class TipsPage extends StatefulWidget {
@@ -36,21 +37,15 @@ class _TipsPageState extends State<TipsPage> {
       child: Scaffold(
         backgroundColor: AppColors.background,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: AppColors.background,
           title: Text(CommonStrings.careTips, style: title),
           centerTitle: true,
           elevation: 0,
-          leading: InkWell(
-            onTap: () => Navigator.pop(context),
-            child: const Icon(
-              Icons.arrow_back,
-              color: Colors.black54,
-            ),
-          ),
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 14),
+            padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 8),
             child: Column(
               children: [
                 BlocBuilder<TipsBloc, TipsState>(
@@ -129,8 +124,7 @@ class _TipsPageState extends State<TipsPage> {
                                                 child: Padding(
                                                   padding:
                                                       const EdgeInsets.only(
-                                                          right: 8.0,
-                                                          bottom: 2),
+                                                          right: 8.0),
                                                   child: SvgPicture.asset(
                                                     "assets/icons/circle_tip.svg",
                                                     color: AppColors.pink,
@@ -296,54 +290,56 @@ class _TipsPageState extends State<TipsPage> {
                             ],
                           ),
                           SizedBox(height: 24.0),
-                          Container(
-                            width: double.infinity,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 20.0, horizontal: 16.0),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: TipsData.hydrationTips.length,
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(bottom: 8.0),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Flexible(
-                                        child: Text.rich(
-                                          TextSpan(
-                                            style: bodyDescription.copyWith(
-                                                fontSize: 14),
-                                            children: [
-                                              WidgetSpan(
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 8.0,
-                                                          bottom: 2),
-                                                  child: SvgPicture.asset(
-                                                    "assets/icons/circle_tip.svg",
-                                                    color: AppColors.pink,
-                                                    height: 16,
+                          SingleChildScrollView(
+                            child: Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 20.0, horizontal: 16.0),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: TipsData.hydrationTips.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(bottom: 8.0),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Flexible(
+                                          child: Text.rich(
+                                            TextSpan(
+                                              style: bodyDescription.copyWith(
+                                                  fontSize: 14),
+                                              children: [
+                                                WidgetSpan(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            right: 8.0,
+                                                            bottom: 2),
+                                                    child: SvgPicture.asset(
+                                                      "assets/icons/circle_tip.svg",
+                                                      color: AppColors.pink,
+                                                      height: 16,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                              TextSpan(
-                                                  text: TipsData
-                                                      .protectionTips[index]),
-                                            ],
+                                                TextSpan(
+                                                    text: TipsData
+                                                        .protectionTips[index]),
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ],
@@ -351,6 +347,12 @@ class _TipsPageState extends State<TipsPage> {
                     }
                     return SizedBox.shrink();
                   },
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: BannerAdmob(
+                    idAdMob: 'ca-app-pub-6850065566204568/8231464109',
+                  ),
                 ),
               ],
             ),

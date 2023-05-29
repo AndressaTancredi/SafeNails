@@ -136,7 +136,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0),
-                  child: BannerAdmob(),
+                  child: BannerAdmob(
+                      idAdMob: 'ca-app-pub-6850065566204568/5619356631'),
                 ),
               ],
             ),
