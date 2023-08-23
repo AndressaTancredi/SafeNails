@@ -20,3 +20,9 @@ class ResultState extends AnalysisState {
       required this.isSafe,
       required this.unhealthyIngredientsFounded});
 }
+
+class NoWordState extends AnalysisState {
+  late final bool? noWord;
+  late final XFile? photo;
+  NoWordState({required this.photo, required this.noWord});
+}

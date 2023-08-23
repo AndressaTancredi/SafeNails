@@ -14,42 +14,37 @@ class ImageSource extends StatefulWidget {
 }
 
 class _ImageSourceState extends State<ImageSource> {
-  TextStyle get title => sl<TextStyles>().pageTitle.copyWith(fontSize: 22.0);
+  TextStyle get subTitle => sl<TextStyles>().subTitle;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(14.0),
+      padding: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(16.0),
-          border: Border.all(color: AppColors.pink)
-      ),
+          borderRadius: BorderRadius.circular(12.0),
+          border: Border.all(color: AppColors.pink)),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Row(
-            children: [
-              Container(
-                height: 70.0,
-                width: 70.0,
-                padding: const EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                  color: AppColors.backgroundIcon,
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-                child: SvgPicture.asset(
-                  widget.iconPath,
-                  color: AppColors.pink,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 34.0),
-                child: Text(
-                  widget.title,
-                  style: title),
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Text(
+              widget.title,
+              style: subTitle,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(15.0),
+            decoration: BoxDecoration(
+              color: AppColors.backgroundIcon,
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            child: SvgPicture.asset(
+              widget.iconPath,
+              color: AppColors.pink,
+            ),
           ),
         ],
       ),

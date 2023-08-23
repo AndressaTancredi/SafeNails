@@ -6,23 +6,21 @@ import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_bloc.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_event.dart';
 import 'package:safe_nails/ui/pages/home_page.dart';
-import 'package:safe_nails/ui/pages/store_page.dart';
 import 'package:safe_nails/ui/pages/tips_page.dart';
 
-class HomeScreenPage extends StatefulWidget {
+class HomeMenu extends StatefulWidget {
   @override
-  _HomeScreenPageState createState() => _HomeScreenPageState();
+  _HomeMenuState createState() => _HomeMenuState();
 }
 
-class _HomeScreenPageState extends State<HomeScreenPage> {
+class _HomeMenuState extends State<HomeMenu> {
   TextStyle get bodyDescription =>
       sl<TextStyles>().bodyDescription.copyWith(fontSize: 14.0);
 
   final analysisBloc = sl<AnalysisBloc>();
 
-  int _actualIndex = 1;
+  int _actualIndex = 0;
   final List<Widget> _screens = [
-    StorePage(),
     HomePage(),
     TipsPage(),
   ];
@@ -38,24 +36,6 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
         currentIndex: _actualIndex,
         onTap: onTabTapped,
         items: [
-          BottomNavigationBarItem(
-              activeIcon: Padding(
-                padding: const EdgeInsets.only(bottom: 4.0),
-                child: SvgPicture.asset(
-                  'assets/icons/shop.svg',
-                  color: AppColors.pink,
-                  height: 24,
-                ),
-              ),
-              icon: Padding(
-                padding: const EdgeInsets.only(bottom: 4.0),
-                child: SvgPicture.asset(
-                  'assets/icons/shop.svg',
-                  height: 20,
-                  color: AppColors.black,
-                ),
-              ),
-              label: "Loja"),
           BottomNavigationBarItem(
             activeIcon: Padding(
               padding: const EdgeInsets.only(bottom: 4.0),

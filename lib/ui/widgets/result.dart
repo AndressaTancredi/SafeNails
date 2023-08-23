@@ -13,14 +13,16 @@ import 'package:safe_nails/ui/bloc/analysis/analysis_event.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_state.dart';
 
 class Result extends StatefulWidget {
+  bool? noWord;
   final XFile? photo;
-  final bool isSafe;
-  final List<String> unhealthyIngredientsFounded;
+  bool? isSafe;
+  List<String>? unhealthyIngredientsFounded;
 
-  const Result(
-      {required this.isSafe,
+  Result(
+      {this.isSafe,
       required this.photo,
-      required this.unhealthyIngredientsFounded});
+      this.unhealthyIngredientsFounded,
+      this.noWord});
 
   @override
   State<Result> createState() => _ResultState();
@@ -43,6 +45,36 @@ class _ResultState extends State<Result> {
       child: BlocBuilder<AnalysisBloc, AnalysisState>(
           bloc: analysisBloc,
           builder: (context, state) {
+            if (widget.noWord == true) {
+              return Column(
+                children: [
+                  Container(
+                    height: 350,
+                    width: double.infinity,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16.0),
+                      child: Image.file(
+                        File(widget.photo!.path),
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 15.0),
+                  Container(
+                    padding: const EdgeInsets.all(16.0),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8.0)),
+                    child: Text(
+                      "Não foi possível identificar nenhum texto na imagem. Por favor, certifique-se de carregar uma imagem que contenha texto legível ou tente aproximar o texto para que fique nítido e possa ser lido com clareza.",
+                      style: bodyDescription.copyWith(fontSize: 14.0),
+                      textAlign: TextAlign.justify,
+                    ),
+                  )
+                ],
+              );
+            }
             return Column(
               children: [
                 Container(
@@ -96,7 +128,7 @@ class _ResultState extends State<Result> {
                             children: [
                               _valueResult(isSafe: widget.isSafe),
                               Text(
-                                "${widget.unhealthyIngredientsFounded.length}/15",
+                                "${widget.unhealthyIngredientsFounded?.length}/15",
                                 style: bodyDescription.copyWith(
                                   color: AppColors.lightBlack,
                                 ),
@@ -114,7 +146,7 @@ class _ResultState extends State<Result> {
     );
   }
 
-  Widget _valueResult({required bool isSafe}) {
+  Widget _valueResult({required bool? isSafe}) {
     String iconPath;
     Color? textColor;
     String messageResult;

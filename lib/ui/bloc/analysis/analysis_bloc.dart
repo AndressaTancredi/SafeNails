@@ -61,9 +61,13 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
 
     final bool result = getIngredientResult();
 
-    emit(ResultState(
-        photo: pickedImage,
-        isSafe: result,
-        unhealthyIngredientsFounded: unhealthyIngredientsFounded));
+    if (scannedText.isEmpty) {
+      emit(NoWordState(noWord: true, photo: pickedImage));
+    } else {
+      emit(ResultState(
+          photo: pickedImage,
+          isSafe: result,
+          unhealthyIngredientsFounded: unhealthyIngredientsFounded));
+    }
   }
 }

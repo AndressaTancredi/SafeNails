@@ -38,108 +38,144 @@ class _HomePageState extends State<HomePage> {
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 22.0),
-            child: Column(
-              children: [
-                BlocBuilder<AnalysisBloc, AnalysisState>(
-                  bloc: analysisBloc,
-                  builder: (context, state) {
-                    if (state is AnalysisLoadingState) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(vertical: 16.0),
-                        child: Loading(),
-                      );
-                    }
-                    if (state is ResultState) {
-                      final photo = state.photo;
-                      final isSafe = state.isSafe;
-                      final unhealthyIngredientsFounded =
-                          state.unhealthyIngredientsFounded;
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 44.0),
-                        child: Column(
+            child: SafeArea(
+              child: Column(
+                children: [
+                  BlocBuilder<AnalysisBloc, AnalysisState>(
+                    bloc: analysisBloc,
+                    builder: (context, state) {
+                      if (state is AnalysisLoadingState) {
+                        return Padding(
+                          padding: EdgeInsets.symmetric(vertical: 16.0),
+                          child: Loading(),
+                        );
+                      }
+                      if (state is ResultState) {
+                        final photo = state.photo;
+                        final isSafe = state.isSafe;
+                        final unhealthyIngredientsFounded =
+                            state.unhealthyIngredientsFounded;
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 44.0),
+                          child: Column(
+                            children: [
+                              Result(
+                                isSafe: isSafe,
+                                photo: photo,
+                                unhealthyIngredientsFounded:
+                                    unhealthyIngredientsFounded,
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                      if (state is NoWordState) {
+                        final photo = state.photo;
+                        final noWord = state.noWord;
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 15.0),
+                          child: Result(
+                            noWord: noWord,
+                            photo: photo,
+                          ),
+                        );
+                      }
+                      if (state is AnalysisEmptyState) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Result(
-                              isSafe: isSafe,
-                              photo: photo,
-                              unhealthyIngredientsFounded:
-                                  unhealthyIngredientsFounded,
+                            Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child:
+                                  Text("Como usar o Safe Nails", style: title),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 4.0),
+                              child: Container(
+                                padding: const EdgeInsets.all(14.0),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(16.0),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(CommonStrings.stepOne,
+                                        style: subTitle),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 8.0, right: 4.0),
+                                      child: Text(
+                                          CommonStrings.stepOneDescription,
+                                          style: bodyDescription),
+                                    ),
+                                    const SizedBox(height: 8.0),
+                                    const Divider(
+                                      thickness: 1,
+                                      color: AppColors.grey,
+                                    ),
+                                    const SizedBox(height: 8.0),
+                                    Text(CommonStrings.stepTwo,
+                                        style: subTitle),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 8.0, right: 4.0),
+                                      child: Text(
+                                          CommonStrings.stepTwoDescription,
+                                          style: bodyDescription),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Text("Escolha:", style: title),
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  child: Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        analysisBloc.add(
+                                            NewImageEvent(cameraSource: true));
+                                      },
+                                      child: ImageSource(
+                                          title: CommonStrings.camera,
+                                          iconPath: 'assets/icons/camera.svg'),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 25),
+                                Container(
+                                  child: Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        analysisBloc.add(
+                                            NewImageEvent(cameraSource: false));
+                                      },
+                                      child: ImageSource(
+                                          title: CommonStrings.gallery,
+                                          iconPath: 'assets/icons/gallery.svg'),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
-                        ),
-                      );
-                    }
-                    if (state is AnalysisEmptyState) {
-                      return Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 38.0),
-                            child: Container(
-                              padding: const EdgeInsets.all(14.0),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(16.0),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(CommonStrings.stepOne, style: subTitle),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 8.0, right: 4.0),
-                                    child: Text(
-                                        CommonStrings.stepOneDescription,
-                                        style: bodyDescription),
-                                  ),
-                                  const SizedBox(height: 8.0),
-                                  const Divider(
-                                    thickness: 1,
-                                    color: AppColors.grey,
-                                  ),
-                                  const SizedBox(height: 8.0),
-                                  Text(CommonStrings.stepTwo, style: subTitle),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 8.0, right: 4.0),
-                                    child: Text(
-                                        CommonStrings.stepTwoDescription,
-                                        style: bodyDescription),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 14),
-                          GestureDetector(
-                            onTap: () {
-                              analysisBloc
-                                  .add(NewImageEvent(cameraSource: true));
-                            },
-                            child: ImageSource(
-                                title: CommonStrings.camera,
-                                iconPath: 'assets/icons/camera.svg'),
-                          ),
-                          const SizedBox(height: 12.0),
-                          GestureDetector(
-                            onTap: () {
-                              analysisBloc
-                                  .add(NewImageEvent(cameraSource: false));
-                            },
-                            child: ImageSource(
-                                title: CommonStrings.gallery,
-                                iconPath: 'assets/icons/gallery.svg'),
-                          ),
-                        ],
-                      );
-                    }
-                    return const SizedBox.shrink();
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 16.0),
-                  child: BannerAdmob(
-                      idAdMob: 'ca-app-pub-6850065566204568/5619356631'),
-                ),
-              ],
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16.0),
+                    child: BannerAdmob(
+                        idAdMob: 'ca-app-pub-6850065566204568/5619356631'),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
