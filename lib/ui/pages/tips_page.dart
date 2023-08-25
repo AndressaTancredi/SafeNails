@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -351,7 +353,7 @@ class _TipsPageState extends State<TipsPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: BannerAdmob(
-                    idAdMob: 'ca-app-pub-6850065566204568/8231464109',
+                    idAdMob: bannerId,
                   ),
                 ),
               ],
@@ -361,4 +363,8 @@ class _TipsPageState extends State<TipsPage> {
       ),
     );
   }
+
+  final String bannerId = Platform.isAndroid
+      ? 'ca-app-pub-6850065566204568/5619356631'
+      : 'ca-app-pub-6850065566204568/1634804509';
 }
