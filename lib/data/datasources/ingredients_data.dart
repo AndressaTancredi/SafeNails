@@ -14,24 +14,54 @@ class IngredientsData {
         "Resina de Formaldeído",
         "Dibutilftalato (DBP)",
         "Trifenilfosfato (TPHP)",
-        "Produtos Derivados de Animais"
+        "Produtos Derivados de Animais",
+        "Gluten",
+        "Xylene",
+        "Acetone",
+        "Parabens",
+        "Camphor",
+        "Toluene",
+        "Mineral Oil",
+        "Cobalt Sulfate",
+        "Nickel Sulfate",
+        "Formaldehyde",
+        "Ethyl Tosylamide",
+        "Formaldehyde Resin",
+        "Dibutyl Phthalate (DBP)",
+        "Triphenyl Phosphate (TPHP)",
+        "Animal-Derived Products"
       ];
 
   static String get tolueno => "Tolueno";
-  static String get formaldeido => "Formaldeído";
-  static String get dbp => "Dibutilftalato (DBP)";
-  static String get resinaFormaldeido => "Resina de Formaldeído";
-  static String get canfora => "Cânfora";
-  static String get xileno => "Xileno";
-  static String get etilTosilamida => "Etil Tosilamida";
-  static String get tphp => "Trienilfosfato (TPHP)";
+  static String get Toluene => "Toluene";
+  static String get acetona => "Acetone";
+  static String get Acetone => "Acetone";
   static String get parabenos => "Parabenos";
-  static String get acetona => "Acetona";
+  static String get Parabens => "Parabens";
+  static String get canfora => "Cânfora";
+  static String get Camphor => "Camphor";
+  static String get xileno => "Xileno";
+  static String get Xylene => "Xylene";
+  static String get formaldeido => "Formaldeído";
+  static String get Formaldehyde => "Formaldehyde";
+  static String get dbp => "Dibutilftalato (DBP)";
+  static String get DibutylPhthalate => "Dibutilftalato (DBP)";
+  static String get resinaFormaldeido => "Resina de Formaldeído";
+  static String get FormaldehydeResin => "Resina de Formaldeído";
+  static String get etilTosilamida => "Etil Tosilamida";
+  static String get EthylTosylamide => "Etil Tosilamida";
+  static String get tphp => "Trienilfosfato (TPHP)";
+  static String get TriphenylPhosphate => "Trienilfosfato (TPHP)";
   static String get sulfatoNiquel => "Sulfato de Níquel";
+  static String get NickelSulfate => "Sulfato de Níquel";
   static String get sulfatoCobalto => "Sulfato de Cobalto";
+  static String get CobaltSulfate => "Sulfato de Cobalto";
   static String get oleoMineral => "Óleo Mineral";
+  static String get MineralOil => "Óleo Mineral";
   static String get gluten => "Glúten";
+  static String get Gluten => "Gluten";
   static String get derivadosAnimais => "Produtos Derivados de Animais";
+  static String get AnimalDerivedProducts => "Produtos Derivados de Animais";
 
   static String get badToThePlanet => "Ruim para o planeta";
   static String get badToTheBody => "Ruim para o corpo";
