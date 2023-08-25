@@ -82,9 +82,7 @@ class _HomeMenuState extends State<HomeMenu> {
 
   void onTabTapped(int index) {
     setState(() {
-      if (_actualIndex == 1) {
-        analysisBloc.add(ClearResultEvent());
-      }
+      analysisBloc.add(ClearResultEvent());
       _actualIndex = index;
     });
   }

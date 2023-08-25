@@ -47,7 +47,15 @@ class _ResultState extends State<Result> {
           builder: (context, state) {
             if (widget.noWord == true) {
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  InkWell(
+                    onTap: () => {analysisBloc.add(ClearResultEvent())},
+                    child: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.black54,
+                    ),
+                  ),
                   Container(
                     height: 350,
                     width: double.infinity,

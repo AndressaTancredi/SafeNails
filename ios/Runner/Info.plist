@@ -4,10 +4,10 @@
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Acesso à galeria para escolher uma foto de perfil</string>
-    <key>NSCameraUsageDescription</key>
-    <string>Acesso à câmera para tirar a foto do perfil.</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Acesso ao microfone para tirar a foto do perfil</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Acesso à câmera para tirar a foto do perfil.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Acesso ao microfone para tirar a foto do perfil</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -54,6 +54,6 @@
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>GADApplicationIdentifier</key>
-    <string>ca-app-pub-6850065566204568/5619356631</string>
+	<string>ca-app-pub-6850065566204568~5888662716</string>
 </dict>
 </plist>

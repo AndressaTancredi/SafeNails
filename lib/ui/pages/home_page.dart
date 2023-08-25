@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:safe_nails/common/app_colors.dart';
@@ -171,8 +173,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0),
-                    child: BannerAdmob(
-                        idAdMob: 'ca-app-pub-6850065566204568/5619356631'),
+                    child: BannerAdmob(idAdMob: bannerId),
                   ),
                 ],
               ),
@@ -182,4 +183,8 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  final String bannerId = Platform.isAndroid
+      ? 'ca-app-pub-6850065566204568/5619356631'
+      : 'ca-app-pub-6850065566204568/1634804509';
 }
