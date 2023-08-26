@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:safe_nails/ui/pages/home_menu.dart';
 import 'package:safe_nails/ui/pages/home_page.dart';
+import 'package:safe_nails/ui/pages/login_page.dart';
 import 'package:safe_nails/ui/pages/result_detail.dart';
 import 'package:safe_nails/ui/pages/welcome_page.dart';
 
@@ -9,6 +10,8 @@ class AppRouter {
     switch (routeSettings.name) {
       case '/welcome_page':
         return MaterialPageRoute(builder: (_) => const WelcomePage());
+      case '/login_page':
+        return MaterialPageRoute(builder: (_) => LoginPage());
       case '/home_screen_page':
         return MaterialPageRoute(builder: (_) => HomeMenu());
       case '/home_page':

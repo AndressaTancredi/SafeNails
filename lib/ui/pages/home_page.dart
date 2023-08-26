@@ -140,8 +140,11 @@ class _HomePageState extends State<HomePage> {
                                   child: Expanded(
                                     child: GestureDetector(
                                       onTap: () {
-                                        analysisBloc.add(
-                                            NewImageEvent(cameraSource: true));
+                                        Navigator.of(context)
+                                            .pushNamed('/login_page');
+
+                                        // analysisBloc.add(
+                                        //     NewImageEvent(cameraSource: true));
                                       },
                                       child: ImageSource(
                                           title: CommonStrings.camera,
