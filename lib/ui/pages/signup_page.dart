@@ -2,10 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:safe_nails/common/app_colors.dart';
+import 'package:safe_nails/common/firebase_utils.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/ui/widgets/form_imput.dart';
 import 'package:safe_nails/ui/widgets/question_link.dart';
+
+import '../../models/signup_data.dart';
+import '../widgets/toast_alert.dart';
 
 class SignUpPage extends StatefulWidget {
   static const String routeName = '/sign_up';
@@ -94,7 +98,7 @@ class SignUpPageState extends State<SignUpPage> {
                           ),
                           onPressed: () => {
                             Navigator.of(context).pushNamed('/login_page'),
-                            // handleSingUp(context),
+                            handleSingUp(context),
                           },
                         ),
                       ),
@@ -134,27 +138,25 @@ class SignUpPageState extends State<SignUpPage> {
   //   }
   // }
 
-// handleSingUp(BuildContext context) async {
-//   var data = SignUpData(
-//     name: nameController.text,
-//     email: emailController.text,
-//     password: passwordController.text,
-//     deviceToken: await FirebaseUtils.getFirebaseToken(),
-//     deviceType: '2',
-//   );
-//
-//   var auth =
-//   await FirebaseUtils.createUser(data.name, data.email, data.password);
-//
-//   if (auth == "Success") {
-//     FirebaseUtils.sendAnalyticsEvents().logSignUp(signUpMethod: "email");
-//     // ignore: use_build_context_synchronously
-//     handleNavigation(context, '/login', true);
-//   } else {
-//     // ignore: use_build_context_synchronously
-//     ScaffoldMessenger.of(context).showSnackBar(
-//       toastAlert(type: Type.error, messages: {auth!.replaceAll("-", " ")}),
-//     );
-//   }
-// }
+  handleSingUp(BuildContext context) async {
+    var data = SignUpData(
+      name: nameController.text,
+      email: emailController.text,
+      password: passwordController.text,
+      deviceType: '2',
+    );
+
+    var auth =
+        await FirebaseUtils.createUser(data.name, data.email, data.password);
+
+    if (auth == "Success") {
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pushNamed('/login_page');
+    } else {
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        toastAlert(type: Type.error, messages: {auth!.replaceAll("-", " ")}),
+      );
+    }
+  }
 }
