@@ -90,7 +90,7 @@ class LoginPageState extends State<LoginPage> {
             const SizedBox(height: 40),
             TextButton(
               onPressed: () {
-                '/reset_password';
+                Navigator.of(context).pushNamed('/reset_password_page');
               },
               child: Text(
                 "Esqueceu a senha?",
