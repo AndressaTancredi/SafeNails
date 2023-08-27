@@ -1,11 +1,11 @@
+// import 'dart:js' as js;
+
 import 'package:flutter/material.dart';
+import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/ui/widgets/form_imput.dart';
 import 'package:safe_nails/ui/widgets/question_link.dart';
-import 'package:url_launcher/url_launcher.dart';
-
-import '../../common/app_colors.dart';
 
 class SignUpPage extends StatefulWidget {
   static const String routeName = '/sign_up';
@@ -104,7 +104,9 @@ class SignUpPageState extends State<SignUpPage> {
               ),
               TextButton(
                 onPressed: () {
-                  _launchURL();
+                  // js.context.callMethod(
+                  //     'open', ['https://stackoverflow.com/questions/ask']);
+                  // _launchURL();
                 },
                 child: Text(
                   'Termos e Condições',
@@ -122,15 +124,15 @@ class SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  _launchURL() async {
-    const url =
-        'https://codecloud-pp.blogspot.com/2023/04/politica-de-privacidade.html';
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  // _launchURL() async {
+  //   const url =
+  //       'https://codecloud-pp.blogspot.com/2023/04/politica-de-privacidade.html';
+  //   if (await canLaunchUrl(Uri.parse(url))) {
+  //     await launchUrl(Uri.parse(url));
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
 
 // handleSingUp(BuildContext context) async {
 //   var data = SignUpData(

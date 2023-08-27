@@ -28,6 +28,9 @@ require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelpe
 # To recognize Latin script
 pod 'GoogleMLKit/TextRecognition', '~> 3.2.0'
 
+pod 'MLKitVision', :podspec => 'MLKitVision.podspec.json'
+pod 'MLKitCommon', :podspec => 'MLKitCommon.podspec.json'
+
 flutter_ios_podfile_setup
 
 target 'Runner' do
