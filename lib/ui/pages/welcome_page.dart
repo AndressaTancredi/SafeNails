@@ -58,10 +58,9 @@ class _WelcomePageState extends State<WelcomePage> {
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0)),
-                      // minimumSize: const Size(180, 45),
                     ),
                     onPressed: () =>
-                        Navigator.of(context).pushNamed('/home_screen_page'),
+                        Navigator.of(context).pushNamed('/login_page'),
                     child: Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: Text(

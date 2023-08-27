@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:safe_nails/ui/widgets/sign_up_imput.dart';
-
-import '../../common/app_colors.dart';
-import '../../common/injection_container.dart';
-import '../../common/text_styles.dart';
-import '../widgets/question_link.dart';
+import 'package:safe_nails/common/app_colors.dart';
+import 'package:safe_nails/common/injection_container.dart';
+import 'package:safe_nails/common/text_styles.dart';
+import 'package:safe_nails/ui/widgets/form_imput.dart';
+import 'package:safe_nails/ui/widgets/question_link.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -81,7 +80,9 @@ class LoginPageState extends State<LoginPage> {
                 onPressed: () => {
                   if (_formLogin.currentState!.validate())
                     {
-                      handleAuth(context),
+                      Navigator.of(context).pushNamed('/home_screen_page'),
+
+                      // handleAuth(context),
                     }
                 },
               ),
