@@ -1,15 +1,14 @@
-// import 'dart:js' as js;
+// import 'dart:html' as html;
 
 import 'package:flutter/material.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/firebase_utils.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
+import 'package:safe_nails/models/signup_data.dart';
 import 'package:safe_nails/ui/widgets/form_imput.dart';
 import 'package:safe_nails/ui/widgets/question_link.dart';
-
-import '../../models/signup_data.dart';
-import '../widgets/toast_alert.dart';
+import 'package:safe_nails/ui/widgets/toast_alert.dart';
 
 class SignUpPage extends StatefulWidget {
   static const String routeName = '/sign_up';
@@ -106,21 +105,20 @@ class SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              TextButton(
-                onPressed: () {
-                  // js.context.callMethod(
-                  //     'open', ['https://stackoverflow.com/questions/ask']);
-                  // _launchURL();
-                },
-                child: Text(
-                  'Termos e Condições',
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                      color: Color(0xFF104F94),
-                      decoration: TextDecoration.underline),
-                ),
-              ),
+              // URL launcher nao está sendo compativel com outros pods. Testei html/dartJS
+              // TextButton(
+              //   onPressed: () {
+              //     htmlOpenLink();
+              //   },
+              //   child: Text(
+              //     'Termos e Condições',
+              //     style: const TextStyle(
+              //         fontWeight: FontWeight.w500,
+              //         fontSize: 16,
+              //         color: Color(0xFF104F94),
+              //         decoration: TextDecoration.underline),
+              //   ),
+              // ),
             ],
           ),
         ),

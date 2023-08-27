@@ -4,6 +4,9 @@ import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/ui/widgets/form_imput.dart';
 
+import '../../common/firebase_utils.dart';
+import '../widgets/toast_alert.dart';
+
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({Key? key}) : super(key: key);
 
@@ -95,15 +98,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               Container(
                 height: 50,
                 child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.pink),
-                    child: Text(
-                      "Enviar",
-                      style: TextStyle(fontSize: 20, color: AppColors.grey),
-                    ),
-                    onPressed: () => {}
-                    // handleResetPassword(context)
-                    ),
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: AppColors.pink),
+                  child: Text(
+                    "Enviar",
+                    style: TextStyle(fontSize: 20, color: AppColors.grey),
+                  ),
+                  onPressed: () => {handleResetPassword(context)},
+                ),
               ),
             ],
           ),
@@ -111,18 +113,18 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       ),
     );
   }
-  // handleResetPassword(BuildContext context) async {
-  //   var resetPass =
-  //   await FirebaseUtils.resetPassword(emailController.value.text);
-  //
-  //   if (resetPass == "Success") {
-  //     // ignore: use_build_context_synchronously
-  //     handleNavigation(context, '/login_page', true);
-  //   } else {
-  //     // ignore: use_build_context_synchronously
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       toastAlert(type: Type.error, messages: {resetPass}),
-  //     );
-  //   }
-  // }
+
+  handleResetPassword(BuildContext context) async {
+    var resetPass =
+        await FirebaseUtils.resetPassword(emailController.value.text);
+
+    if (resetPass == "Success") {
+      Navigator.of(context).pushNamed('/login_page');
+    } else {
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        toastAlert(type: Type.error, messages: {resetPass}),
+      );
+    }
+  }
 }
