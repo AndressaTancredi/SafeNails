@@ -6,6 +6,7 @@ import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_bloc.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_event.dart';
 import 'package:safe_nails/ui/pages/home_page.dart';
+import 'package:safe_nails/ui/pages/profile_page.dart';
 import 'package:safe_nails/ui/pages/tips_page.dart';
 
 class HomeMenu extends StatefulWidget {
@@ -19,8 +20,9 @@ class _HomeMenuState extends State<HomeMenu> {
 
   final analysisBloc = sl<AnalysisBloc>();
 
-  int _actualIndex = 0;
+  int _actualIndex = 1;
   final List<Widget> _screens = [
+    ProfilePage(),
     HomePage(),
     TipsPage(),
   ];
@@ -36,6 +38,25 @@ class _HomeMenuState extends State<HomeMenu> {
         currentIndex: _actualIndex,
         onTap: onTabTapped,
         items: [
+          BottomNavigationBarItem(
+            activeIcon: Padding(
+              padding: const EdgeInsets.only(bottom: 4.0),
+              child: Icon(
+                Icons.account_circle_outlined,
+                color: AppColors.pink,
+                size: 30,
+              ),
+            ),
+            icon: Padding(
+              padding: const EdgeInsets.only(bottom: 4.0),
+              child: Icon(
+                Icons.account_circle_outlined,
+                color: AppColors.softGrey,
+                size: 30,
+              ),
+            ),
+            label: "Perfil",
+          ),
           BottomNavigationBarItem(
             activeIcon: Padding(
               padding: const EdgeInsets.only(bottom: 4.0),

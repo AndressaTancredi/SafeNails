@@ -51,14 +51,14 @@ class FirebaseUtils {
     }
   }
 
-  // static Future<String?> deleteUser() async {
-  //   try {
-  //     await FirebaseAuth.instance.currentUser!.delete();
-  //     return "Success";
-  //   } on FirebaseAuthException catch (e) {
-  //     return e.code;
-  //   }
-  // }
+  static Future<String?> deleteUser() async {
+    try {
+      await FirebaseAuth.instance.currentUser!.delete();
+      return "Success";
+    } on FirebaseAuthException catch (e) {
+      return e.code;
+    }
+  }
 
   // static Future<String> changePassword(
   //     String currentPassword, String newPassword) async {
