@@ -1,11 +1,13 @@
 // import 'dart:html' as html;
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/firebase_utils.dart';
 import 'package:safe_nails/common/injection_container.dart';
+import 'package:safe_nails/common/preferences.dart';
 import 'package:safe_nails/common/text_styles.dart';
-import 'package:safe_nails/models/signup_data.dart';
+import 'package:safe_nails/models/user_data.dart';
 import 'package:safe_nails/ui/widgets/form_imput.dart';
 import 'package:safe_nails/ui/widgets/question_link.dart';
 import 'package:safe_nails/ui/widgets/toast_alert.dart';
@@ -97,6 +99,7 @@ class SignUpPageState extends State<SignUpPage> {
                           ),
                           onPressed: () => {
                             Navigator.of(context).pushNamed('/login_page'),
+                            storeUserData(),
                             handleSingUp(context),
                           },
                         ),
@@ -136,16 +139,20 @@ class SignUpPageState extends State<SignUpPage> {
   //   }
   // }
 
-  handleSingUp(BuildContext context) async {
-    var data = SignUpData(
-      name: nameController.text,
-      email: emailController.text,
-      password: passwordController.text,
-      deviceType: '2',
-    );
+  void storeUserData() async {
+    //store the user entered data in user object
+    User user1 = new User(
+        nameController.text, emailController.text, passwordController.text);
+    // encode / convert object into json string
+    String user = jsonEncode(user1);
+    print(user);
+    //save the data into sharedPreferences using key-value pairs
+    await Preferences().storeUserData('userdata', user);
+  }
 
-    var auth =
-        await FirebaseUtils.createUser(data.name, data.email, data.password);
+  handleSingUp(BuildContext context) async {
+    var auth = await FirebaseUtils.createUser(
+        nameController.text, emailController.text, passwordController.text);
 
     if (auth == "Success") {
       // ignore: use_build_context_synchronously

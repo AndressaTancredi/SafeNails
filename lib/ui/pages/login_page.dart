@@ -112,7 +112,6 @@ class LoginPageState extends State<LoginPage> {
     var login = LoginData(
       email: emailController.text,
       password: passwordController.text,
-      deviceType: '2',
     );
 
     var auth = await FirebaseUtils.signIn(login.email, login.password);

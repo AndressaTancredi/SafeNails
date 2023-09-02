@@ -1,24 +1,39 @@
 //TODO usar para salvar infos do usuario e de preferencias
 
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum PreferencesKeys {
-  accessToken("acess_token"),
-  userData("user_data"),
-  firebaseToken("firebase_token");
-
-  final String value;
-  const PreferencesKeys(this.value);
-}
-
 class Preferences {
-  static void storeFirebaseToken(String value) async {
+  Future<Map<String, dynamic>> getUserData() async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setString(PreferencesKeys.firebaseToken.value, value);
+    var getUserDataPrefs = jsonDecode(await prefs.getString('userdata')!);
+    final Map<String, dynamic> userData = jsonDecode(getUserDataPrefs);
+    return userData;
   }
 
-  static Future<String?> getFirebaseToken() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(PreferencesKeys.firebaseToken.value);
+  storeUserData(String key, String value) async {
+    if (value.isNotEmpty && key.isNotEmpty) {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString(key, json.encode(value));
+    }
   }
+
+  removeUserData(String key) async {
+    if (key.isNotEmpty) {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.remove(key);
+    }
+  }
+
+  // static Future<UserData> getUserData() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   var data = prefs.getString(PreferencesKeys.userData.value);
+  //
+  //   if (data != null) {
+  //     return UserData.fromJson(data);
+  //   }
+  //
+  //   return UserData();
+  // }
 }

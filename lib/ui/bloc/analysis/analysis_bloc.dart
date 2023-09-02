@@ -12,7 +12,7 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
   XFile? pickedImage;
 
   AnalysisBloc() : super(AnalysisEmptyState()) {
-    on<NewImageEvent>(_newPhoto);
+    on<NewImageEvent>(_newPolishNailsPhoto);
     on<ClearResultEvent>(_clearResults);
   }
 
@@ -23,7 +23,7 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
     emit(AnalysisEmptyState());
   }
 
-  Future<void> _newPhoto(NewImageEvent event, Emitter emit) async {
+  Future<void> _newPolishNailsPhoto(NewImageEvent event, Emitter emit) async {
     final ImagePickerService imagePickerService = ImagePickerService();
 
     final pickedImage = await (event.cameraSource == true

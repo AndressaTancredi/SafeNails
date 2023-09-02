@@ -4,12 +4,10 @@ class LoginData {
   LoginData({
     required this.email,
     required this.password,
-    required this.deviceType,
   });
 
   String email;
   String password;
-  String deviceType;
 
   factory LoginData.fromJson(String str) => LoginData.fromMap(json.decode(str));
 
@@ -18,7 +16,6 @@ class LoginData {
   factory LoginData.fromMap(Map<String, dynamic> json) => LoginData(
         email: json["email"],
         password: json["password"],
-        deviceType: json["deviceType"],
       );
 
   Map<String, dynamic> toMap() => {
