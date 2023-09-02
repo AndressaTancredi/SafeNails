@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:safe_nails/common/app_router.dart';
 import 'package:safe_nails/common/injection_container.dart' as get_it;
@@ -9,6 +10,9 @@ import 'package:safe_nails/ui/pages/welcome_page.dart';
 final navigatorKey = GlobalKey<NavigatorState>();
 
 Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
 

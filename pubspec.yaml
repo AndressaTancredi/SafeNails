@@ -27,6 +27,7 @@ dependencies:
   shimmer: ^2.0.0
   firebase_auth: ^4.6.2
   shared_preferences: ^2.2.0
+  webview_flutter: ^2.0.14
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,3 @@
-// import 'dart:html' as html;
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/preferences.dart';
 import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/models/user_data.dart';
+import 'package:safe_nails/ui/pages/terms_and_conditions_page.dart';
 import 'package:safe_nails/ui/widgets/form_imput.dart';
 import 'package:safe_nails/ui/widgets/question_link.dart';
 import 'package:safe_nails/ui/widgets/toast_alert.dart';
@@ -30,6 +30,7 @@ class SignUpPageState extends State<SignUpPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  //   const url = 'https://codecloud-pp.blogspot.com/2023/04/politica-de-privacidade.html';
 
   @override
   Widget build(BuildContext context) {
@@ -107,36 +108,27 @@ class SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              // URL launcher nao está sendo compativel com outros pods. Testei html/dartJS
-              // TextButton(
-              //   onPressed: () {
-              //     htmlOpenLink();
-              //   },
-              //   child: Text(
-              //     'Termos e Condições',
-              //     style: const TextStyle(
-              //         fontWeight: FontWeight.w500,
-              //         fontSize: 16,
-              //         color: Color(0xFF104F94),
-              //         decoration: TextDecoration.underline),
-              //   ),
-              // ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => TermsAndConditionsPage(),
+                  ));
+                },
+                child: Text(
+                  'Termos e Condições',
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      color: Color(0xFF104F94),
+                      decoration: TextDecoration.underline),
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
   }
-
-  // _launchURL() async {
-  //   const url =
-  //       'https://codecloud-pp.blogspot.com/2023/04/politica-de-privacidade.html';
-  //   if (await canLaunchUrl(Uri.parse(url))) {
-  //     await launchUrl(Uri.parse(url));
-  //   } else {
-  //     throw 'Could not launch $url';
-  //   }
-  // }
 
   void storeUserData() async {
     User user1 = new User(
