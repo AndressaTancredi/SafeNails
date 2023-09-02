@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:safe_nails/data/app_strings.dart';
 
-enum Type {
+enum ToastType {
   success,
   warning,
   error,
 }
 
-SnackBar toastAlert({type = Type, messages = List<String>}) {
+SnackBar toastAlert(
+    {ToastType type = ToastType.success, List<String> messages = const []}) {
   IconData getIcon() {
     switch (type) {
-      case Type.success:
+      case ToastType.success:
         return Icons.check_circle;
 
-      case Type.warning:
+      case ToastType.warning:
         return Icons.assignment_late_outlined;
 
-      case Type.error:
+      case ToastType.error:
         return Icons.error_outline_outlined;
 
       default:
@@ -25,19 +27,25 @@ SnackBar toastAlert({type = Type, messages = List<String>}) {
 
   Color getBgColor() {
     switch (type) {
-      case Type.success:
+      case ToastType.success:
         return Colors.green.shade600;
 
-      case Type.warning:
+      case ToastType.warning:
         return Colors.deepOrange.shade400;
 
-      case Type.error:
+      case ToastType.error:
         return Colors.red.shade400;
 
       default:
         return Colors.green.shade600;
     }
   }
+
+  final translatedMessages = messages.map((message) {
+    return AppStrings.errorMessages.containsKey(message)
+        ? AppStrings.errorMessages[message]!
+        : message;
+  }).toList();
 
   return SnackBar(
     backgroundColor: getBgColor(),
@@ -53,7 +61,7 @@ SnackBar toastAlert({type = Type, messages = List<String>}) {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ...messages.map((message) => Text(
+              ...translatedMessages.map((message) => Text(
                     message,
                     textAlign: TextAlign.left,
                     style: const TextStyle(

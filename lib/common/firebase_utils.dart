@@ -53,25 +53,11 @@ class FirebaseUtils {
 
   static Future<String?> deleteUser() async {
     try {
+      print(FirebaseAuth.instance.currentUser!);
       await FirebaseAuth.instance.currentUser!.delete();
       return "Success";
     } on FirebaseAuthException catch (e) {
       return e.code;
     }
   }
-
-  // static Future<String> changePassword(
-  //     String currentPassword, String newPassword) async {
-  //   try {
-  //     var user = FirebaseAuth.instance.currentUser!;
-  //     final cred = EmailAuthProvider.credential(
-  //         email: user.email!, password: currentPassword);
-  //     user.reauthenticateWithCredential(cred).then((value) async {
-  //       await user.updatePassword(newPassword);
-  //     });
-  //     return "Success";
-  //   } on FirebaseAuthException catch (e) {
-  //     return e.code;
-  //   }
-  // }
 }

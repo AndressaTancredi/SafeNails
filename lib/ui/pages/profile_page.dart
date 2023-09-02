@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:safe_nails/common/app_colors.dart';
+import 'package:safe_nails/common/firebase_utils.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/preferences.dart';
 import 'package:safe_nails/common/text_styles.dart';
@@ -11,8 +12,7 @@ import 'package:safe_nails/ui/bloc/profile/profile_bloc.dart';
 import 'package:safe_nails/ui/bloc/profile/profile_event.dart';
 import 'package:safe_nails/ui/bloc/profile/profile_state.dart';
 import 'package:safe_nails/ui/widgets/loading.dart';
-
-import '../../common/firebase_utils.dart';
+import 'package:safe_nails/ui/widgets/toast_alert.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -114,9 +114,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 FutureBuilder<Map<String, dynamic>>(
                   future: _getUserData(),
                   builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
-                    } else if (snapshot.hasData) {
+                    if (snapshot.hasData) {
                       final userData = snapshot.data!;
                       final userName = userData['name'];
                       final userEmail = userData['email'];
@@ -149,7 +147,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       );
                     } else {
-                      return Text('Data não disponível');
+                      return Text(
+                        'Carregando suas informações...',
+                        style: bodyDescription,
+                      );
                     }
                   },
                 ),
@@ -172,8 +173,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     _uploadPhotoModal(context,
                         title: 'Deletar Conta',
                         rightButtonTitle: 'Deletar',
-                        leftButtonTitle: 'Cancelar',
-                        leftButtonAction: await FirebaseUtils.deleteUser());
+                        leftButtonTitle: 'Cancelar');
                   },
                 ),
                 SizedBox(height: 20),
@@ -197,7 +197,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       title: 'Sair',
                       rightButtonTitle: 'Sim',
                       leftButtonTitle: 'Não',
-                      leftButtonAction: await FirebaseUtils.signOut(),
                     );
                   },
                 ),
@@ -214,7 +213,6 @@ class _ProfilePageState extends State<ProfilePage> {
     required String title,
     required String rightButtonTitle,
     required String leftButtonTitle,
-    required leftButtonAction,
   }) {
     return showModalBottomSheet(
       context: context,
@@ -268,8 +266,20 @@ class _ProfilePageState extends State<ProfilePage> {
                                 borderRadius: BorderRadius.circular(10.0)),
                           ),
                           onPressed: () async {
-                            await leftButtonAction;
-                            Navigator.of(context).pushNamed('/login_page');
+                            var auth = await getButtonAction(title);
+
+                            if (auth == "Success") {
+                              Navigator.of(context).pushNamed('/login_page');
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                toastAlert(
+                                  type: ToastType.error,
+                                  messages: [
+                                    auth!.replaceAll("-", " "),
+                                  ],
+                                ),
+                              );
+                            }
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
@@ -291,7 +301,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                 borderRadius: BorderRadius.circular(10.0)),
                           ),
                           onPressed: () async {
-                            // await leftButtonAction;
                             Navigator.pop(context);
                           },
                           child: Padding(
@@ -320,6 +329,14 @@ class _ProfilePageState extends State<ProfilePage> {
       return 'assets/icons/photo_attach.svg';
     } else {
       return profileBloc.photoPath;
+    }
+  }
+
+  getButtonAction(String title) async {
+    if (title == 'Sair') {
+      return await FirebaseUtils.signOut();
+    } else {
+      return await FirebaseUtils.deleteUser();
     }
   }
 }

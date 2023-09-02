@@ -118,11 +118,23 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
         await FirebaseUtils.resetPassword(emailController.value.text);
 
     if (resetPass == "Success") {
+      ScaffoldMessenger.of(context).showSnackBar(
+        toastAlert(
+          type: ToastType.success,
+          messages: [
+            resetPass!.replaceAll("-", " "),
+          ],
+        ),
+      );
       Navigator.of(context).pushNamed('/login_page');
     } else {
-      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
-        toastAlert(type: Type.error, messages: {resetPass}),
+        toastAlert(
+          type: ToastType.error,
+          messages: [
+            resetPass!.replaceAll("-", " "),
+          ],
+        ),
       );
     }
   }

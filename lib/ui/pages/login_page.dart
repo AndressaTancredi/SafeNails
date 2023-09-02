@@ -18,7 +18,6 @@ class LoginPageState extends State<LoginPage> {
   TextStyle get title => sl<TextStyles>().pageTitle;
   TextStyle get bodyDescription => sl<TextStyles>().bodyDescription;
 
-  var dadosRecuperados = -1;
   final _formLogin = GlobalKey<FormState>();
 
   final emailController = TextEditingController();
@@ -117,16 +116,14 @@ class LoginPageState extends State<LoginPage> {
     var auth = await FirebaseUtils.signIn(login.email, login.password);
 
     if (auth == "Success") {
-      // ignore: use_build_context_synchronously
       Navigator.of(context).pushNamed('/home_screen_page');
     } else {
-      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         toastAlert(
-          type: Type.error,
-          messages: {
+          type: ToastType.error,
+          messages: [
             auth!.replaceAll("-", " "),
-          },
+          ],
         ),
       );
     }

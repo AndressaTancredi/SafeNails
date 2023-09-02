@@ -98,7 +98,6 @@ class SignUpPageState extends State<SignUpPage> {
                                 TextStyle(fontSize: 20, color: AppColors.grey),
                           ),
                           onPressed: () => {
-                            Navigator.of(context).pushNamed('/login_page'),
                             storeUserData(),
                             handleSingUp(context),
                           },
@@ -140,13 +139,9 @@ class SignUpPageState extends State<SignUpPage> {
   // }
 
   void storeUserData() async {
-    //store the user entered data in user object
     User user1 = new User(
         nameController.text, emailController.text, passwordController.text);
-    // encode / convert object into json string
     String user = jsonEncode(user1);
-    print(user);
-    //save the data into sharedPreferences using key-value pairs
     await Preferences().storeUserData('userdata', user);
   }
 
@@ -155,12 +150,23 @@ class SignUpPageState extends State<SignUpPage> {
         nameController.text, emailController.text, passwordController.text);
 
     if (auth == "Success") {
-      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        toastAlert(
+          type: ToastType.success,
+          messages: [
+            auth!.replaceAll("-", " "),
+          ],
+        ),
+      );
       Navigator.of(context).pushNamed('/login_page');
     } else {
-      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
-        toastAlert(type: Type.error, messages: {auth!.replaceAll("-", " ")}),
+        toastAlert(
+          type: ToastType.error,
+          messages: [
+            auth!.replaceAll("-", " "),
+          ],
+        ),
       );
     }
   }
