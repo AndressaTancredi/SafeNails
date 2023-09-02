@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:safe_nails/data/app_strings.dart';
+import 'package:safe_nails/data/auth_messages.dart';
 
 enum ToastType {
   success,
@@ -42,8 +42,8 @@ SnackBar toastAlert(
   }
 
   final translatedMessages = messages.map((message) {
-    return AppStrings.errorMessages.containsKey(message)
-        ? AppStrings.errorMessages[message]!
+    return AuthMessages.errorMessages.containsKey(message)
+        ? AuthMessages.errorMessages[message]!
         : message;
   }).toList();
 

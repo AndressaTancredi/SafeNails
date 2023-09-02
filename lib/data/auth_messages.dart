@@ -1,8 +1,8 @@
-class AppStrings {
+class AuthMessages {
   static const Map<String, String> errorMessages = {
     "Success": "Sucesso!",
     "missing email": "Insira seu email.",
-    "invalid email": "Email inválido.",
+    "invalid email": "Dados inválidos.",
     "credential already in use":
         "Esta credencial já está associada a uma conta de usuário diferente.",
     "requires recent login":
@@ -10,7 +10,7 @@ class AppStrings {
     "email already in use":
         "O endereço de e-mail já está em uso por outra conta.",
     "internal error": "Ocorreu um erro interno.",
-    "wrong password": "A senha é inválida.",
+    "wrong password": "Dados inválidos.",
     "account exists with different credential":
         "Já existe uma conta com o mesmo endereço de e-mail.",
     "user not found": "Usuário não encontrado.",
