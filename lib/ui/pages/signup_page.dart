@@ -30,7 +30,6 @@ class SignUpPageState extends State<SignUpPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-  //   const url = 'https://codecloud-pp.blogspot.com/2023/04/politica-de-privacidade.html';
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +84,13 @@ class SignUpPageState extends State<SignUpPage> {
                         controller: confirmPasswordController,
                         icon: Icons.lock_outline_rounded,
                         isPassword: true,
+                        isConfirmationPassword: true,
+                        confirmPasswordValidator: (value) {
+                          if (value != passwordController.text) {
+                            return 'As senhas não coincidem.';
+                          }
+                          return null;
+                        },
                       ),
                       const SizedBox(height: 30),
                       Container(

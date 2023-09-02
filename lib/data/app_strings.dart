@@ -1,6 +1,8 @@
 class AppStrings {
   static const Map<String, String> errorMessages = {
     "Success": "Sucesso!",
+    "missing email": "Insira seu email.",
+    "invalid email": "Email inválido.",
     "credential already in use":
         "Esta credencial já está associada a uma conta de usuário diferente.",
     "requires recent login":

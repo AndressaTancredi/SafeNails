@@ -5,16 +5,22 @@ class Input extends StatefulWidget {
   final String label;
   final TextInputType type;
   final bool isPassword;
+  final bool isConfirmationPassword;
   final TextEditingController controller;
   final IconData? icon;
+  final ValueChanged<String?>? onValueChanged;
+  final String? Function(String?)? confirmPasswordValidator;
 
   const Input({
     Key? key,
     required this.label,
     required this.controller,
     this.isPassword = false,
+    this.isConfirmationPassword = false,
     this.type = TextInputType.text,
     this.icon,
+    this.onValueChanged,
+    this.confirmPasswordValidator,
   }) : super(key: key);
 
   @override
@@ -125,6 +131,8 @@ class InputState extends State<Input> {
             if (value.length < 8) {
               return 'A senha deve ser maior que 8 characters.';
             }
+          } else if (widget.isConfirmationPassword) {
+            return widget.confirmPasswordValidator!(value);
           }
           return null;
         },
