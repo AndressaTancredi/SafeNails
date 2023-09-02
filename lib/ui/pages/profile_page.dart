@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/firebase_utils.dart';
 import 'package:safe_nails/common/injection_container.dart';
@@ -34,18 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: InkWell(
-          onTap: () => Navigator.pop(context),
-          child: const Icon(
-            Icons.arrow_back,
-            color: Colors.black54,
-          ),
-        ),
-      ),
+      backgroundColor: AppColors.background,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
@@ -73,10 +61,46 @@ class _ProfilePageState extends State<ProfilePage> {
                               onTap: () {
                                 profileBloc.add(NewPhotoEvent());
                               },
-                              child: SvgPicture.asset(
-                                getPhotoPah(),
-                                alignment: Alignment.topLeft,
-                                height: 130,
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    height: 180,
+                                    width: 180.0,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.7),
+                                      borderRadius:
+                                          BorderRadius.circular(200.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Icon(
+                                        Icons.account_circle,
+                                        color: AppColors.pink.withOpacity(0.2),
+                                        size: 120,
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: 0.0,
+                                    right: 0.0,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(200.0),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Icon(
+                                          Icons.camera_alt_outlined,
+                                          color:
+                                              AppColors.pink.withOpacity(0.6),
+                                          size: 25,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -85,32 +109,53 @@ class _ProfilePageState extends State<ProfilePage> {
                       );
                     }
                     if (state is ProfileLoadedState) {
-                      return Column(
-                        children: [
-                          const SizedBox(height: 30),
-                          Center(
-                            child: GestureDetector(
-                              onTap: () {
-                                profileBloc.add(NewPhotoEvent());
-                              },
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(200.0),
-                                child: Image.file(
-                                  File(profileBloc.photoPath),
-                                  height: 180.0,
-                                  width: 180.0,
-                                  fit: BoxFit.cover,
+                      return Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            profileBloc.add(NewPhotoEvent());
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 30.0),
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(200.0),
+                                  child: Image.file(
+                                    File(profileBloc.photoPath),
+                                    height: 180.0,
+                                    width: 180.0,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
+                                Positioned(
+                                  bottom: 0.0,
+                                  right: 0.0,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius:
+                                          BorderRadius.circular(200.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Icon(
+                                        Icons.camera_alt_rounded,
+                                        color: AppColors.pink.withOpacity(0.6),
+                                        size: 25,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          const SizedBox(height: 30),
-                        ],
+                        ),
                       );
                     }
                     return const SizedBox.shrink();
                   },
                 ),
+                const SizedBox(height: 25),
                 FutureBuilder<Map<String, dynamic>>(
                   future: _getUserData(),
                   builder: (context, snapshot) {
@@ -129,7 +174,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             leading: Icon(
                               size: 30,
                               Icons.account_box_outlined,
-                              color: AppColors.regularBlack.withOpacity(0.2),
+                              color: AppColors.pink.withOpacity(0.6),
                             ),
                           ),
                           ListTile(
@@ -141,7 +186,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             leading: Icon(
                               size: 30,
                               Icons.email_outlined,
-                              color: AppColors.regularBlack.withOpacity(0.2),
+                              color: AppColors.pink.withOpacity(0.6),
                             ),
                           ),
                         ],
@@ -166,7 +211,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     color: AppColors.regularBlack.withOpacity(0.2),
                   ),
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(color: AppColors.grey),
+                    side: BorderSide(
+                        color: AppColors.regularGrey.withOpacity(0.2)),
                     borderRadius: BorderRadius.circular(5),
                   ),
                   onTap: () async {
@@ -176,7 +222,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         leftButtonTitle: 'Cancelar');
                   },
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 24),
                 ListTile(
                   title: Text(
                     'Sair',
@@ -185,10 +231,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   textColor: AppColors.grey,
                   trailing: Icon(
                     Icons.chevron_right,
-                    color: AppColors.regularBlack.withOpacity(0.2),
+                    color: AppColors.regularGrey.withOpacity(0.2),
                   ),
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(color: AppColors.grey),
+                    side: BorderSide(
+                        color: AppColors.regularGrey.withOpacity(0.2)),
                     borderRadius: BorderRadius.circular(5),
                   ),
                   onTap: () async {
