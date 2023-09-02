@@ -31,6 +31,9 @@ class SignUpPageState extends State<SignUpPage> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
+  bool _isFormValid = false;
+  bool _isTermsAccepted = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +62,14 @@ class SignUpPageState extends State<SignUpPage> {
                 margin: const EdgeInsets.only(bottom: 16),
                 child: Form(
                   key: _formSignUp,
-                  autovalidateMode: AutovalidateMode.disabled,
+                  autovalidateMode: AutovalidateMode.always,
+                  onChanged: () {
+                    // This callback will be called whenever the form changes.
+                    // Check if the form is valid.
+                    setState(() {
+                      _isFormValid = _formSignUp.currentState!.validate();
+                    });
+                  },
                   child: Column(
                     children: [
                       Input(
@@ -92,7 +102,35 @@ class SignUpPageState extends State<SignUpPage> {
                           return null;
                         },
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 18),
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: _isTermsAccepted,
+                            onChanged: (value) {
+                              setState(() {
+                                _isTermsAccepted = value!;
+                              });
+                            },
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => TermsAndConditionsPage(),
+                              ));
+                            },
+                            child: Text(
+                              'Eu li e concordo com os termos e condições.',
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 12,
+                                  color: Color(0xFF104F94),
+                                  decoration: TextDecoration.underline),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 18),
                       Container(
                         height: 50,
                         width: MediaQuery.of(context).size.width,
@@ -104,29 +142,16 @@ class SignUpPageState extends State<SignUpPage> {
                             style:
                                 TextStyle(fontSize: 20, color: AppColors.grey),
                           ),
-                          onPressed: () => {
-                            storeUserData(),
-                            handleSingUp(context),
-                          },
+                          onPressed: _isFormValid && _isTermsAccepted
+                              ? () {
+                                  storeUserData();
+                                  handleSingUp(context);
+                                }
+                              : null,
                         ),
                       ),
                     ],
                   ),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => TermsAndConditionsPage(),
-                  ));
-                },
-                child: Text(
-                  'Termos e Condições',
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                      color: Color(0xFF104F94),
-                      decoration: TextDecoration.underline),
                 ),
               ),
             ],
