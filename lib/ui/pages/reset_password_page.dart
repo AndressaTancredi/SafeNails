@@ -35,78 +35,80 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 30),
-              Center(
-                child: Icon(
-                  Icons.lock_reset_sharp,
-                  color: AppColors.pink,
-                  size: 90,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 30),
+                Center(
+                  child: Icon(
+                    Icons.lock_reset_sharp,
+                    color: AppColors.pink.withOpacity(0.5),
+                    size: 130,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30.0),
-                child: Text(
-                  "Alteração de Senha",
-                  style: title.copyWith(fontSize: 30),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30.0),
+                  child: Text(
+                    "Alteração de Senha",
+                    style: title.copyWith(fontSize: 30),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                const SizedBox(height: 32),
+                const Text(
+                  "Entre com o email cadastrado na sua conta",
+                  style: TextStyle(
+                    color: Color(0xFF374151),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                const SizedBox(height: 25),
+                Container(
+                  child: Form(
+                    key: _formChangePass,
+                    autovalidateMode: AutovalidateMode.disabled,
+                    child: Column(
+                      children: [
+                        Input(
+                          label: 'Email',
+                          controller: emailController,
+                          icon: Icons.email_outlined,
+                          type: TextInputType.emailAddress,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Text(
+                  "Um link será enviado para alterar sua senha",
+                  style: TextStyle(
+                    color: Color(0xFF374151),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w300,
+                  ),
                   textAlign: TextAlign.center,
                 ),
-              ),
-              const SizedBox(height: 32),
-              const Text(
-                "Entre com o email cadastrado na sua conta",
-                style: TextStyle(
-                  color: Color(0xFF374151),
-                  fontSize: 17,
-                  fontWeight: FontWeight.w300,
-                ),
-              ),
-              const SizedBox(height: 25),
-              Container(
-                child: Form(
-                  key: _formChangePass,
-                  autovalidateMode: AutovalidateMode.disabled,
-                  child: Column(
-                    children: [
-                      Input(
-                        label: 'Email',
-                        controller: emailController,
-                        icon: Icons.email_outlined,
-                        type: TextInputType.emailAddress,
-                      ),
-                    ],
+                const SizedBox(height: 40),
+                Container(
+                  height: 50,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.pink),
+                    child: Text(
+                      "Enviar",
+                      style: TextStyle(fontSize: 20, color: AppColors.grey),
+                    ),
+                    onPressed: () => {handleResetPassword(context)},
                   ),
                 ),
-              ),
-              const Text(
-                "Um link será enviado para alterar sua senha",
-                style: TextStyle(
-                  color: Color(0xFF374151),
-                  fontSize: 14,
-                  fontWeight: FontWeight.w300,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 40),
-              Container(
-                height: 50,
-                child: ElevatedButton(
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: AppColors.pink),
-                  child: Text(
-                    "Enviar",
-                    style: TextStyle(fontSize: 20, color: AppColors.grey),
-                  ),
-                  onPressed: () => {handleResetPassword(context)},
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -27,81 +27,83 @@ class LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            QuestionLink(
-              question: "Não tem uma conta?",
-              linkText: "Cadastre-se",
-              routeOnPress: '/signup_page',
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 40.0),
-              child: Text(
-                "Login",
-                style: title.copyWith(fontSize: 30),
-                textAlign: TextAlign.center,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              QuestionLink(
+                question: "Não tem uma conta?",
+                linkText: "Cadastre-se",
+                routeOnPress: '/signup_page',
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(bottom: 16),
-              child: Form(
-                key: _formLogin,
-                autovalidateMode: AutovalidateMode.disabled,
-                child: Column(
-                  children: [
-                    Input(
-                      label: "Email",
-                      controller: emailController,
-                      icon: Icons.email_outlined,
-                      type: TextInputType.emailAddress,
-                    ),
-                    Input(
-                      label: "Senha",
-                      controller: passwordController,
-                      icon: Icons.lock_open_outlined,
-                      isPassword: true,
-                    )
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 15),
-            Container(
-              height: 50,
-              child: ElevatedButton(
-                style:
-                    ElevatedButton.styleFrom(backgroundColor: AppColors.pink),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 40.0),
                 child: Text(
-                  "Entrar",
-                  style: TextStyle(fontSize: 20, color: AppColors.grey),
+                  "Login",
+                  style: title.copyWith(fontSize: 30),
+                  textAlign: TextAlign.center,
                 ),
-                onPressed: () => {
-                  if (_formLogin.currentState!.validate())
-                    {
-                      handleAuth(context),
-                    }
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 16),
+                child: Form(
+                  key: _formLogin,
+                  autovalidateMode: AutovalidateMode.disabled,
+                  child: Column(
+                    children: [
+                      Input(
+                        label: "Email",
+                        controller: emailController,
+                        icon: Icons.email_outlined,
+                        type: TextInputType.emailAddress,
+                      ),
+                      Input(
+                        label: "Senha",
+                        controller: passwordController,
+                        icon: Icons.lock_open_outlined,
+                        isPassword: true,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15),
+              Container(
+                height: 50,
+                child: ElevatedButton(
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: AppColors.pink),
+                  child: Text(
+                    "Entrar",
+                    style: TextStyle(fontSize: 20, color: AppColors.grey),
+                  ),
+                  onPressed: () => {
+                    if (_formLogin.currentState!.validate())
+                      {
+                        handleAuth(context),
+                      }
+                  },
+                ),
+              ),
+              const SizedBox(height: 30),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/reset_password_page');
                 },
+                child: Text(
+                  "Esqueceu a senha?",
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      color: Color(0xFF104F94),
+                      decoration: TextDecoration.underline),
+                ),
               ),
-            ),
-            const SizedBox(height: 40),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed('/reset_password_page');
-              },
-              child: Text(
-                "Esqueceu a senha?",
-                style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                    color: Color(0xFF104F94),
-                    decoration: TextDecoration.underline),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -33,7 +33,7 @@ class _WelcomePageState extends State<WelcomePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 84.0, bottom: 20.0),
+                padding: const EdgeInsets.only(top: 100.0, bottom: 50.0),
                 child: Text(
                   CommonStrings.welcomeTitle,
                   style: title,
@@ -50,14 +50,15 @@ class _WelcomePageState extends State<WelcomePage> {
               ),
               const Spacer(),
               Padding(
-                padding: const EdgeInsets.all(54.0),
+                padding: const EdgeInsets.all(30.0),
                 child: Container(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: Colors.white.withOpacity(0.18),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                     ),
                     onPressed: () =>
                         Navigator.of(context).pushNamed('/login_page'),
@@ -71,6 +72,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
                 ),
               ),
+              SizedBox(height: 35),
             ],
           ),
         ],

@@ -38,123 +38,126 @@ class SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(height: 100),
-              QuestionLink(
-                  question: "Já tem uma conta?",
-                  linkText: 'Login',
-                  routeOnPress: '/login_page'),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30.0),
-                child: Text(
-                  "Cadastro",
-                  style: title.copyWith(fontSize: 30),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(bottom: 16),
-                child: Form(
-                  key: _formSignUp,
-                  autovalidateMode: AutovalidateMode.always,
-                  onChanged: () {
-                    // This callback will be called whenever the form changes.
-                    // Check if the form is valid.
-                    setState(() {
-                      _isFormValid = _formSignUp.currentState!.validate();
-                    });
-                  },
-                  child: Column(
-                    children: [
-                      Input(
-                        label: 'Nome',
-                        controller: nameController,
-                        icon: Icons.manage_accounts_outlined,
-                      ),
-                      Input(
-                        label: 'Email',
-                        controller: emailController,
-                        icon: Icons.email_outlined,
-                        type: TextInputType.emailAddress,
-                      ),
-                      Input(
-                        label: 'Senha',
-                        controller: passwordController,
-                        icon: Icons.lock_outline_rounded,
-                        isPassword: true,
-                      ),
-                      Input(
-                        label: 'Confirmar a senha',
-                        controller: confirmPasswordController,
-                        icon: Icons.lock_outline_rounded,
-                        isPassword: true,
-                        isConfirmationPassword: true,
-                        confirmPasswordValidator: (value) {
-                          if (value != passwordController.text) {
-                            return 'As senhas não coincidem.';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 18),
-                      Row(
-                        children: [
-                          Checkbox(
-                            value: _isTermsAccepted,
-                            onChanged: (value) {
-                              setState(() {
-                                _isTermsAccepted = value!;
-                              });
-                            },
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => TermsAndConditionsPage(),
-                              ));
-                            },
-                            child: Text(
-                              'Eu li e concordo com os termos e condições.',
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
-                                  color: Color(0xFF104F94),
-                                  decoration: TextDecoration.underline),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 18),
-                      Container(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.pink),
-                          child: Text(
-                            'Cadastrar',
-                            style:
-                                TextStyle(fontSize: 20, color: AppColors.grey),
-                          ),
-                          onPressed: _isFormValid && _isTermsAccepted
-                              ? () {
-                                  storeUserData();
-                                  handleSingUp(context);
-                                }
-                              : null,
-                        ),
-                      ),
-                    ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 45),
+                QuestionLink(
+                    question: "Já tem uma conta?",
+                    linkText: 'Login',
+                    routeOnPress: '/login_page'),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30.0),
+                  child: Text(
+                    "Cadastro",
+                    style: title.copyWith(fontSize: 30),
+                    textAlign: TextAlign.center,
                   ),
                 ),
-              ),
-            ],
+                Container(
+                  margin: const EdgeInsets.only(bottom: 16),
+                  child: Form(
+                    key: _formSignUp,
+                    autovalidateMode: AutovalidateMode.always,
+                    onChanged: () {
+                      // This callback will be called whenever the form changes.
+                      // Check if the form is valid.
+                      setState(() {
+                        _isFormValid = _formSignUp.currentState!.validate();
+                      });
+                    },
+                    child: Column(
+                      children: [
+                        Input(
+                          label: 'Nome',
+                          controller: nameController,
+                          icon: Icons.manage_accounts_outlined,
+                        ),
+                        Input(
+                          label: 'Email',
+                          controller: emailController,
+                          icon: Icons.email_outlined,
+                          type: TextInputType.emailAddress,
+                        ),
+                        Input(
+                          label: 'Senha',
+                          controller: passwordController,
+                          icon: Icons.lock_outline_rounded,
+                          isPassword: true,
+                        ),
+                        Input(
+                          label: 'Confirmar a senha',
+                          controller: confirmPasswordController,
+                          icon: Icons.lock_outline_rounded,
+                          isPassword: true,
+                          isConfirmationPassword: true,
+                          confirmPasswordValidator: (value) {
+                            if (value != passwordController.text) {
+                              return 'As senhas não coincidem.';
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 18),
+                        Row(
+                          children: [
+                            Checkbox(
+                              value: _isTermsAccepted,
+                              onChanged: (value) {
+                                setState(() {
+                                  _isTermsAccepted = value!;
+                                });
+                              },
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      TermsAndConditionsPage(),
+                                ));
+                              },
+                              child: Text(
+                                'Eu li e concordo com os termos e condições.',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
+                                    color: Color(0xFF104F94),
+                                    decoration: TextDecoration.underline),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 18),
+                        Container(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.pink),
+                            child: Text(
+                              'Cadastrar',
+                              style: TextStyle(
+                                  fontSize: 20, color: AppColors.grey),
+                            ),
+                            onPressed: _isFormValid && _isTermsAccepted
+                                ? () {
+                                    storeUserData();
+                                    handleSingUp(context);
+                                  }
+                                : null,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
