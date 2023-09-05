@@ -1,5 +1,6 @@
 class IngredientsData {
   static List<String> get unhealthyIngredients => [
+        "ESMALTE",
         "Glúten",
         "Xileno",
         "Acetona",

@@ -218,8 +218,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   onTap: () async {
                     _uploadPhotoModal(context,
                         title: 'Deletar Conta',
-                        rightButtonTitle: 'Deletar',
-                        leftButtonTitle: 'Cancelar');
+                        rightButtonTitle: 'DELETAR',
+                        leftButtonTitle: 'VOLTAR');
                   },
                 ),
                 SizedBox(height: 24),
@@ -242,8 +242,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     _uploadPhotoModal(
                       context,
                       title: 'Sair',
-                      rightButtonTitle: 'Sim',
-                      leftButtonTitle: 'Não',
+                      rightButtonTitle: 'SIM',
+                      leftButtonTitle: 'NÃO',
                     );
                   },
                 ),
@@ -269,7 +269,7 @@ class _ProfilePageState extends State<ProfilePage> {
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-            color: Colors.white,
+            color: AppColors.background,
           ),
           child: Column(
             children: [
@@ -307,7 +307,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: 130,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.pink,
+                            backgroundColor: AppColors.pink.withOpacity(0.8),
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0)),
@@ -342,7 +342,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: 130,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.pink,
+                            backgroundColor: AppColors.pink.withOpacity(0.8),
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0)),

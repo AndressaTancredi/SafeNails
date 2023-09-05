@@ -19,9 +19,9 @@ class CommonStrings {
   static String get loadingMessage => "Processando o resultado...";
   static String get result => "Resultado";
   static String get notSafeResult => "Este esmalte não é seguro!";
-  static String get safeResult => "Este esmalte é seguro!";
+  static String get safeResult => "Nenhum ingrediente inseguro!";
   static String get seeMore => "Veja Mais";
-  static String get resultDetailTitle => "Análise de Resultados";
+  static String get resultDetailTitle => "Análise do Resultado";
   static String get badIngredientsNotFound => "Ingredientes Nocivos Ausentes";
   static String get badIngredientsFounded => "Ingredientes Nocivos Encontrados";
   static String get congratulations => "Parabéns pela escolha consciente!";

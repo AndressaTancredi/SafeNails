@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                         final photo = state.photo;
                         final noWord = state.noWord;
                         return Padding(
-                          padding: const EdgeInsets.only(top: 15.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: Result(
                             noWord: noWord,
                             photo: photo,
@@ -87,14 +87,14 @@ class _HomePageState extends State<HomePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(12.0),
+                              padding: const EdgeInsets.all(20),
                               child:
                                   Text("Como usar o Safe Nails", style: title),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 4.0),
                               child: Container(
-                                padding: const EdgeInsets.all(14.0),
+                                padding: const EdgeInsets.all(24.0),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(16.0),
@@ -131,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(12.0),
+                              padding: const EdgeInsets.all(20.0),
                               child: Text("Escolha:", style: title),
                             ),
                             Row(
@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
+                    padding: const EdgeInsets.only(top: 24.0),
                     child: BannerAdmob(idAdMob: bannerId),
                   ),
                 ],

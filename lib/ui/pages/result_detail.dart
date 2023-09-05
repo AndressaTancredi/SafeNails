@@ -48,6 +48,7 @@ class _ResultDetailPageState extends State<ResultDetailPage> {
           appBar: AppBar(
             backgroundColor: AppColors.background,
             title: Text(CommonStrings.resultDetailTitle, style: title),
+            toolbarHeight: 80,
             centerTitle: true,
             elevation: 0,
             leading: InkWell(
@@ -60,11 +61,11 @@ class _ResultDetailPageState extends State<ResultDetailPage> {
           ),
           body: SingleChildScrollView(
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 22.0, vertical: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 22.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: 25),
                   Container(
                     height: 330,
                     width: double.infinity,
@@ -251,7 +252,7 @@ class _ResultDetailPageState extends State<ResultDetailPage> {
                 Center(
                   child: Text(
                     CommonStrings.congratulations,
-                    style: title.copyWith(fontSize: 14.0),
+                    style: title.copyWith(fontSize: 18.0),
                   ),
                 ),
               ],

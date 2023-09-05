@@ -19,7 +19,6 @@ class _ImageSourceState extends State<ImageSource> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12.0),
@@ -28,7 +27,7 @@ class _ImageSourceState extends State<ImageSource> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Text(
               widget.title,
               style: subTitle,
@@ -36,16 +35,17 @@ class _ImageSourceState extends State<ImageSource> {
             ),
           ),
           Container(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20),
             decoration: BoxDecoration(
               color: AppColors.backgroundIcon,
-              borderRadius: BorderRadius.circular(12.0),
+              borderRadius: BorderRadius.circular(8.0),
             ),
             child: SvgPicture.asset(
               widget.iconPath,
               color: AppColors.pink,
             ),
           ),
+          SizedBox(height: 14),
         ],
       ),
     );

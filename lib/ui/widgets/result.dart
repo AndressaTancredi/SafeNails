@@ -49,18 +49,14 @@ class _ResultState extends State<Result> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  InkWell(
-                    onTap: () => {analysisBloc.add(ClearResultEvent())},
-                    child: const Icon(
-                      Icons.arrow_back,
-                      color: Colors.black54,
-                    ),
-                  ),
                   Container(
-                    height: 350,
+                    margin: const EdgeInsets.all(5.0),
+                    padding: const EdgeInsets.all(20.0),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: AppColors.grey, width: 3)),
+                    height: 340,
                     width: double.infinity,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16.0),
                       child: Image.file(
                         File(widget.photo!.path),
                         fit: BoxFit.contain,

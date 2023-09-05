@@ -44,18 +44,20 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
         scannedText.add(line.text);
       }
     }
+    print(scannedText);
 
     bool getIngredientResult() {
       for (final String ingredient in IngredientsData.unhealthyIngredients) {
-        if (scannedText.contains(ingredient.toUpperCase())) {
+        if (scannedText.contains(ingredient)) {
           unhealthyIngredientsFounded.add(ingredient);
         }
       }
+      print(unhealthyIngredientsFounded);
 
       if (unhealthyIngredientsFounded.isEmpty) {
-        return true;
-      } else {
         return false;
+      } else {
+        return true;
       }
     }
 
