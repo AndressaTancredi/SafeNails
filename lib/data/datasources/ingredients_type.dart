@@ -1,6 +1,7 @@
 import 'package:safe_nails/data/datasources/ingredients_data.dart';
 
 enum IngredientType {
+  esmalte,
   tolueno,
   formaldeido,
   dbp,
@@ -21,6 +22,8 @@ enum IngredientType {
 extension Description on IngredientType {
   String get type {
     switch (this) {
+      case IngredientType.esmalte:
+        return IngredientsData.toluenoDescription;
       case IngredientType.tolueno:
         return IngredientsData.toluenoDescription;
       case IngredientType.formaldeido:

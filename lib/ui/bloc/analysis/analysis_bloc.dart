@@ -39,29 +39,34 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
     final RecognizedText recognizedText =
         await textRecognizer.processImage(inputImage);
     await textRecognizer.close();
+
     for (final TextBlock block in recognizedText.blocks) {
       for (final TextLine line in block.lines) {
-        scannedText.add(line.text);
+        for (final TextElement word in line.elements) {
+          scannedText.add(word.text);
+        }
       }
     }
     print(scannedText);
 
-    bool getIngredientResult() {
+    bool hasUnhealthyIngredients() {
       for (final String ingredient in IngredientsData.unhealthyIngredients) {
-        if (scannedText.contains(ingredient)) {
+        print(ingredient.toUpperCase());
+
+        if (scannedText.contains(ingredient.toUpperCase())) {
           unhealthyIngredientsFounded.add(ingredient);
         }
       }
       print(unhealthyIngredientsFounded);
 
       if (unhealthyIngredientsFounded.isEmpty) {
-        return false;
-      } else {
         return true;
+      } else {
+        return false;
       }
     }
 
-    final bool result = getIngredientResult();
+    final bool result = hasUnhealthyIngredients();
 
     if (scannedText.isEmpty) {
       emit(NoWordState(noWord: true, photo: pickedImage));
