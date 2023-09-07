@@ -9,7 +9,6 @@ import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/data/datasources/Ingredients_type.dart';
-import 'package:safe_nails/data/datasources/ingredients_data.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_bloc.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_event.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_state.dart';
@@ -154,56 +153,6 @@ class _ResultDetailPageState extends State<ResultDetailPage> {
                                 ),
                               ],
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 8.0),
-                              child: Container(
-                                padding: const EdgeInsets.all(16.0),
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      CommonStrings.badIngredientsNotFound,
-                                      style: title.copyWith(fontSize: 20.0),
-                                    ),
-                                    Divider(),
-                                    const SizedBox(height: 8.0),
-                                    ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: _getRemainingBadIngredients(
-                                              widget
-                                                  .unhealthyIngredientsFounded)
-                                          .length,
-                                      itemBuilder: (context, index) {
-                                        return Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            const Icon(
-                                              Icons.adjust_rounded,
-                                              color: AppColors.pink,
-                                              size: 14.0,
-                                            ),
-                                            const SizedBox(width: 4.0),
-                                            Text(
-                                              _getRemainingBadIngredients(widget
-                                                      .unhealthyIngredientsFounded)[
-                                                  index],
-                                              style: bodyDescription.copyWith(
-                                                  fontSize: 12.0),
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
                           ],
                         );
                       }
@@ -260,23 +209,6 @@ class _ResultDetailPageState extends State<ResultDetailPage> {
           ),
         ],
       );
-    }
-  }
-
-  List<String> _getRemainingBadIngredients(
-      List<String> unhealthyIngredientsFounded) {
-    if (unhealthyIngredientsFounded.isEmpty) {
-      return IngredientsData.unhealthyIngredients;
-    } else {
-      final remainingBadIngredients = IngredientsData.unhealthyIngredients;
-
-      unhealthyIngredientsFounded.forEach((element) {
-        if (IngredientsData.unhealthyIngredients.contains(element)) {
-          remainingBadIngredients.remove(element);
-        }
-      });
-
-      return remainingBadIngredients;
     }
   }
 
