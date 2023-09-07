@@ -49,16 +49,27 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
     }
     print(scannedText);
 
+    String removeSpecialCharacters(String text) {
+      return text
+          .replaceAll(RegExp(r'[áàãâä]'), 'a')
+          .replaceAll(RegExp(r'[éèêë]'), 'e')
+          .replaceAll(RegExp(r'[íìîï]'), 'i')
+          .replaceAll(RegExp(r'[óòõôö]'), 'o')
+          .replaceAll(RegExp(r'[úùûü]'), 'u')
+          .replaceAll(RegExp(r'[ç]'), 'c')
+          .replaceAll(RegExp(r'[,;.:)!(ˆ*@!\/|#?]'), '');
+    }
+
     bool hasUnhealthyIngredients() {
       for (final String ingredient in IngredientsData.unhealthyIngredients) {
-        print(ingredient.toUpperCase());
-
-        if (scannedText.contains(ingredient.toUpperCase())) {
-          unhealthyIngredientsFounded.add(ingredient);
+        for (final String scannedWord in scannedText) {
+          final cleanedScannedWord =
+              removeSpecialCharacters(scannedWord).toUpperCase();
+          if (cleanedScannedWord.contains(ingredient.toUpperCase())) {
+            unhealthyIngredientsFounded.add(ingredient);
+          }
         }
       }
-      print(unhealthyIngredientsFounded);
-
       if (unhealthyIngredientsFounded.isEmpty) {
         return true;
       } else {
