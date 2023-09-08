@@ -1,6 +1,9 @@
 import 'package:safe_nails/data/datasources/ingredients_data.dart';
 
 enum IngredientType {
+  acetone,
+  toluene,
+  acetate,
   esmalte,
   tolueno,
   formaldeido,
@@ -22,6 +25,12 @@ enum IngredientType {
 extension Description on IngredientType {
   String get type {
     switch (this) {
+      case IngredientType.acetone:
+        return IngredientsData.toluenoDescription;
+      case IngredientType.toluene:
+        return IngredientsData.toluenoDescription;
+      case IngredientType.acetate:
+        return IngredientsData.toluenoDescription;
       case IngredientType.esmalte:
         return IngredientsData.toluenoDescription;
       case IngredientType.tolueno:

@@ -4,7 +4,6 @@ import 'package:safe_nails/ui/pages/home_page.dart';
 import 'package:safe_nails/ui/pages/login_page.dart';
 import 'package:safe_nails/ui/pages/profile_page.dart';
 import 'package:safe_nails/ui/pages/reset_password_page.dart';
-import 'package:safe_nails/ui/pages/result_detail.dart';
 import 'package:safe_nails/ui/pages/signup_page.dart';
 import 'package:safe_nails/ui/pages/welcome_page.dart';
 
@@ -25,17 +24,6 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => ProfilePage());
       case '/home_page':
         return MaterialPageRoute(builder: (_) => const HomePage());
-      case '/result_detail':
-        final List<String> unhealthyIngredientsFounded =
-            (routeSettings.arguments!
-                    as Map<String, dynamic>)['unhealthyIngredientsFounded']
-                as List<String>;
-        final String photoPath = (routeSettings.arguments!
-            as Map<String, dynamic>)['photoPath'] as String;
-        return MaterialPageRoute(
-            builder: (_) => ResultDetailPage(
-                unhealthyIngredientsFounded: unhealthyIngredientsFounded,
-                photoPath: photoPath));
       default:
         throw ArgumentError('Inexistent route: s${routeSettings.name}');
     }

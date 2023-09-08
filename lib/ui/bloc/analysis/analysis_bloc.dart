@@ -47,7 +47,6 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
         }
       }
     }
-    print(scannedText);
 
     String removeSpecialCharacters(String text) {
       return text
@@ -70,6 +69,8 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
           }
         }
       }
+      print(unhealthyIngredientsFounded);
+
       if (unhealthyIngredientsFounded.isEmpty) {
         return true;
       } else {

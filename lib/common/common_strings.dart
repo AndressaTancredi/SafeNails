@@ -18,8 +18,8 @@ class CommonStrings {
   static String get choose => "Escolha";
   static String get loadingMessage => "Processando o resultado...";
   static String get result => "Resultado";
-  static String get notSafeResult => "Este esmalte não é seguro!";
-  static String get safeResult => "Nenhum ingrediente inseguro!";
+  static String get notSafeResult => "Ingrediente Preocupante \n Encontrado!";
+  static String get safeResult => "Nenhum Ingrediente\nPreocupante Encontrado!";
   static String get seeMore => "Veja Mais";
   static String get resultDetailTitle => "Análise do Resultado";
   static String get badIngredientsNotFound => "Ingredientes Nocivos Ausentes";

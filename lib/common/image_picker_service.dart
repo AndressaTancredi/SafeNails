@@ -12,7 +12,7 @@ class ImagePickerService {
         source: ImageSource.gallery,
         maxHeight: 800,
         maxWidth: 800,
-        imageQuality: 80,
+        // imageQuality: 80,
       );
       if (pickedFile == null) throw Exception('Nenhuma imagem selecionada');
       return pickedFile;
@@ -30,7 +30,7 @@ class ImagePickerService {
         source: ImageSource.camera,
         maxHeight: 800,
         maxWidth: 800,
-        imageQuality: 80,
+        // imageQuality: 80,
       );
       if (pickedFile == null) throw Exception('Nenhuma imagem tirada');
       return pickedFile;
