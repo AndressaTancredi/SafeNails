@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:safe_nails/common/injection_container.dart';
+import 'package:safe_nails/common/remote_config_service.dart';
 import 'package:safe_nails/firebase_options.dart';
 
 class FirebaseUtils {
@@ -11,13 +13,26 @@ class FirebaseUtils {
     );
   }
 
+  static bool isAllowedUser(String email) {
+    final allowedUsersString = sl<RemoteConfig>().getValue('allowedUsers');
+    if (allowedUsersString.contains(email)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   static Future<String?> createUser(
       String name, String email, String password) async {
     try {
-      UserCredential userCredential = await firebaseAuth
-          .createUserWithEmailAndPassword(email: email, password: password);
-      userCredential.user!.updateDisplayName(name);
-      return "Success";
+      if (isAllowedUser(email) == true) {
+        UserCredential userCredential = await firebaseAuth
+            .createUserWithEmailAndPassword(email: email, password: password);
+        userCredential.user!.updateDisplayName(name);
+        return "Success";
+      } else {
+        return "user_not_allowed";
+      }
     } on FirebaseAuthException catch (e) {
       return e.code;
     }
@@ -25,9 +40,13 @@ class FirebaseUtils {
 
   static Future<String?> signIn(String email, String password) async {
     try {
-      await firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
-      return "Success";
+      if (isAllowedUser(email) == true) {
+        await firebaseAuth.signInWithEmailAndPassword(
+            email: email, password: password);
+        return "Success";
+      } else {
+        return "user_not_allowed";
+      }
     } on FirebaseAuthException catch (e) {
       return e.code;
     }
@@ -44,8 +63,12 @@ class FirebaseUtils {
 
   static Future<String?> resetPassword(String email) async {
     try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-      return "Success";
+      if (isAllowedUser(email) == true) {
+        await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+        return "Success";
+      } else {
+        return "user_not_allowed";
+      }
     } on FirebaseAuthException catch (e) {
       return e.code;
     }

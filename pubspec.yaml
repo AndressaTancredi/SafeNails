@@ -28,6 +28,8 @@ dependencies:
   firebase_auth: ^4.6.2
   shared_preferences: ^2.2.0
   webview_flutter: ^2.0.14
+  firebase_remote_config: ^4.2.5
+  firebase_analytics: ^10.4.5
 
 dev_dependencies:
   flutter_test:

@@ -6,16 +6,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:safe_nails/common/app_colors.dart';
+import 'package:safe_nails/common/capitalize.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
+import 'package:safe_nails/data/datasources/Ingredients_type.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_bloc.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_event.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_state.dart';
-
-import '../../common/capitalize.dart';
-import '../../data/datasources/Ingredients_type.dart';
-import 'customPainter.dart';
+import 'package:safe_nails/ui/widgets/customPainter.dart';
 
 class Result extends StatefulWidget {
   bool? noWord;
