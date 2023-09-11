@@ -11,6 +11,7 @@ https://github.com/AndressaTancredi/SafeNails/assets/48730376/1f4eb844-ba35-4d75
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technical Details](#Technical-Details)
+- [Project Evolution](#Project-Evolution)
 
 ## Overview
 
@@ -44,5 +45,7 @@ To install and set up the application, follow these steps:
 - **Current Status (MVP):** We are currently in the Minimum Viable Product (MVP) stage, where we have developed core functionality to validate the concept.
 - **Architecture (MVC):** The app follows the Model-View-Controller (MVC) architectural pattern to organize and separate concerns within the codebase.
 - **State Management (Bloc):** We utilize the Bloc pattern for efficient state management, allowing for seamless updates and a responsive user interface.
+
+## Project Evolution
 
 While our current project is in the Minimum Viable Product (MVP) stage, my vision extends beyond its initial implementation. I am committed to continuously enhancing this application. Post-validation, my plan includes a comprehensive refactoring effort aimed at improving the project's architecture and enhancing the separation of services. I will also prioritize the implementation of thorough testing procedures to ensure the highest level of reliability and maintainability. My goal is to evolve this project into a robust and feature-rich application that continues to empower users with valuable insights about nail polish ingredients. Your feedback and contributions will play a crucial role in shaping its future.
