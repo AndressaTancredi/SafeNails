@@ -61,15 +61,17 @@ SnackBar toastAlert(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ...translatedMessages.map((message) => Text(
-                    message,
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ))
+              ...translatedMessages.map(
+                (message) => Text(
+                  message,
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+              )
             ],
           ),
         ),

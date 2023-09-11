@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
@@ -7,6 +10,7 @@ import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_bloc.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_event.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_state.dart';
+import 'package:safe_nails/ui/widgets/banner_ad.dart';
 import 'package:safe_nails/ui/widgets/image_source.dart';
 import 'package:safe_nails/ui/widgets/loading.dart';
 import 'package:safe_nails/ui/widgets/result.dart';
@@ -24,6 +28,10 @@ class _HomePageState extends State<HomePage> {
   TextStyle get title => sl<TextStyles>().pageTitle;
   TextStyle get subTitle => sl<TextStyles>().subTitle;
   TextStyle get bodyDescription => sl<TextStyles>().bodyDescription;
+
+  final String bannerId = Platform.isAndroid
+      ? dotenv.env['ANDROID_BANNER_ID']
+      : dotenv.env['IOS_BANNER_ID'];
 
   @override
   Widget build(BuildContext context) {
@@ -169,10 +177,10 @@ class _HomePageState extends State<HomePage> {
                       return const SizedBox.shrink();
                     },
                   ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(top: 24.0),
-                  //   child: BannerAdmob(idAdMob: bannerId),
-                  // ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 24.0),
+                    child: BannerAdmob(idAdMob: bannerId),
+                  ),
                 ],
               ),
             ),
@@ -181,8 +189,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-  // final String bannerId = Platform.isAndroid
-  //     ? 'ca-app-pub-6850065566204568/5619356631'
-  //     : 'ca-app-pub-6850065566204568/1634804509';
 }

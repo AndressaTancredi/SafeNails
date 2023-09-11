@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -49,21 +50,21 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA_UB8AQrIs7zsEraTypvrpP57LWgO_Y9A',
-    appId: '1:766146535765:android:bc5443de89006a53440fdc',
-    messagingSenderId: '766146535765',
-    projectId: 'safe-nails',
-    storageBucket: 'safe-nails.appspot.com',
+  static FirebaseOptions android = FirebaseOptions(
+    apiKey: dotenv.env['ANDROID_APIKEY'],
+    appId: dotenv.env['ANDROID_APP_ID'],
+    messagingSenderId: dotenv.env['ANDROID_MESSAGING_SENDER_ID'],
+    projectId: dotenv.env['ANDROID_PROJECT_ID'],
+    storageBucket: dotenv.env['ANDROID_STORAGE_BUCKET'],
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBUjdRO1gUaT_bOWctwfl_G_M5bFVUILIM',
-    appId: '1:766146535765:ios:698ba521644e94df440fdc',
-    messagingSenderId: '766146535765',
-    projectId: 'safe-nails',
-    storageBucket: 'safe-nails.appspot.com',
-    iosClientId: '766146535765-dsshbfc6kvfkbsuufngedmbt8s2ifctp.apps.googleusercontent.com',
-    iosBundleId: 'com.example.nails',
+  static FirebaseOptions ios = FirebaseOptions(
+    apiKey: dotenv.env['IOS_APIKEY'],
+    appId: dotenv.env['IOS_APP_ID'],
+    messagingSenderId: dotenv.env['IOS_MESSAGING_SENDER_ID'],
+    projectId: dotenv.env['IOS_PROJECT_ID'],
+    storageBucket: dotenv.env['IOS_STORAGE_BUCKET'],
+    iosClientId: dotenv.env['IOS_CLIENT_ID'],
+    iosBundleId: dotenv.env['IOS_BUNDLE_ID'],
   );
 }

@@ -1,15 +1,18 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
-import 'package:safe_nails/data/datasources/tips_data.dart';
+import 'package:safe_nails/data/tips_data.dart';
 import 'package:safe_nails/ui/bloc/tips/tips_bloc.dart';
 import 'package:safe_nails/ui/bloc/tips/tips_state.dart';
+import 'package:safe_nails/ui/widgets/banner_ad.dart';
 import 'package:safe_nails/ui/widgets/category_tip.dart';
 
 class TipsPage extends StatefulWidget {
@@ -23,6 +26,10 @@ class _TipsPageState extends State<TipsPage> {
   TextStyle get title => sl<TextStyles>().pageTitle;
   TextStyle get bodyDescription => sl<TextStyles>().bodyDescription;
   final tipsBloc = sl<TipsBloc>();
+
+  final String bannerId = Platform.isAndroid
+      ? dotenv.env['ANDROID_BANNER_ID']
+      : dotenv.env['IOS_BANNER_ID'];
 
   Map<String, List<int>> _randomTipsIndexes = {
     'hydration': [],
@@ -84,12 +91,12 @@ class _TipsPageState extends State<TipsPage> {
                     return SizedBox.shrink();
                   },
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(vertical: 14.0),
-                //   child: BannerAdmob(
-                //     idAdMob: bannerId,
-                //   ),
-                // ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 14.0),
+                  child: BannerAdmob(
+                    idAdMob: bannerId,
+                  ),
+                ),
               ],
             ),
           ),
@@ -222,8 +229,4 @@ class _TipsPageState extends State<TipsPage> {
       ],
     );
   }
-
-  // final String bannerId = Platform.isAndroid
-  //     ? 'ca-app-pub-6850065566204568/5619356631'
-  //     : 'ca-app-pub-6850065566204568/1634804509';
 }

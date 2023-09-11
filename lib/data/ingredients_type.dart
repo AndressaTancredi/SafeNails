@@ -1,4 +1,4 @@
-import 'package:safe_nails/data/datasources/ingredients_data.dart';
+import 'package:safe_nails/data/ingredients_data.dart';
 
 enum IngredientType {
   acetone,
