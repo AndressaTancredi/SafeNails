@@ -20,12 +20,12 @@ class Result extends StatefulWidget {
   bool? noWord;
   final XFile? photo;
   bool? isSafe;
-  List<String>? unhealthyIngredientsFounded;
+  List<String> unhealthyIngredientsFounded;
 
   Result(
       {this.isSafe,
       required this.photo,
-      this.unhealthyIngredientsFounded,
+      required this.unhealthyIngredientsFounded,
       this.noWord});
 
   @override
@@ -202,7 +202,7 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                                           SizedBox(height: 4),
                                           Text(
                                             _getIngredientDescriptionList(widget
-                                                    .unhealthyIngredientsFounded!)[
+                                                    .unhealthyIngredientsFounded)[
                                                 index],
                                             style: bodyDescription.copyWith(
                                                 fontSize: 14.0),

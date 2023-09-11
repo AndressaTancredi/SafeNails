@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:safe_nails/common/app_colors.dart';
@@ -9,7 +7,6 @@ import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_bloc.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_event.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_state.dart';
-import 'package:safe_nails/ui/widgets/banner_ad.dart';
 import 'package:safe_nails/ui/widgets/image_source.dart';
 import 'package:safe_nails/ui/widgets/loading.dart';
 import 'package:safe_nails/ui/widgets/result.dart';
@@ -79,6 +76,7 @@ class _HomePageState extends State<HomePage> {
                           child: Result(
                             noWord: noWord,
                             photo: photo,
+                            unhealthyIngredientsFounded: [],
                           ),
                         );
                       }
@@ -171,10 +169,10 @@ class _HomePageState extends State<HomePage> {
                       return const SizedBox.shrink();
                     },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 24.0),
-                    child: BannerAdmob(idAdMob: bannerId),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(top: 24.0),
+                  //   child: BannerAdmob(idAdMob: bannerId),
+                  // ),
                 ],
               ),
             ),
@@ -184,7 +182,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  final String bannerId = Platform.isAndroid
-      ? 'ca-app-pub-6850065566204568/5619356631'
-      : 'ca-app-pub-6850065566204568/1634804509';
+  // final String bannerId = Platform.isAndroid
+  //     ? 'ca-app-pub-6850065566204568/5619356631'
+  //     : 'ca-app-pub-6850065566204568/1634804509';
 }

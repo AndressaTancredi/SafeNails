@@ -4,7 +4,6 @@ enum IngredientType {
   acetone,
   toluene,
   acetate,
-  esmalte,
   tolueno,
   formaldeido,
   dbp,
@@ -31,8 +30,7 @@ extension Description on IngredientType {
         return IngredientsData.toluenoDescription;
       case IngredientType.acetate:
         return IngredientsData.toluenoDescription;
-      case IngredientType.esmalte:
-        return IngredientsData.toluenoDescription;
+
       case IngredientType.tolueno:
         return IngredientsData.toluenoDescription;
       case IngredientType.formaldeido:
