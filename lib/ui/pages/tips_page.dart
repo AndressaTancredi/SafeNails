@@ -28,8 +28,8 @@ class _TipsPageState extends State<TipsPage> {
   final tipsBloc = sl<TipsBloc>();
 
   final String bannerId = Platform.isAndroid
-      ? dotenv.env['ANDROID_BANNER_ID']
-      : dotenv.env['IOS_BANNER_ID'];
+      ? dotenv.env['ANDROID_BANNER_ID']!
+      : dotenv.env['IOS_BANNER_ID']!;
 
   Map<String, List<int>> _randomTipsIndexes = {
     'hydration': [],

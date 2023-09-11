@@ -18,11 +18,12 @@ Future main() async {
   MobileAds.instance.initialize();
 
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await get_it.init();
-  await dotenv.load(fileName: ".env");
 
   runApp(const MyApp());
 }

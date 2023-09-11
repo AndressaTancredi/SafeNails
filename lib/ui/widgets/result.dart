@@ -10,7 +10,7 @@ import 'package:safe_nails/common/capitalize.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
-import 'package:safe_nails/data/datasources/Ingredients_type.dart';
+import 'package:safe_nails/data/ingredients_type.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_bloc.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_event.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_state.dart';
@@ -160,7 +160,7 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                             // physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount:
-                                widget.unhealthyIngredientsFounded!.length,
+                                widget.unhealthyIngredientsFounded.length,
                             itemBuilder: (context, index) {
                               return Column(
                                 children: [
@@ -190,7 +190,7 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                                                 child: Text(
                                                   // key: key1,
                                                   Capitalize().firstWord(widget
-                                                          .unhealthyIngredientsFounded![
+                                                          .unhealthyIngredientsFounded[
                                                       index]),
                                                   style: bodyDescription
                                                       .copyWith(fontSize: 14.0),

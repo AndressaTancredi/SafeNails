@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
   TextStyle get subTitle => sl<TextStyles>().subTitle;
   TextStyle get bodyDescription => sl<TextStyles>().bodyDescription;
 
-  final String bannerId = Platform.isAndroid
+  final String? bannerId = Platform.isAndroid
       ? dotenv.env['ANDROID_BANNER_ID']
       : dotenv.env['IOS_BANNER_ID'];
 
@@ -179,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 24.0),
-                    child: BannerAdmob(idAdMob: bannerId),
+                    child: BannerAdmob(idAdMob: bannerId!),
                   ),
                 ],
               ),
