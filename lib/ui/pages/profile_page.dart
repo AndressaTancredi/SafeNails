@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/firebase_utils.dart';
 import 'package:safe_nails/common/injection_container.dart';
@@ -12,6 +13,8 @@ import 'package:safe_nails/ui/bloc/profile/profile_event.dart';
 import 'package:safe_nails/ui/bloc/profile/profile_state.dart';
 import 'package:safe_nails/ui/widgets/loading.dart';
 import 'package:safe_nails/ui/widgets/toast_alert.dart';
+
+import '../widgets/banner_ad.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -26,6 +29,10 @@ class _ProfilePageState extends State<ProfilePage> {
   TextStyle get bodyDescription => sl<TextStyles>().resultBody;
   TextStyle get button => sl<TextStyles>().buttonText;
 
+  final String bannerId = Platform.isAndroid
+      ? dotenv.env['ANDROID_BANNER_ID']!
+      : dotenv.env['IOS_BANNER_ID']!;
+
   Future<Map<String, dynamic>> _getUserData() async {
     return await Preferences().getUserData();
   }
@@ -34,222 +41,247 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                BlocConsumer<ProfileBloc, ProfileState>(
-                  bloc: profileBloc,
-                  listener: (context, state) {},
-                  builder: (context, state) {
-                    if (state is ProfileLoadingState) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(vertical: 16.0),
-                        child: Loading(),
-                      );
-                    }
-                    if (state is ProfileEmptyState) {
-                      return Column(
-                        children: [
-                          const SizedBox(height: 30),
-                          Center(
-                            child: GestureDetector(
-                              onTap: () {
-                                profileBloc.add(NewPhotoEvent());
-                              },
-                              child: Stack(
-                                children: [
-                                  Container(
-                                    height: 180,
-                                    width: 180.0,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.7),
-                                      borderRadius:
-                                          BorderRadius.circular(200.0),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Icon(
-                                        Icons.account_circle,
-                                        color: AppColors.pink.withOpacity(0.2),
-                                        size: 120,
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    bottom: 0.0,
-                                    right: 0.0,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(200.0),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: Icon(
-                                          Icons.camera_alt_outlined,
-                                          color:
-                                              AppColors.pink.withOpacity(0.6),
-                                          size: 25,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 30),
-                        ],
-                      );
-                    }
-                    if (state is ProfileLoadedState) {
-                      return Center(
-                        child: GestureDetector(
-                          onTap: () {
-                            profileBloc.add(NewPhotoEvent());
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 30.0),
-                            child: Stack(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      BlocConsumer<ProfileBloc, ProfileState>(
+                        bloc: profileBloc,
+                        listener: (context, state) {},
+                        builder: (context, state) {
+                          if (state is ProfileLoadingState) {
+                            return Padding(
+                              padding: EdgeInsets.symmetric(vertical: 16.0),
+                              child: Loading(),
+                            );
+                          }
+                          if (state is ProfileEmptyState) {
+                            return Column(
                               children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(200.0),
-                                  child: Image.file(
-                                    File(profileBloc.photoPath),
-                                    height: 180.0,
-                                    width: 180.0,
-                                    fit: BoxFit.cover,
+                                const SizedBox(height: 30),
+                                Center(
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      profileBloc.add(NewPhotoEvent());
+                                    },
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          height: 180,
+                                          width: 180.0,
+                                          decoration: BoxDecoration(
+                                            color:
+                                                Colors.white.withOpacity(0.7),
+                                            borderRadius:
+                                                BorderRadius.circular(200.0),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: Icon(
+                                              Icons.account_circle,
+                                              color: AppColors.pink
+                                                  .withOpacity(0.2),
+                                              size: 120,
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          bottom: 0.0,
+                                          right: 0.0,
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(200.0),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: Icon(
+                                                Icons.camera_alt_outlined,
+                                                color: AppColors.pink
+                                                    .withOpacity(0.6),
+                                                size: 25,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                                Positioned(
-                                  bottom: 0.0,
-                                  right: 0.0,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius:
-                                          BorderRadius.circular(200.0),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Icon(
-                                        Icons.camera_alt_rounded,
-                                        color: AppColors.pink.withOpacity(0.6),
-                                        size: 25,
+                                const SizedBox(height: 30),
+                              ],
+                            );
+                          }
+                          if (state is ProfileLoadedState) {
+                            return Center(
+                              child: GestureDetector(
+                                onTap: () {
+                                  profileBloc.add(NewPhotoEvent());
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 30.0),
+                                  child: Stack(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(200.0),
+                                        child: Image.file(
+                                          File(profileBloc.photoPath),
+                                          height: 180.0,
+                                          width: 180.0,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
-                                    ),
+                                      Positioned(
+                                        bottom: 0.0,
+                                        right: 0.0,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(200.0),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: Icon(
+                                              Icons.camera_alt_rounded,
+                                              color: AppColors.pink
+                                                  .withOpacity(0.6),
+                                              size: 25,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          return const SizedBox.shrink();
+                        },
+                      ),
+                      const SizedBox(height: 25),
+                      FutureBuilder<Map<String, dynamic>>(
+                        future: _getUserData(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            final userData = snapshot.data!;
+                            final userName = userData['name'];
+                            final userEmail = userData['email'];
+                            return Column(
+                              children: [
+                                ListTile(
+                                  title: Text(
+                                    userName ?? '',
+                                    style: bodyDescription.copyWith(
+                                        fontSize: 20.0),
+                                  ),
+                                  textColor: AppColors.grey,
+                                  leading: Icon(
+                                    size: 30,
+                                    Icons.account_box_outlined,
+                                    color: AppColors.pink.withOpacity(0.6),
+                                  ),
+                                ),
+                                ListTile(
+                                  title: Text(
+                                    userEmail ?? '',
+                                    style: bodyDescription.copyWith(
+                                        fontSize: 20.0),
+                                  ),
+                                  textColor: AppColors.grey,
+                                  leading: Icon(
+                                    size: 30,
+                                    Icons.email_outlined,
+                                    color: AppColors.pink.withOpacity(0.6),
                                   ),
                                 ),
                               ],
-                            ),
-                          ),
-                        ),
-                      );
-                    }
-                    return const SizedBox.shrink();
-                  },
-                ),
-                const SizedBox(height: 25),
-                FutureBuilder<Map<String, dynamic>>(
-                  future: _getUserData(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      final userData = snapshot.data!;
-                      final userName = userData['name'];
-                      final userEmail = userData['email'];
-                      return Column(
+                            );
+                          } else {
+                            return Text(
+                              'Carregando suas informações...',
+                              style: bodyDescription,
+                            );
+                          }
+                        },
+                      ),
+                      const SizedBox(height: 35),
+                      Column(
                         children: [
                           ListTile(
                             title: Text(
-                              userName ?? '',
-                              style: bodyDescription.copyWith(fontSize: 20.0),
+                              'Deletar conta',
+                              style: bodyDescription,
                             ),
                             textColor: AppColors.grey,
-                            leading: Icon(
-                              size: 30,
-                              Icons.account_box_outlined,
-                              color: AppColors.pink.withOpacity(0.6),
+                            trailing: Icon(
+                              Icons.chevron_right,
+                              color: AppColors.regularBlack.withOpacity(0.2),
                             ),
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                  color:
+                                      AppColors.regularGrey.withOpacity(0.2)),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            onTap: () async {
+                              _uploadPhotoModal(context,
+                                  title: 'Deletar Conta',
+                                  rightButtonTitle: 'DELETAR',
+                                  leftButtonTitle: 'VOLTAR');
+                            },
                           ),
+                          SizedBox(height: 24),
                           ListTile(
                             title: Text(
-                              userEmail ?? '',
-                              style: bodyDescription.copyWith(fontSize: 20.0),
+                              'Sair',
+                              style: bodyDescription,
                             ),
                             textColor: AppColors.grey,
-                            leading: Icon(
-                              size: 30,
-                              Icons.email_outlined,
-                              color: AppColors.pink.withOpacity(0.6),
+                            trailing: Icon(
+                              Icons.chevron_right,
+                              color: AppColors.regularGrey.withOpacity(0.2),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                  color:
+                                      AppColors.regularGrey.withOpacity(0.2)),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            onTap: () async {
+                              _uploadPhotoModal(
+                                context,
+                                title: 'Sair',
+                                rightButtonTitle: 'SIM',
+                                leftButtonTitle: 'NÃO',
+                              );
+                            },
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 14.0),
+                            child: BannerAdmob(
+                              idAdMob: bannerId,
                             ),
                           ),
                         ],
-                      );
-                    } else {
-                      return Text(
-                        'Carregando suas informações...',
-                        style: bodyDescription,
-                      );
-                    }
-                  },
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(height: 35),
-                ListTile(
-                  title: Text(
-                    'Deletar conta',
-                    style: bodyDescription,
-                  ),
-                  textColor: AppColors.grey,
-                  trailing: Icon(
-                    Icons.chevron_right,
-                    color: AppColors.regularBlack.withOpacity(0.2),
-                  ),
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                        color: AppColors.regularGrey.withOpacity(0.2)),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  onTap: () async {
-                    _uploadPhotoModal(context,
-                        title: 'Deletar Conta',
-                        rightButtonTitle: 'DELETAR',
-                        leftButtonTitle: 'VOLTAR');
-                  },
-                ),
-                SizedBox(height: 24),
-                ListTile(
-                  title: Text(
-                    'Sair',
-                    style: bodyDescription,
-                  ),
-                  textColor: AppColors.grey,
-                  trailing: Icon(
-                    Icons.chevron_right,
-                    color: AppColors.regularGrey.withOpacity(0.2),
-                  ),
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                        color: AppColors.regularGrey.withOpacity(0.2)),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  onTap: () async {
-                    _uploadPhotoModal(
-                      context,
-                      title: 'Sair',
-                      rightButtonTitle: 'SIM',
-                      leftButtonTitle: 'NÃO',
-                    );
-                  },
-                ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
