@@ -49,3 +49,5 @@ To install and set up the application, follow these steps:
 ## Project Evolution
 
 While our current project is in the Minimum Viable Product (MVP) stage, my vision extends beyond its initial implementation. I am committed to continuously enhancing this application. Post-validation, my plan includes a comprehensive refactoring effort aimed at improving the project's architecture and enhancing the separation of services. I will also prioritize the implementation of thorough testing procedures to ensure the highest level of reliability and maintainability. My goal is to evolve this project into a robust and feature-rich application that continues to empower users with valuable insights about nail polish ingredients. Your feedback and contributions will play a crucial role in shaping its future.
+
+Made with ❤ by Andressa Tancredi.
