@@ -2,7 +2,7 @@
 
 An application for analyzing nail polish ingredients using artificial intelligence.
 
-https://github.com/AndressaTancredi/SafeNails/assets/48730376/1f4eb844-ba35-4d75-9d2c-ba709a86a46f
+![SafeNailsApp](https://github.com/AndressaTancredi/SafeNails/assets/48730376/d1413545-4f4f-4d18-ae62-624b4c7a31a0)
 
 ## Contents
 
