@@ -11,10 +11,9 @@ import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/ui/bloc/profile/profile_bloc.dart';
 import 'package:safe_nails/ui/bloc/profile/profile_event.dart';
 import 'package:safe_nails/ui/bloc/profile/profile_state.dart';
+import 'package:safe_nails/ui/widgets/banner_ad.dart';
 import 'package:safe_nails/ui/widgets/loading.dart';
 import 'package:safe_nails/ui/widgets/toast_alert.dart';
-
-import '../widgets/banner_ad.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -348,7 +347,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             var auth = await getButtonAction(title);
 
                             if (auth == "Success") {
-                              Navigator.of(context).pushNamed('/login_page');
+                              Navigator.of(context).pushNamed('/welcome_page');
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 toastAlert(
@@ -416,6 +415,7 @@ class _ProfilePageState extends State<ProfilePage> {
       return await FirebaseUtils.signOut();
     } else {
       return await FirebaseUtils.deleteUser();
+      //TODO ADD DELETE_USER DATA.
     }
   }
 }

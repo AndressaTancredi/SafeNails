@@ -1,5 +1,3 @@
-//TODO usar para salvar infos do usuario e de preferencias
-
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,15 +23,4 @@ class Preferences {
       prefs.remove(key);
     }
   }
-
-  // static Future<UserData> getUserData() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   var data = prefs.getString(PreferencesKeys.userData.value);
-  //
-  //   if (data != null) {
-  //     return UserData.fromJson(data);
-  //   }
-  //
-  //   return UserData();
-  // }
 }

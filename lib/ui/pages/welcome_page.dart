@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
@@ -60,8 +61,9 @@ class _WelcomePageState extends State<WelcomePage> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                     ),
-                    onPressed: () =>
-                        Navigator.of(context).pushNamed('/login_page'),
+                    onPressed: () {
+                      _checkUserAndNavigate(context);
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: Text(
@@ -77,6 +79,18 @@ class _WelcomePageState extends State<WelcomePage> {
           ),
         ],
       ),
+    );
+  }
+
+  Future<void> _checkUserAndNavigate(context) async {
+    await FirebaseAuth.instance.idTokenChanges().listen(
+      (User? user) {
+        if (user?.email != null) {
+          Navigator.of(context).pushNamed('/home_screen_page');
+        } else {
+          Navigator.of(context).pushNamed('/login_page');
+        }
+      },
     );
   }
 }

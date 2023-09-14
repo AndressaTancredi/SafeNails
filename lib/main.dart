@@ -10,26 +10,23 @@ import 'package:safe_nails/ui/pages/welcome_page.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
-Future main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.initialize();
-
-  WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
-
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await get_it.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
 
   runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
