@@ -17,10 +17,10 @@ import 'package:safe_nails/ui/bloc/analysis/analysis_state.dart';
 import 'package:safe_nails/ui/widgets/customPainter.dart';
 
 class Result extends StatefulWidget {
-  bool? noWord;
+  final bool? noWord;
   final XFile? photo;
-  bool? isSafe;
-  List<String> unhealthyIngredientsFounded;
+  final bool? isSafe;
+  final List<String> unhealthyIngredientsFounded;
 
   Result(
       {this.isSafe,
@@ -58,7 +58,6 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
   }
 
   _toggleContainer() {
-    print(_animation.status);
     if (_animation.status != AnimationStatus.completed) {
       _controller.forward();
     } else {

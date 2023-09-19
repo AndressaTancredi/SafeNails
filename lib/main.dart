@@ -19,7 +19,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await get_it.init();
-  WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
 
   runApp(const MyApp());

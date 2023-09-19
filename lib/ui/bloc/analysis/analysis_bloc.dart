@@ -69,7 +69,6 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
           }
         }
       }
-      print(unhealthyIngredientsFounded);
 
       if (unhealthyIngredientsFounded.isEmpty) {
         return true;
