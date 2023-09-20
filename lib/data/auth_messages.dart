@@ -1,6 +1,7 @@
 class AuthMessages {
   static const Map<String, String> errorMessages = {
-    "user_not_allowed": "Usuário não liberado para testes!",
+    "user_not_allowed":
+        "Usuário não liberado para testes!\nCadastre-se ou entre em contato.",
     "Success": "Sucesso!",
     "missing email": "Insira seu email.",
     "invalid email": "Dados inválidos.",
@@ -14,7 +15,7 @@ class AuthMessages {
     "wrong password": "Dados inválidos.",
     "account exists with different credential":
         "Já existe uma conta com o mesmo endereço de e-mail.",
-    "user not found": "Usuário não encontrado.",
+    "user not found": "Usuário não encontrado. Cadastre-se!",
     "user disabled": "A conta do usuário foi desabilitada.",
     "user signed out": "Usuário não Logado",
     "weak password": "A senha deve ter 8 caracteres ou mais.",

@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Nails',
+      title: 'Safe Nails',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
