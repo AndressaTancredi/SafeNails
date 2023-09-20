@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:safe_nails/common/analytics.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/firebase_utils.dart';
 import 'package:safe_nails/common/injection_container.dart';
@@ -22,6 +23,12 @@ class LoginPageState extends State<LoginPage> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    sl<Analytics>().onScreenView(AnalyticsEventTags.login_page);
+  }
 
   @override
   Widget build(BuildContext context) {

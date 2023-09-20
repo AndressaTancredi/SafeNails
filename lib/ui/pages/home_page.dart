@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:safe_nails/common/analytics.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
@@ -23,6 +25,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   final analysisBloc = sl<AnalysisBloc>();
 
   TextStyle get title => sl<TextStyles>().pageTitle;
@@ -32,6 +35,12 @@ class _HomePageState extends State<HomePage> {
   final String? bannerId = Platform.isAndroid
       ? dotenv.env['ANDROID_BANNER_ID']
       : dotenv.env['IOS_BANNER_ID'];
+
+  @override
+  void initState() {
+    super.initState();
+    sl<Analytics>().onScreenView(AnalyticsEventTags.home_page);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -146,6 +155,8 @@ class _HomePageState extends State<HomePage> {
                                   child: Expanded(
                                     child: GestureDetector(
                                       onTap: () {
+                                        sl<Analytics>().onCustomEvent(
+                                            AnalyticsEventTags.camera_scan);
                                         analysisBloc.add(
                                             NewImageEvent(cameraSource: true));
                                       },
@@ -160,6 +171,8 @@ class _HomePageState extends State<HomePage> {
                                   child: Expanded(
                                     child: GestureDetector(
                                       onTap: () {
+                                        sl<Analytics>().onCustomEvent(
+                                            AnalyticsEventTags.gallery_scan);
                                         analysisBloc.add(
                                             NewImageEvent(cameraSource: false));
                                       },

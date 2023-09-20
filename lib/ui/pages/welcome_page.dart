@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:safe_nails/common/analytics.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
@@ -15,6 +16,12 @@ class _WelcomePageState extends State<WelcomePage> {
   TextStyle get button => sl<TextStyles>().buttonText;
   TextStyle get title => sl<TextStyles>().principalTitle;
   TextStyle get subtitle => sl<TextStyles>().principalSubTitle;
+
+  @override
+  void initState() {
+    super.initState();
+    sl<Analytics>().onScreenView(AnalyticsEventTags.welcome_page);
+  }
 
   @override
   Widget build(BuildContext context) {

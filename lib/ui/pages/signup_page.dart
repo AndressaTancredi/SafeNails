@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:safe_nails/common/analytics.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/firebase_utils.dart';
 import 'package:safe_nails/common/injection_container.dart';
@@ -35,6 +36,12 @@ class SignUpPageState extends State<SignUpPage> {
   bool _isTermsAccepted = false;
 
   @override
+  void initState() {
+    super.initState();
+    sl<Analytics>().onScreenView(AnalyticsEventTags.signup_page);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -66,8 +73,6 @@ class SignUpPageState extends State<SignUpPage> {
                     key: _formSignUp,
                     autovalidateMode: AutovalidateMode.always,
                     onChanged: () {
-                      // This callback will be called whenever the form changes.
-                      // Check if the form is valid.
                       setState(() {
                         _isFormValid = _formSignUp.currentState!.validate();
                       });

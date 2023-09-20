@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:safe_nails/common/analytics.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/firebase_utils.dart';
 import 'package:safe_nails/common/injection_container.dart';
@@ -34,6 +35,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<Map<String, dynamic>> _getUserData() async {
     return await Preferences().getUserData();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    sl<Analytics>().onScreenView(AnalyticsEventTags.profile_page);
   }
 
   @override

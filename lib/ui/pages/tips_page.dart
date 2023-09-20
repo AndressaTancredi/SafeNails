@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:safe_nails/common/analytics.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
@@ -43,6 +44,7 @@ class _TipsPageState extends State<TipsPage> {
     _generateRandomTipsIndexes('hydration');
     _generateRandomTipsIndexes('cleansing');
     _generateRandomTipsIndexes('protection');
+    sl<Analytics>().onScreenView(AnalyticsEventTags.tips_page);
   }
 
   void _generateRandomTipsIndexes(String category) {
