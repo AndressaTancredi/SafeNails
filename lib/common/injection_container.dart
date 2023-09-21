@@ -15,6 +15,6 @@ Future<void> init() async {
   sl.registerLazySingleton<TipsBloc>(() => TipsBloc());
   sl.registerLazySingleton<ProfileBloc>(() => ProfileBloc());
   sl.registerLazySingleton(() => FirebaseRemoteConfig.instance);
-  sl.registerLazySingleton(() => RemoteConfig(sl()));
+  sl.registerLazySingleton(() => RemoteConfig());
   sl.registerLazySingleton(() => Analytics());
 }
