@@ -15,7 +15,8 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   TextStyle get button => sl<TextStyles>().buttonText;
   TextStyle get title => sl<TextStyles>().principalTitle;
-  TextStyle get subtitle => sl<TextStyles>().principalSubTitle;
+  TextStyle get subtitle =>
+      sl<TextStyles>().principalSubTitle.copyWith(fontSize: 19.0);
 
   @override
   void initState() {
@@ -36,53 +37,53 @@ class _WelcomePageState extends State<WelcomePage> {
               ),
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 100.0, bottom: 50.0),
-                child: Text(
-                  CommonStrings.welcomeTitle,
-                  style: title,
-                  textAlign: TextAlign.center,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 34.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 100.0, bottom: 50.0),
+                  child: Text(
+                    CommonStrings.welcomeTitle,
+                    style: title,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 36.0),
-                child: Text(
+                Text(
                   CommonStrings.welcomeSubtitle,
                   style: subtitle,
                   textAlign: TextAlign.center,
                 ),
-              ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: Container(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white.withOpacity(0.18),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 50.0),
+                  child: Container(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white.withOpacity(0.9),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
                       ),
-                    ),
-                    onPressed: () {
-                      _checkUserAndNavigate(context);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text(
-                        CommonStrings.getStarted,
-                        style: button,
+                      onPressed: () {
+                        _checkUserAndNavigate(context);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                          CommonStrings.getStarted,
+                          style: button,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: 35),
-            ],
+                SizedBox(height: 5),
+              ],
+            ),
           ),
         ],
       ),
