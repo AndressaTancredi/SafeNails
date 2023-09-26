@@ -1,6 +1,5 @@
 class IngredientsData {
   static List<String> get unhealthyIngredients => [
-        "ESMALTE",
         "Glúten",
         "Xileno",
         "Acetona",
@@ -32,7 +31,6 @@ class IngredientsData {
         "Triphenyl Phosphate (TPHP)",
         "Animal-Derived Products"
       ];
-
   static String get tolueno => "Tolueno";
   static String get Toluene => "Toluene";
   static String get acetona => "Acetone";
@@ -61,9 +59,8 @@ class IngredientsData {
   static String get MineralOil => "Óleo Mineral";
   static String get gluten => "Glúten";
   static String get Gluten => "Gluten";
-  static String get derivadosAnimais => "Produtos Derivados de Animais";
+  static String get animalOrigem => "Produtos Derivados de Animais";
   static String get AnimalDerivedProducts => "Produtos Derivados de Animais";
-
   static String get badToThePlanet => "Ruim para o planeta";
   static String get badToTheBody => "Ruim para o corpo";
 

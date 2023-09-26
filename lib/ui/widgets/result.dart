@@ -305,6 +305,8 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
       List<String> unhealthyIngredientsFounded) {
     final List<String> ingredientDescriptionList = [];
     for (final ingredient in unhealthyIngredientsFounded) {
+      print(unhealthyIngredientsFounded);
+
       IngredientType.values.forEach((element) {
         if (element.name.toUpperCase() == ingredient.toUpperCase()) {
           ingredientDescriptionList.add(element.type);

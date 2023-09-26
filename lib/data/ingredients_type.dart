@@ -18,7 +18,7 @@ enum IngredientType {
   sulfatoCobalto,
   oleoMineral,
   gluten,
-  derivadosAnimais,
+  animalOrigin,
 }
 
 extension Description on IngredientType {
@@ -30,7 +30,6 @@ extension Description on IngredientType {
         return IngredientsData.toluenoDescription;
       case IngredientType.acetate:
         return IngredientsData.toluenoDescription;
-
       case IngredientType.tolueno:
         return IngredientsData.toluenoDescription;
       case IngredientType.formaldeido:
@@ -59,7 +58,7 @@ extension Description on IngredientType {
         return IngredientsData.oleoMineralDescription;
       case IngredientType.gluten:
         return IngredientsData.glutenDescription;
-      case IngredientType.derivadosAnimais:
+      case IngredientType.animalOrigin:
         return IngredientsData.derivadosAnimaisDescription;
     }
   }
