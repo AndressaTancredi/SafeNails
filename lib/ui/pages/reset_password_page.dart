@@ -64,18 +64,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   padding: const EdgeInsets.symmetric(vertical: 30.0),
                   child: Text(
                     CommonStrings.changePassword,
-                    style: title.copyWith(fontSize: 30),
+                    style: title,
                     textAlign: TextAlign.center,
                   ),
                 ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 24),
                 Text(
                   CommonStrings.registeredEmailInfo,
-                  style: TextStyle(
-                    color: AppColors.regularGrey,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w300,
-                  ),
+                  style: bodyDescription,
                 ),
                 const SizedBox(height: 25),
                 Container(
@@ -96,11 +92,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 ),
                 Text(
                   CommonStrings.linkSendToChangePass,
-                  style: TextStyle(
-                    color: AppColors.regularGrey,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w300,
-                  ),
+                  style: bodyDescription,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 40),

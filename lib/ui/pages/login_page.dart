@@ -19,6 +19,8 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
   TextStyle get title => sl<TextStyles>().pageTitle;
   TextStyle get bodyDescription => sl<TextStyles>().bodyDescription;
+  TextStyle get linkText => sl<TextStyles>().linkText;
+  TextStyle get buttonText => sl<TextStyles>().buttonText;
 
   final _formLogin = GlobalKey<FormState>();
 
@@ -52,7 +54,7 @@ class LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.symmetric(vertical: 40.0),
                 child: Text(
                   CommonStrings.login,
-                  style: title.copyWith(fontSize: 30),
+                  style: title,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -87,7 +89,7 @@ class LoginPageState extends State<LoginPage> {
                       ElevatedButton.styleFrom(backgroundColor: AppColors.pink),
                   child: Text(
                     CommonStrings.enter,
-                    style: TextStyle(fontSize: 20, color: AppColors.grey),
+                    style: buttonText.copyWith(color: Colors.white),
                   ),
                   onPressed: () => {
                     if (_formLogin.currentState!.validate())
@@ -104,11 +106,7 @@ class LoginPageState extends State<LoginPage> {
                 },
                 child: Text(
                   CommonStrings.forgotPassword,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                      color: AppColors.blue,
-                      decoration: TextDecoration.underline),
+                  style: linkText,
                 ),
               ),
             ],

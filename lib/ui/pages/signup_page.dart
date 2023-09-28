@@ -25,6 +25,8 @@ class SignUpPage extends StatefulWidget {
 class SignUpPageState extends State<SignUpPage> {
   TextStyle get title => sl<TextStyles>().pageTitle;
   TextStyle get bodyDescription => sl<TextStyles>().bodyDescription;
+  TextStyle get linkText => sl<TextStyles>().linkText;
+  TextStyle get buttonText => sl<TextStyles>().buttonText;
 
   final _formSignUp = GlobalKey<FormState>();
 
@@ -130,11 +132,7 @@ class SignUpPageState extends State<SignUpPage> {
                               },
                               child: Text(
                                 CommonStrings.termsAndConditionsAgreement,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 12,
-                                    color: AppColors.blue,
-                                    decoration: TextDecoration.underline),
+                                style: linkText.copyWith(fontSize: 12),
                               ),
                             ),
                           ],
@@ -148,8 +146,7 @@ class SignUpPageState extends State<SignUpPage> {
                                 backgroundColor: AppColors.pink),
                             child: Text(
                               CommonStrings.toRegister,
-                              style: TextStyle(
-                                  fontSize: 20, color: AppColors.grey),
+                              style: buttonText.copyWith(color: Colors.white),
                             ),
                             onPressed: _isFormValid && _isTermsAccepted
                                 ? () {

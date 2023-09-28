@@ -19,6 +19,7 @@ class AppColors {
   static const green = Color(0xff54B68C);
   static const blue = Color(0xFF104F94);
   static const lightestGrey = Color(0xFF9CA3AF);
+  static const ice = Color(0xFFF2F4F5);
 
   static List<Color> get categoryTipBackgroundColor =>
       [Color(0xffF3BABC), Color(0xffE79597).withOpacity(0.8)];

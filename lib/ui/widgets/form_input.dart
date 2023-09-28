@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/common_strings.dart';
 
+import '../../common/injection_container.dart';
+import '../../common/text_styles.dart';
+
 class Input extends StatefulWidget {
   final String label;
   final TextInputType type;
@@ -35,6 +38,8 @@ class InputState extends State<Input> {
     setState(() => showPass = !showPass);
   }
 
+  TextStyle get inputText => sl<TextStyles>().inputText;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -47,11 +52,7 @@ class InputState extends State<Input> {
         autocorrect: !widget.isPassword,
         controller: widget.controller,
         autovalidateMode: AutovalidateMode.onUserInteraction,
-        style: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w300,
-          color: AppColors.softGrey,
-        ),
+        style: inputText,
         decoration: InputDecoration(
           focusedErrorBorder: UnderlineInputBorder(
               borderSide: BorderSide(
@@ -85,11 +86,7 @@ class InputState extends State<Input> {
             vertical: 16,
           ),
           hintText: widget.label,
-          hintStyle: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w300,
-            color: AppColors.lightestGrey,
-          ),
+          hintStyle: inputText,
           prefixIcon: widget.icon != null
               ? Icon(
                   widget.icon,

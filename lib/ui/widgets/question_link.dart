@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:safe_nails/common/app_colors.dart';
+import 'package:safe_nails/common/injection_container.dart';
+import 'package:safe_nails/common/text_styles.dart';
 
 class QuestionLink extends StatelessWidget {
   const QuestionLink({
@@ -13,6 +15,7 @@ class QuestionLink extends StatelessWidget {
   final String question;
   final String linkText;
   final String routeOnPress;
+  TextStyle get linkTextStyle => sl<TextStyles>().linkText;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class QuestionLink extends StatelessWidget {
       height: 51,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: const Color(0xFFF2F4F5),
+        color: AppColors.ice,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -33,10 +36,7 @@ class QuestionLink extends StatelessWidget {
           RichText(
             text: TextSpan(
               text: linkText,
-              style: const TextStyle(
-                color: AppColors.blue,
-                fontWeight: FontWeight.w600,
-              ),
+              style: linkTextStyle,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   Navigator.of(context).pushNamed(routeOnPress);

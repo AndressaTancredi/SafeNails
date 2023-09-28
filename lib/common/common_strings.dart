@@ -5,7 +5,7 @@ class CommonStrings {
   static String get tipsTitle => "Dicas";
 
   //PAGE TITLE
-  static String get homeTitle => "Como usar o Safe Nails";
+  static String get homeTitle => "Safe Nails";
   static String get welcomeTitle => "BEM-VINDE";
   static String get title => "Safe Nails";
   static String get subTitle =>
@@ -84,7 +84,7 @@ class CommonStrings {
   static String get yes => "SIM";
   static String get not => "NÃO";
   static String get success => "Success";
-  static String get obligatory => "é obrigatório.'";
+  static String get obligatory => "é obrigatório";
   static String get invalidEmail => 'Endereço de e-mail inválido.';
   static String get conditionPass => 'A senha deve ser maior que 8 characters.';
 

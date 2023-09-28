@@ -30,7 +30,7 @@ class TextStyles {
     fontWeight: FontWeight.w700,
     color: AppColors.regularBlack,
     fontStyle: FontStyle.normal,
-    fontSize: 24,
+    fontSize: 30,
   );
 
   final subTitle = const TextStyle(
@@ -64,4 +64,17 @@ class TextStyles {
     fontStyle: FontStyle.normal,
     color: AppColors.primary,
   );
+
+  final linkText = const TextStyle(
+      fontFamily: "DMSans",
+      fontWeight: FontWeight.w500,
+      fontSize: 16,
+      color: AppColors.blue,
+      decoration: TextDecoration.underline);
+
+  final inputText = TextStyle(
+      fontFamily: "DMSans",
+      fontWeight: FontWeight.w300,
+      fontSize: 20,
+      color: AppColors.lightestGrey);
 }
