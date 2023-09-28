@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:safe_nails/common/analytics.dart';
 import 'package:safe_nails/common/app_colors.dart';
+import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/firebase_utils.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
-import 'package:safe_nails/ui/widgets/form_imput.dart';
+import 'package:safe_nails/ui/widgets/form_input.dart';
 import 'package:safe_nails/ui/widgets/toast_alert.dart';
 
 class ResetPasswordPage extends StatefulWidget {
@@ -62,14 +63,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 30.0),
                   child: Text(
-                    "Alteração de Senha",
+                    CommonStrings.changePassword,
                     style: title.copyWith(fontSize: 30),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 const SizedBox(height: 32),
-                const Text(
-                  "Entre com o email cadastrado na sua conta",
+                Text(
+                  CommonStrings.registeredEmailInfo,
                   style: TextStyle(
                     color: Color(0xFF374151),
                     fontSize: 17,
@@ -84,7 +85,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     child: Column(
                       children: [
                         Input(
-                          label: 'Email',
+                          label: CommonStrings.email,
                           controller: emailController,
                           icon: Icons.email_outlined,
                           type: TextInputType.emailAddress,
@@ -93,8 +94,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     ),
                   ),
                 ),
-                const Text(
-                  "Um link será enviado para alterar sua senha",
+                Text(
+                  CommonStrings.linkSendToChangePass,
                   style: TextStyle(
                     color: Color(0xFF374151),
                     fontSize: 14,
@@ -109,7 +110,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.pink),
                     child: Text(
-                      "Enviar",
+                      CommonStrings.send,
                       style: TextStyle(fontSize: 20, color: AppColors.grey),
                     ),
                     onPressed: () => {handleResetPassword(context)},
@@ -127,7 +128,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     var resetPass =
         await FirebaseUtils.resetPassword(emailController.value.text);
 
-    if (resetPass == "Success") {
+    if (resetPass == CommonStrings.success) {
       ScaffoldMessenger.of(context).showSnackBar(
         toastAlert(
           type: ToastType.success,

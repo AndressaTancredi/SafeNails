@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:safe_nails/common/app_colors.dart';
+import 'package:safe_nails/common/common_strings.dart';
 
 class Input extends StatefulWidget {
   final String label;
@@ -122,14 +123,14 @@ class InputState extends State<Input> {
         ),
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return '${widget.label} é obrigatório.';
+            return '${widget.label} ${CommonStrings.obligatory}';
           } else if (widget.type == TextInputType.emailAddress) {
             if (!emailValidator(value)) {
-              return 'Endereço de e-mail inválido.';
+              return CommonStrings.invalidEmail;
             }
           } else if (widget.isPassword && value.length < 8) {
             if (value.length < 8) {
-              return 'A senha deve ser maior que 8 characters.';
+              return CommonStrings.conditionPass;
             }
           } else if (widget.isConfirmationPassword) {
             return widget.confirmPasswordValidator!(value);

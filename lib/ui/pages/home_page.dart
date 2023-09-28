@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                             Padding(
                               padding: const EdgeInsets.all(20),
                               child:
-                                  Text("Como usar o Safe Nails", style: title),
+                                  Text(CommonStrings.homeTitle, style: title),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 4.0),
@@ -147,7 +147,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Padding(
                               padding: const EdgeInsets.all(20.0),
-                              child: Text("Escolha:", style: title),
+                              child: Text(CommonStrings.choose, style: title),
                             ),
                             Row(
                               children: [

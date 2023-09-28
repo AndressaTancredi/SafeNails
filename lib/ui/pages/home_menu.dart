@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:safe_nails/common/app_colors.dart';
+import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_bloc.dart';
@@ -55,7 +56,7 @@ class _HomeMenuState extends State<HomeMenu> {
                 size: 30,
               ),
             ),
-            label: "Perfil",
+            label: CommonStrings.profileTitle,
           ),
           BottomNavigationBarItem(
             activeIcon: Padding(
@@ -74,7 +75,7 @@ class _HomeMenuState extends State<HomeMenu> {
                 height: 20,
               ),
             ),
-            label: "Scanner",
+            label: CommonStrings.scannerTitle,
           ),
           BottomNavigationBarItem(
             activeIcon: Padding(
@@ -93,7 +94,7 @@ class _HomeMenuState extends State<HomeMenu> {
                 color: AppColors.black,
               ),
             ),
-            label: "Dicas",
+            label: CommonStrings.tipsTitle,
             backgroundColor: AppColors.pink,
           ),
         ],

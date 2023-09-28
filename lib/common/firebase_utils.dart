@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:safe_nails/common/common_strings.dart';
 
 class FirebaseUtils {
   static FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -9,7 +10,7 @@ class FirebaseUtils {
       UserCredential userCredential = await firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
       userCredential.user!.updateDisplayName(name);
-      return "Success";
+      return CommonStrings.success;
     } on FirebaseAuthException catch (e) {
       return e.code;
     }
@@ -19,7 +20,7 @@ class FirebaseUtils {
     try {
       await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
-      return "Success";
+      return CommonStrings.success;
     } on FirebaseAuthException catch (e) {
       return e.code;
     }
@@ -28,7 +29,7 @@ class FirebaseUtils {
   static Future<String?> signOut() async {
     try {
       await firebaseAuth.signOut();
-      return "Success";
+      return CommonStrings.success;
     } on FirebaseAuthException catch (e) {
       return e.code;
     }
@@ -37,7 +38,7 @@ class FirebaseUtils {
   static Future<String?> resetPassword(String email) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-      return "Success";
+      return CommonStrings.success;
     } on FirebaseAuthException catch (e) {
       return e.code;
     }
@@ -46,7 +47,7 @@ class FirebaseUtils {
   static Future<String?> deleteUser() async {
     try {
       await FirebaseAuth.instance.currentUser!.delete();
-      return "Success";
+      return CommonStrings.success;
     } on FirebaseAuthException catch (e) {
       return e.code;
     }

@@ -71,7 +71,7 @@ class _TipsPageState extends State<TipsPage> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: AppColors.background,
-          title: Text(CommonStrings.careTips, style: title),
+          title: Text(CommonStrings.careTipsTitle, style: title),
           centerTitle: true,
           elevation: 0,
         ),

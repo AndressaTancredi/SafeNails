@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:safe_nails/common/analytics.dart';
 import 'package:safe_nails/common/app_colors.dart';
+import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/firebase_utils.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/preferences.dart';
@@ -216,7 +217,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             );
                           } else {
                             return Text(
-                              'Carregando suas informações...',
+                              CommonStrings.loadingInfo,
                               style: bodyDescription,
                             );
                           }
@@ -228,7 +229,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         children: [
                           ListTile(
                             title: Text(
-                              'Deletar conta',
+                              CommonStrings.deleteAccount,
                               style: bodyDescription,
                             ),
                             textColor: AppColors.grey,
@@ -244,15 +245,15 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             onTap: () async {
                               _uploadPhotoModal(context,
-                                  title: 'Deletar Conta',
-                                  rightButtonTitle: 'DELETAR',
-                                  leftButtonTitle: 'VOLTAR');
+                                  title: CommonStrings.deleteAccount,
+                                  rightButtonTitle: CommonStrings.delete,
+                                  leftButtonTitle: CommonStrings.back);
                             },
                           ),
                           SizedBox(height: 15),
                           ListTile(
                             title: Text(
-                              'Sair',
+                              CommonStrings.out,
                               style: bodyDescription,
                             ),
                             textColor: AppColors.grey,
@@ -269,9 +270,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             onTap: () async {
                               _uploadPhotoModal(
                                 context,
-                                title: 'Sair',
-                                rightButtonTitle: 'SIM',
-                                leftButtonTitle: 'NÃO',
+                                title: CommonStrings.out,
+                                rightButtonTitle: CommonStrings.yes,
+                                leftButtonTitle: CommonStrings.not,
                               );
                             },
                           ),
@@ -358,7 +359,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           onPressed: () async {
                             var auth = await getButtonAction(title);
 
-                            if (auth == "Success") {
+                            if (auth == CommonStrings.success) {
                               Navigator.of(context).pushNamed('/welcome_page');
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -423,7 +424,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   getButtonAction(String title) async {
-    if (title == 'Sair') {
+    if (title == CommonStrings.out) {
       return await FirebaseUtils.signOut();
     } else {
       return await FirebaseUtils.deleteUser();

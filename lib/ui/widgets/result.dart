@@ -110,7 +110,7 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8.0)),
                       child: Text(
-                        "Não foi possível identificar nenhum texto na imagem. Por favor, certifique-se de carregar uma imagem que contenha texto legível ou tente aproximar o texto para que fique nítido e possa ser lido com clareza.",
+                        CommonStrings.imageTextNofFound,
                         style: bodyDescription.copyWith(fontSize: 14.0),
                         textAlign: TextAlign.justify,
                       ),
@@ -124,8 +124,6 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                   const SizedBox(height: 26.0),
                   GestureDetector(
                     onTap: () {
-                      // Scrollable.ensureVisible(key1.currentContext!);
-
                       _toggleContainer();
                     },
                     child: Container(
@@ -156,7 +154,6 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                         children: [
                           ListView.builder(
                             controller: _controller,
-                            // physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount:
                                 widget.unhealthyIngredientsFounded.length,
@@ -220,7 +217,7 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                           ),
                           Text(
                             key: key1,
-                            'Fonte: Environmental Working Group.',
+                            CommonStrings.source,
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 11,
@@ -283,7 +280,7 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
               Row(
                 children: [
                   Text(
-                    'Saber mais',
+                    CommonStrings.knowMore,
                     style: bodyDescription.copyWith(
                         color: AppColors.softGrey,
                         decoration: TextDecoration.underline),

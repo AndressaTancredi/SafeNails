@@ -3,13 +3,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:safe_nails/common/analytics.dart';
 import 'package:safe_nails/common/app_colors.dart';
+import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/firebase_utils.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/preferences.dart';
 import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/models/user_data.dart';
 import 'package:safe_nails/ui/pages/terms_and_conditions_page.dart';
-import 'package:safe_nails/ui/widgets/form_imput.dart';
+import 'package:safe_nails/ui/widgets/form_input.dart';
 import 'package:safe_nails/ui/widgets/question_link.dart';
 import 'package:safe_nails/ui/widgets/toast_alert.dart';
 
@@ -56,13 +57,13 @@ class SignUpPageState extends State<SignUpPage> {
               children: [
                 const SizedBox(height: 45),
                 QuestionLink(
-                    question: "Já tem uma conta?",
-                    linkText: 'Login',
+                    question: CommonStrings.haveAccount,
+                    linkText: CommonStrings.login,
                     routeOnPress: '/login_page'),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 30.0),
                   child: Text(
-                    "Cadastro",
+                    CommonStrings.signupTitle,
                     style: title.copyWith(fontSize: 30),
                     textAlign: TextAlign.center,
                   ),
@@ -80,31 +81,31 @@ class SignUpPageState extends State<SignUpPage> {
                     child: Column(
                       children: [
                         Input(
-                          label: 'Nome',
+                          label: CommonStrings.name,
                           controller: nameController,
                           icon: Icons.manage_accounts_outlined,
                         ),
                         Input(
-                          label: 'Email',
+                          label: CommonStrings.email,
                           controller: emailController,
                           icon: Icons.email_outlined,
                           type: TextInputType.emailAddress,
                         ),
                         Input(
-                          label: 'Senha',
+                          label: CommonStrings.password,
                           controller: passwordController,
                           icon: Icons.lock_outline_rounded,
                           isPassword: true,
                         ),
                         Input(
-                          label: 'Confirmar a senha',
+                          label: CommonStrings.confirmPassword,
                           controller: confirmPasswordController,
                           icon: Icons.lock_outline_rounded,
                           isPassword: true,
                           isConfirmationPassword: true,
                           confirmPasswordValidator: (value) {
                             if (value != passwordController.text) {
-                              return 'As senhas não coincidem.';
+                              return CommonStrings.matchPass;
                             }
                             return null;
                           },
@@ -128,7 +129,7 @@ class SignUpPageState extends State<SignUpPage> {
                                 ));
                               },
                               child: Text(
-                                'Eu li e concordo com os termos e condições.',
+                                CommonStrings.termsAndConditionsAgreement,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 12,
@@ -146,7 +147,7 @@ class SignUpPageState extends State<SignUpPage> {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.pink),
                             child: Text(
-                              'Cadastrar',
+                              CommonStrings.toRegister,
                               style: TextStyle(
                                   fontSize: 20, color: AppColors.grey),
                             ),
@@ -181,7 +182,7 @@ class SignUpPageState extends State<SignUpPage> {
     var auth = await FirebaseUtils.createUser(
         nameController.text, emailController.text, passwordController.text);
 
-    if (auth == "Success") {
+    if (auth == CommonStrings.success) {
       ScaffoldMessenger.of(context).showSnackBar(
         toastAlert(
           type: ToastType.success,

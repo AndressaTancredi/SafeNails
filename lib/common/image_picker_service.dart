@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:safe_nails/common/common_strings.dart';
 
 class ImagePickerService {
   final _picker = ImagePicker();
@@ -17,12 +18,12 @@ class ImagePickerService {
         ],
       );
       if (croppedFile == null) {
-        throw Exception('Erro ao cortar a imagem.');
+        throw Exception(CommonStrings.cropImageError);
       }
       return XFile(croppedFile.path);
     } catch (e) {
       if (kDebugMode) {
-        print('Erro ao cortar a imagem: $e');
+        print('${CommonStrings.cropImageError}: $e');
       }
       return null;
     }
@@ -36,12 +37,12 @@ class ImagePickerService {
         maxWidth: 800,
       );
       if (pickedFile == null) {
-        throw Exception('Nenhuma imagem selecionada');
+        throw Exception(CommonStrings.noImageSelected);
       }
       return cropSelectedImage(XFile(pickedFile.path));
     } catch (e) {
       if (kDebugMode) {
-        print('Erro ao selecionar imagem da galeria: $e');
+        print('${CommonStrings.noImageSelected}: $e');
       }
       return null;
     }
@@ -55,12 +56,12 @@ class ImagePickerService {
         maxWidth: 800,
       );
       if (pickedFile == null) {
-        throw Exception('Nenhuma imagem tirada');
+        throw Exception(CommonStrings.noImageTook);
       }
       return cropSelectedImage(XFile(pickedFile.path));
     } catch (e) {
       if (kDebugMode) {
-        print('Erro ao tirar foto: $e');
+        print('${CommonStrings.noImageTook}: $e');
       }
       return null;
     }

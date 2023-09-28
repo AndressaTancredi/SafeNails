@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:safe_nails/common/analytics.dart';
+import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -22,7 +23,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Termos e Condições'),
+        title: Text(CommonStrings.termsAndConditionsTitle),
       ),
       body: WebView(
         initialUrl: url,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/ui/pages/home_menu.dart';
 import 'package:safe_nails/ui/pages/home_page.dart';
 import 'package:safe_nails/ui/pages/login_page.dart';
@@ -25,7 +26,8 @@ class AppRouter {
       case '/home_page':
         return MaterialPageRoute(builder: (_) => const HomePage());
       default:
-        throw ArgumentError('Inexistent route: s${routeSettings.name}');
+        throw ArgumentError(
+            '${CommonStrings.noExistentRoute}: ${routeSettings.name}');
     }
   }
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:safe_nails/common/analytics.dart';
 import 'package:safe_nails/common/app_colors.dart';
+import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/firebase_utils.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/models/login_data.dart';
-import 'package:safe_nails/ui/widgets/form_imput.dart';
+import 'package:safe_nails/ui/widgets/form_input.dart';
 import 'package:safe_nails/ui/widgets/question_link.dart';
 import 'package:safe_nails/ui/widgets/toast_alert.dart';
 
@@ -43,14 +44,14 @@ class LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               QuestionLink(
-                question: "Não tem uma conta?",
-                linkText: "Cadastre-se",
+                question: CommonStrings.haveNotAccount,
+                linkText: CommonStrings.register,
                 routeOnPress: '/signup_page',
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 40.0),
                 child: Text(
-                  "Login",
+                  CommonStrings.login,
                   style: title.copyWith(fontSize: 30),
                   textAlign: TextAlign.center,
                 ),
@@ -63,13 +64,13 @@ class LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       Input(
-                        label: "Email",
+                        label: CommonStrings.email,
                         controller: emailController,
                         icon: Icons.email_outlined,
                         type: TextInputType.emailAddress,
                       ),
                       Input(
-                        label: "Senha",
+                        label: CommonStrings.password,
                         controller: passwordController,
                         icon: Icons.lock_open_outlined,
                         isPassword: true,
@@ -85,7 +86,7 @@ class LoginPageState extends State<LoginPage> {
                   style:
                       ElevatedButton.styleFrom(backgroundColor: AppColors.pink),
                   child: Text(
-                    "Entrar",
+                    CommonStrings.enter,
                     style: TextStyle(fontSize: 20, color: AppColors.grey),
                   ),
                   onPressed: () => {
@@ -102,7 +103,7 @@ class LoginPageState extends State<LoginPage> {
                   Navigator.of(context).pushNamed('/reset_password_page');
                 },
                 child: Text(
-                  "Esqueceu a senha?",
+                  CommonStrings.forgotPassword,
                   style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 16,
@@ -125,7 +126,7 @@ class LoginPageState extends State<LoginPage> {
 
     var auth = await FirebaseUtils.signIn(login.email, login.password);
 
-    if (auth == "Success") {
+    if (auth == CommonStrings.success) {
       Navigator.of(context).pushNamed('/home_screen_page');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
