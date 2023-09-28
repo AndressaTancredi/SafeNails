@@ -1,7 +1,5 @@
 class AuthMessages {
   static const Map<String, String> errorMessages = {
-    "user_not_allowed":
-        "Usuário não liberado para testes!\nCadastre-se ou entre em contato.",
     "Success": "Sucesso!",
     "missing email": "Insira seu email.",
     "invalid email": "Dados inválidos.",
