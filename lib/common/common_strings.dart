@@ -29,4 +29,5 @@ class CommonStrings {
   static String get hydration => "Hidratação";
   static String get cleansing => "Limpeza";
   static String get protection => "Proteção";
+  static String get appVersion => "VERSÃO DO APLICATIVO";
 }

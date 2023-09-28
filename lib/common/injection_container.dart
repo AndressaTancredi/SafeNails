@@ -1,6 +1,7 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:safe_nails/common/analytics.dart';
+import 'package:safe_nails/common/app_metadata.dart';
 import 'package:safe_nails/common/remote_config_service.dart';
 import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_bloc.dart';
@@ -17,4 +18,5 @@ Future<void> init() async {
   sl.registerLazySingleton(() => FirebaseRemoteConfig.instance);
   sl.registerLazySingleton(() => RemoteConfig());
   sl.registerLazySingleton(() => Analytics());
+  sl.registerLazySingleton(() => AppMetadata());
 }

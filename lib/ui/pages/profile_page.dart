@@ -12,6 +12,7 @@ import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/ui/bloc/profile/profile_bloc.dart';
 import 'package:safe_nails/ui/bloc/profile/profile_event.dart';
 import 'package:safe_nails/ui/bloc/profile/profile_state.dart';
+import 'package:safe_nails/ui/widgets/app_version.dart';
 import 'package:safe_nails/ui/widgets/banner_ad.dart';
 import 'package:safe_nails/ui/widgets/loading.dart';
 import 'package:safe_nails/ui/widgets/toast_alert.dart';
@@ -70,7 +71,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           if (state is ProfileEmptyState) {
                             return Column(
                               children: [
-                                const SizedBox(height: 30),
+                                const SizedBox(height: 20),
                                 Center(
                                   child: GestureDetector(
                                     onTap: () {
@@ -176,7 +177,6 @@ class _ProfilePageState extends State<ProfilePage> {
                           return const SizedBox.shrink();
                         },
                       ),
-                      const SizedBox(height: 25),
                       FutureBuilder<Map<String, dynamic>>(
                         future: _getUserData(),
                         builder: (context, snapshot) {
@@ -222,8 +222,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           }
                         },
                       ),
-                      const SizedBox(height: 35),
+                      const SizedBox(height: 5),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ListTile(
                             title: Text(
@@ -248,7 +249,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   leftButtonTitle: 'VOLTAR');
                             },
                           ),
-                          SizedBox(height: 24),
+                          SizedBox(height: 15),
                           ListTile(
                             title: Text(
                               'Sair',
@@ -275,12 +276,16 @@ class _ProfilePageState extends State<ProfilePage> {
                             },
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 14.0),
-                            child: BannerAdmob(
-                              idAdMob: bannerId,
-                            ),
+                            padding: const EdgeInsets.only(top: 24.0),
+                            child: AppVersion(),
                           ),
                         ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 24.0),
+                        child: BannerAdmob(
+                          idAdMob: bannerId,
+                        ),
                       ),
                     ],
                   ),

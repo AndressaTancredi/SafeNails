@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:safe_nails/common/app_colors.dart';
 
 class TextStyles {
-
   final principalTitle = const TextStyle(
-    fontFamily: "Cosmetic",
-    fontWeight: FontWeight.w900,
-    color: AppColors.black,
-    fontStyle: FontStyle.normal,
-    fontSize: 44
-  );
+      fontFamily: "Cosmetic",
+      fontWeight: FontWeight.w900,
+      color: AppColors.black,
+      fontStyle: FontStyle.normal,
+      fontSize: 44);
 
   final principalSubTitle = const TextStyle(
     fontFamily: "DMSans",
