@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:safe_nails/common/analytics.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -9,8 +10,7 @@ class TermsAndConditionsPage extends StatefulWidget {
 }
 
 class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
-  final String url =
-      'https://codecloud-pp.blogspot.com/2023/04/politica-de-privacidade.html';
+  final String? url = dotenv.env['TERMS_AND_CONDITIONS_URL'];
 
   @override
   void initState() {
