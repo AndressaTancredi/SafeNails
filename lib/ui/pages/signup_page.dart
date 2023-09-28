@@ -133,7 +133,7 @@ class SignUpPageState extends State<SignUpPage> {
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 12,
-                                    color: Color(0xFF104F94),
+                                    color: AppColors.blue,
                                     decoration: TextDecoration.underline),
                               ),
                             ),

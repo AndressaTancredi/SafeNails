@@ -72,7 +72,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 Text(
                   CommonStrings.registeredEmailInfo,
                   style: TextStyle(
-                    color: Color(0xFF374151),
+                    color: AppColors.regularGrey,
                     fontSize: 17,
                     fontWeight: FontWeight.w300,
                   ),
@@ -97,7 +97,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 Text(
                   CommonStrings.linkSendToChangePass,
                   style: TextStyle(
-                    color: Color(0xFF374151),
+                    color: AppColors.regularGrey,
                     fontSize: 14,
                     fontWeight: FontWeight.w300,
                   ),

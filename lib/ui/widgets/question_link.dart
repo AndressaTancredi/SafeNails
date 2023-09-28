@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
+import 'package:safe_nails/common/app_colors.dart';
 
 class QuestionLink extends StatelessWidget {
   const QuestionLink({
@@ -33,7 +34,7 @@ class QuestionLink extends StatelessWidget {
             text: TextSpan(
               text: linkText,
               style: const TextStyle(
-                color: Color(0xFF104F94),
+                color: AppColors.blue,
                 fontWeight: FontWeight.w600,
               ),
               recognizer: TapGestureRecognizer()

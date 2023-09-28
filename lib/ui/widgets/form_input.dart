@@ -50,7 +50,7 @@ class InputState extends State<Input> {
         style: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w300,
-          color: Color(0xFF374151),
+          color: AppColors.softGrey,
         ),
         decoration: InputDecoration(
           focusedErrorBorder: UnderlineInputBorder(
@@ -88,7 +88,7 @@ class InputState extends State<Input> {
           hintStyle: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w300,
-            color: Color(0xFF9CA3AF),
+            color: AppColors.lightestGrey,
           ),
           prefixIcon: widget.icon != null
               ? Icon(
