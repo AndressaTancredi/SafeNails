@@ -9,6 +9,7 @@ import 'package:safe_nails/ui/bloc/analysis/analysis_event.dart';
 import 'package:safe_nails/ui/pages/home_page.dart';
 import 'package:safe_nails/ui/pages/profile_page.dart';
 import 'package:safe_nails/ui/pages/tips_page.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class HomeMenu extends StatefulWidget {
   @override
@@ -32,70 +33,40 @@ class _HomeMenuState extends State<HomeMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _screens[_actualIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        selectedLabelStyle: bodyDescription,
-        elevation: 0,
-        fixedColor: AppColors.pink,
+      bottomNavigationBar: SalomonBottomBar(
+        itemPadding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
         currentIndex: _actualIndex,
         onTap: onTabTapped,
         items: [
-          BottomNavigationBarItem(
-            activeIcon: Padding(
-              padding: const EdgeInsets.only(bottom: 4.0),
-              child: Icon(
-                Icons.account_circle_outlined,
-                color: AppColors.pink,
-                size: 30,
-              ),
+          /// Profile
+          SalomonBottomBarItem(
+            icon: Icon(
+              Icons.person_outline,
+              size: 30,
+              color: _actualIndex == 0 ? AppColors.pink : AppColors.softGrey,
             ),
-            icon: Padding(
-              padding: const EdgeInsets.only(bottom: 4.0),
-              child: Icon(
-                Icons.account_circle_outlined,
-                color: AppColors.softGrey,
-                size: 30,
-              ),
-            ),
-            label: CommonStrings.profileTitle,
+            title: Text(CommonStrings.profileTitle),
+            selectedColor: AppColors.pink,
           ),
-          BottomNavigationBarItem(
-            activeIcon: Padding(
-              padding: const EdgeInsets.only(bottom: 4.0),
-              child: SvgPicture.asset(
-                'assets/icons/scanner.svg',
-                color: AppColors.pink,
-                height: 30,
-              ),
+
+          /// Scanner
+          SalomonBottomBarItem(
+            icon: SvgPicture.asset(
+              'assets/icons/scanner.svg',
+              color: _actualIndex == 1 ? AppColors.pink : AppColors.softGrey,
             ),
-            icon: Padding(
-              padding: const EdgeInsets.only(bottom: 4.0),
-              child: SvgPicture.asset(
-                'assets/icons/scanner.svg',
-                color: AppColors.black,
-                height: 20,
-              ),
-            ),
-            label: CommonStrings.scannerTitle,
+            title: Text(CommonStrings.scannerTitle),
+            selectedColor: AppColors.pink,
           ),
-          BottomNavigationBarItem(
-            activeIcon: Padding(
-              padding: const EdgeInsets.only(bottom: 4.0),
-              child: SvgPicture.asset(
-                'assets/icons/tips.svg',
-                color: AppColors.pink,
-                height: 30,
-              ),
+
+          /// Tips
+          SalomonBottomBarItem(
+            icon: SvgPicture.asset(
+              'assets/icons/tips.svg',
+              color: _actualIndex == 2 ? AppColors.pink : AppColors.softGrey,
             ),
-            icon: Padding(
-              padding: const EdgeInsets.only(bottom: 4.0),
-              child: SvgPicture.asset(
-                'assets/icons/tips.svg',
-                height: 20,
-                color: AppColors.black,
-              ),
-            ),
-            label: CommonStrings.tipsTitle,
-            backgroundColor: AppColors.pink,
+            title: Text(CommonStrings.tipsTitle),
+            selectedColor: AppColors.pink,
           ),
         ],
       ),

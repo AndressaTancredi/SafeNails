@@ -16,3 +16,14 @@ class ProfileLoadedState extends ProfileState {
   @override
   List<Object?> get props => [profilePhotoPath];
 }
+
+class ProfilePermissionDeniedState extends ProfileState {}
+
+class ProfileNoImageSelectedState extends ProfileState {}
+
+class ProfilePermissionPermanentlyDeniedState extends ProfileState {}
+
+class ProfileErrorState extends ProfileState {
+  late final String errorMessage;
+  ProfileErrorState({required this.errorMessage});
+}
