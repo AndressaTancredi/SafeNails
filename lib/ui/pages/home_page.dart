@@ -44,10 +44,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      onPopInvoked: (popDisposition) async {
         analysisBloc.add(ClearResultEvent());
-        return true;
+        return Future.value();
       },
       child: Scaffold(
         backgroundColor: AppColors.background,

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/common_strings.dart';
-
-import '../../common/injection_container.dart';
-import '../../common/text_styles.dart';
+import 'package:safe_nails/common/injection_container.dart';
+import 'package:safe_nails/common/text_styles.dart';
 
 class Input extends StatefulWidget {
   final String label;

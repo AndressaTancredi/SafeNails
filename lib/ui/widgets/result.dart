@@ -72,10 +72,10 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
     SchedulerBinding.instance.addPostFrameCallback((_) {
       _controller.jumpTo(_controller.position.maxScrollExtent);
     });
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      onPopInvoked: (popDisposition) async {
         analysisBloc.add(ClearResultEvent());
-        return true;
+        return Future.value();
       },
       child: Column(
         children: [

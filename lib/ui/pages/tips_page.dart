@@ -12,6 +12,7 @@ import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
 import 'package:safe_nails/data/tips_data.dart';
 import 'package:safe_nails/ui/bloc/tips/tips_bloc.dart';
+import 'package:safe_nails/ui/bloc/tips/tips_event.dart';
 import 'package:safe_nails/ui/bloc/tips/tips_state.dart';
 import 'package:safe_nails/ui/widgets/banner_ad.dart';
 import 'package:safe_nails/ui/widgets/category_tip.dart';
@@ -123,7 +124,7 @@ class _TipsPageState extends State<TipsPage> {
           children: [
             GestureDetector(
               onTap: () {
-                tipsBloc.emit(HydrationState());
+                tipsBloc.add(HydrationEvent());
                 _generateRandomTipsIndexes('hydration');
               },
               child: CategoryTip(
@@ -141,7 +142,7 @@ class _TipsPageState extends State<TipsPage> {
             ),
             GestureDetector(
               onTap: () {
-                tipsBloc.emit(CleansingState());
+                tipsBloc.add(CleansingEvent());
                 _generateRandomTipsIndexes('cleansing');
               },
               child: CategoryTip(
@@ -159,7 +160,7 @@ class _TipsPageState extends State<TipsPage> {
             ),
             GestureDetector(
               onTap: () {
-                tipsBloc.emit(ProtectionState());
+                tipsBloc.add(ProtectionEvent());
                 _generateRandomTipsIndexes('protection');
               },
               child: CategoryTip(
