@@ -9,6 +9,7 @@ import 'package:safe_nails/common/capitalize.dart';
 import 'package:safe_nails/common/common_strings.dart';
 import 'package:safe_nails/common/injection_container.dart';
 import 'package:safe_nails/common/text_styles.dart';
+import 'package:safe_nails/data/ingredients_data.dart';
 import 'package:safe_nails/data/ingredients_type.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_bloc.dart';
 import 'package:safe_nails/ui/bloc/analysis/analysis_event.dart';
@@ -151,103 +152,93 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                       child: _valueResult(isSafe: widget.isSafe),
                     ),
                   ),
-                  SizeTransition(
-                    sizeFactor: _animation,
-                    axis: Axis.vertical,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 28.0),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(8),
-                          bottomRight: Radius.circular(8),
-                        ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(8),
+                        bottomRight: Radius.circular(8),
                       ),
-                      child: Column(
-                        children: [
-                          ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount:
-                                widget.unhealthyIngredientsFounded.length,
-                            itemBuilder: (context, index) {
-                              // Certifique-se de que o índice está dentro dos limites
-                              if (index < ingredientDescriptionList.length) {
-                                return Column(
-                                  children: [
-                                    const SizedBox(height: 14),
-                                    Container(
-                                      width: double.infinity,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.white,
-                                      ),
-                                      child: SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.8,
-                                        child: Column(
-                                          children: [
-                                            Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                SvgPicture.asset(
-                                                  "assets/icons/close_circle.svg",
-                                                  color: AppColors.pink,
-                                                  height: 18,
+                    ),
+                    child: Column(
+                      children: [
+                        ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: widget.unhealthyIngredientsFounded.length,
+                          itemBuilder: (context, index) {
+                            if (index < ingredientDescriptionList.length) {
+                              return Column(
+                                children: [
+                                  const SizedBox(height: 14),
+                                  Container(
+                                    width: double.infinity,
+                                    decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                    ),
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.8,
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              SvgPicture.asset(
+                                                "assets/icons/close_circle.svg",
+                                                color: AppColors.pink,
+                                                height: 18,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 8.0, bottom: 4.0),
+                                                child: Text(
+                                                  Capitalize().firstWord(widget
+                                                          .unhealthyIngredientsFounded[
+                                                      index]),
+                                                  style: bodyDescription
+                                                      .copyWith(fontSize: 16.0),
+                                                  textAlign: TextAlign.justify,
                                                 ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 8.0,
-                                                          bottom: 4.0),
-                                                  child: Text(
-                                                    Capitalize().firstWord(widget
-                                                            .unhealthyIngredientsFounded[
-                                                        index]),
-                                                    style: bodyDescription
-                                                        .copyWith(
-                                                            fontSize: 14.0),
-                                                    textAlign:
-                                                        TextAlign.justify,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(height: 4),
-                                            Text(
-                                              ingredientDescriptionList[index],
-                                              style: bodyDescription.copyWith(
-                                                  fontSize: 14.0),
-                                            ),
-                                          ],
-                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(height: 4),
+                                          Text(
+                                            _getIngredientDescription(widget
+                                                    .unhealthyIngredientsFounded[
+                                                index]),
+                                            style: bodyDescription.copyWith(
+                                                fontSize: 14.0),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                );
-                              } else {
-                                // Retorne um widget vazio ou outro widget substituto
-                                return SizedBox.shrink();
-                              }
-                            },
+                                  ),
+                                ],
+                              );
+                            } else {
+                              return SizedBox.shrink();
+                            }
+                          },
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8.0),
+                          child: Divider(height: 20),
+                        ),
+                        Text(
+                          key: key1,
+                          CommonStrings.source,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 11,
+                            color: AppColors.softGrey.withOpacity(0.3),
                           ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 8.0),
-                            child: Divider(height: 20),
-                          ),
-                          Text(
-                            key: key1,
-                            CommonStrings.source,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 11,
-                              color: AppColors.softGrey.withOpacity(0.3),
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                        ],
-                      ),
+                        ),
+                        const SizedBox(height: 20),
+                      ],
                     ),
                   ),
                 ],
@@ -299,21 +290,6 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 14),
-              Row(
-                children: [
-                  Text(
-                    CommonStrings.knowMore,
-                    style: bodyDescription.copyWith(
-                        color: AppColors.softGrey,
-                        decoration: TextDecoration.underline),
-                  ),
-                  const Icon(
-                    Icons.keyboard_arrow_down_sharp,
-                    size: 20,
-                    color: AppColors.softGrey,
-                  ),
-                ],
-              ),
             ],
           ),
       ],
@@ -330,11 +306,63 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
         }
       }
     }
-    // Certifique-se de que a lista tenha o mesmo comprimento que unhealthyIngredientsFounded
+
     while (
         ingredientDescriptionList.length < unhealthyIngredientsFounded.length) {
       ingredientDescriptionList.add('');
     }
     return ingredientDescriptionList;
+  }
+
+  String _getIngredientDescription(String ingredient) {
+    switch (ingredient.toUpperCase()) {
+      case "TOLUENO":
+      case "TOLUENE":
+        return IngredientsData.toluenoDescription;
+      case "ACETONA":
+      case "ACETONE":
+        return IngredientsData.acetonaDescription;
+      case "PARABENOS":
+      case "PARABENS":
+        return IngredientsData.parabenosDescription;
+      case "CÂNFORA":
+      case "CAMPHOR":
+        return IngredientsData.canforaDescription;
+      case "XILENO":
+      case "XYLENE":
+        return IngredientsData.xilenoDescription;
+      case "FORMALDEÍDO":
+      case "FORMALDEHYDE":
+        return IngredientsData.formaldeidoDescription;
+      case "DIBUTILFTALATO (DBP)":
+      case "DIBUTYL PHTHALATE (DBP)":
+        return IngredientsData.dbpDescription;
+      case "RESINA DE FORMALDEÍDO":
+      case "FORMALDEHYDE RESIN":
+        return IngredientsData.resinaFormaldeidoDescription;
+      case "ETIL TOSILAMIDA":
+      case "ETHYL TOSYLAMIDE":
+        return IngredientsData.etilTosilamidaDescription;
+      case "TRIFENILFOSFATO (TPHP)":
+      case "TRIPHENYL PHOSPHATE (TPHP)":
+        return IngredientsData.tphpDescription;
+      case "SULFATO DE NÍQUEL":
+      case "NICKEL SULFATE":
+        return IngredientsData.sulfatoNiquelDescription;
+      case "SULFATO DE COBALTO":
+      case "COBALT SULFATE":
+        return IngredientsData.sulfatoCobaltoDescription;
+      case "ÓLEO MINERAL":
+      case "MINERAL OIL":
+        return IngredientsData.oleoMineralDescription;
+      case "GLÚTEN":
+      case "GLUTEN":
+        return IngredientsData.glutenDescription;
+      case "PRODUTOS DERIVADOS DE ANIMAIS":
+      case "ANIMAL-DERIVED PRODUCTS":
+        return IngredientsData.derivadosAnimaisDescription;
+      default:
+        return "DESCRIÇÃO NÃO DISPONÍVEL.";
+    }
   }
 }
