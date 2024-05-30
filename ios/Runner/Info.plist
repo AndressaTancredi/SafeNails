@@ -30,8 +30,6 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Acesso à câmera para tirar a foto do perfil.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Acesso ao microfone para tirar a foto do perfil</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Acesso à galeria para escolher uma foto de perfil</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

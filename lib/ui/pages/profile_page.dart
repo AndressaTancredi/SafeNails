@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:safe_nails/common/analytics.dart';
 import 'package:safe_nails/common/app_colors.dart';
 import 'package:safe_nails/common/common_strings.dart';
@@ -13,6 +14,7 @@ import 'package:safe_nails/ui/bloc/profile/profile_bloc.dart';
 import 'package:safe_nails/ui/bloc/profile/profile_event.dart';
 import 'package:safe_nails/ui/bloc/profile/profile_state.dart';
 import 'package:safe_nails/ui/widgets/app_version.dart';
+import 'package:safe_nails/ui/widgets/banner_ad.dart';
 import 'package:safe_nails/ui/widgets/loading.dart';
 import 'package:safe_nails/ui/widgets/toast_alert.dart';
 
@@ -29,9 +31,9 @@ class _ProfilePageState extends State<ProfilePage> {
   TextStyle get bodyDescription => sl<TextStyles>().resultBody;
   TextStyle get button => sl<TextStyles>().buttonText;
 
-  // final String bannerId = Platform.isAndroid
-  //     ? dotenv.env['ANDROID_BANNER_ID']!
-  //     : dotenv.env['IOS_BANNER_ID']!;
+  final String bannerId = Platform.isAndroid
+      ? dotenv.env['ANDROID_BANNER_ID']!
+      : dotenv.env['IOS_BANNER_ID']!;
 
   Future<Map<String, dynamic>> _getUserData() async {
     return await Preferences().getUserData();
@@ -293,12 +295,12 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ],
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(vertical: 24.0),
-                      //   child: BannerAdmob(
-                      //     idAdMob: bannerId,
-                      //   ),
-                      // ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 24.0),
+                        child: BannerAdmob(
+                          idAdMob: bannerId,
+                        ),
+                      ),
                     ],
                   ),
                 ),
