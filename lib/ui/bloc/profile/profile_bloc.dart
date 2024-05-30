@@ -37,9 +37,30 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       // Permission is permanently denied
       emit(ProfilePermissionPermanentlyDeniedState());
     } else {
-      // Permission is denied (but not permanently). You can ask the user to enable it from settings.
-      final isRequested = await Permission.photos.request().isGranted;
-      if (!isRequested) {
+      // Request permission
+      final isGranted = await Permission.photos.request();
+      if (isGranted.isGranted) {
+        // Permission is granted after requesting; proceed to pick an image
+        final ImagePickerService imagePickerService = ImagePickerService();
+
+        try {
+          final pickedImage = await imagePickerService.pickImageFromGallery();
+          if (pickedImage != null) {
+            photoPath = pickedImage.path;
+            emit(ProfileLoadingState());
+            emit(ProfileLoadedState(profilePhotoPath: photoPath));
+          } else {
+            // No image selected
+            emit(ProfileNoImageSelectedState());
+          }
+        } catch (e) {
+          // Error picking the image
+          emit(ProfileErrorState(errorMessage: e.toString()));
+        }
+      } else if (isGranted.isPermanentlyDenied) {
+        // Permission is permanently denied after requesting
+        emit(ProfilePermissionPermanentlyDeniedState());
+      } else {
         // Permission denied after requesting
         emit(ProfilePermissionDeniedState());
       }

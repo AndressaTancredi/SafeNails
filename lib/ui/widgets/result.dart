@@ -91,7 +91,7 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                 ),
               ),
             ),
-            height: 400,
+            height: 300,
             width: double.infinity,
           ),
           BlocBuilder<AnalysisBloc, AnalysisState>(
@@ -116,22 +116,6 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                       ),
                     ),
                   ],
-                );
-              }
-
-              if (widget.unhealthyIngredientsFounded.isEmpty) {
-                return Container(
-                  padding: const EdgeInsets.all(16.0),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: Text(
-                    'No ingredients found',
-                    style: bodyDescription.copyWith(fontSize: 14.0),
-                    textAlign: TextAlign.justify,
-                  ),
                 );
               }
 

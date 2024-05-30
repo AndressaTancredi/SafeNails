@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart'; // Import necessário para SchedulerBinding
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:safe_nails/common/analytics.dart';
@@ -61,7 +62,25 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       BlocConsumer<ProfileBloc, ProfileState>(
                         bloc: profileBloc,
-                        listener: (context, state) {},
+                        listener: (context, state) {
+                          if (state is ProfilePermissionDeniedState) {
+                            SchedulerBinding.instance.addPostFrameCallback((_) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                toastAlert(type: ToastType.error, messages: [
+                                  "Você precisa permitir que o app acesse sua galeria de fotos nas suas configurações."
+                                ]),
+                              );
+                            });
+                          } else if (state is ProfileErrorState) {
+                            SchedulerBinding.instance.addPostFrameCallback((_) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                toastAlert(
+                                    type: ToastType.error,
+                                    messages: [state.errorMessage]),
+                              );
+                            });
+                          }
+                        },
                         builder: (context, state) {
                           if (state is ProfileLoadingState) {
                             return Padding(
@@ -173,19 +192,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                 ),
                               ),
-                            );
-                          }
-                          if (state is ProfilePermissionDeniedState) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              toastAlert(
-                                  type: ToastType.error,
-                                  messages: ["Permission Denied"]),
-                            );
-                          } else if (state is ProfileErrorState) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              toastAlert(
-                                  type: ToastType.error,
-                                  messages: [state.errorMessage]),
                             );
                           }
                           return const SizedBox.shrink();

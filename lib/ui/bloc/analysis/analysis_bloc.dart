@@ -81,7 +81,7 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
       }
     }
 
-    final bool result = hasUnhealthyIngredients();
+    final bool result = true;
 
     if (scannedText.isEmpty) {
       emit(NoWordState(noWord: true, photo: pickedImage));
