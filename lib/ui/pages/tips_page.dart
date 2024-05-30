@@ -94,12 +94,6 @@ class _TipsPageState extends State<TipsPage> {
                     return SizedBox.shrink();
                   },
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 14.0),
-                  child: BannerAdmob(
-                    idAdMob: bannerId,
-                  ),
-                ),
               ],
             ),
           ),
@@ -178,7 +172,13 @@ class _TipsPageState extends State<TipsPage> {
             ),
           ],
         ),
-        SizedBox(height: 24.0),
+        SizedBox(height: 8.0),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 14.0),
+          child: BannerAdmob(
+            idAdMob: bannerId,
+          ),
+        ),
         Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
@@ -187,6 +187,7 @@ class _TipsPageState extends State<TipsPage> {
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: 3,
             itemBuilder: (context, index) {
@@ -197,31 +198,35 @@ class _TipsPageState extends State<TipsPage> {
                 'protection': TipsData.protectionTips[tipIndex],
               }[category];
               return Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                padding: const EdgeInsets.only(bottom: 25.0),
+                child: Column(
                   children: [
-                    Flexible(
-                      child: Text.rich(
-                        TextSpan(
-                          style: bodyDescription.copyWith(fontSize: 14),
-                          children: [
-                            WidgetSpan(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                  right: 8.0,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Flexible(
+                          child: Text.rich(
+                            TextSpan(
+                              style: bodyDescription.copyWith(fontSize: 14),
+                              children: [
+                                WidgetSpan(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                      right: 8.0,
+                                    ),
+                                    child: SvgPicture.asset(
+                                      "assets/icons/circle_tip.svg",
+                                      color: AppColors.pink,
+                                      height: 16,
+                                    ),
+                                  ),
                                 ),
-                                child: SvgPicture.asset(
-                                  "assets/icons/circle_tip.svg",
-                                  color: AppColors.pink,
-                                  height: 16,
-                                ),
-                              ),
+                                TextSpan(text: tipText),
+                              ],
                             ),
-                            TextSpan(text: tipText),
-                          ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ],
                 ),

@@ -204,11 +204,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                   title: Text(
                                     userName ?? '',
                                     style: bodyDescription.copyWith(
-                                        fontSize: 20.0),
+                                        fontSize: 15.0),
                                   ),
                                   textColor: AppColors.grey,
                                   leading: Icon(
-                                    size: 30,
+                                    size: 25,
                                     Icons.account_box_outlined,
                                     color: AppColors.pink.withOpacity(0.6),
                                   ),
@@ -217,11 +217,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                   title: Text(
                                     userEmail ?? '',
                                     style: bodyDescription.copyWith(
-                                        fontSize: 20.0),
+                                        fontSize: 15.0),
                                   ),
                                   textColor: AppColors.grey,
                                   leading: Icon(
-                                    size: 30,
+                                    size: 25,
                                     Icons.email_outlined,
                                     color: AppColors.pink.withOpacity(0.6),
                                   ),
@@ -231,19 +231,19 @@ class _ProfilePageState extends State<ProfilePage> {
                           } else {
                             return Text(
                               CommonStrings.loadingInfo,
-                              style: bodyDescription,
+                              style: bodyDescription.copyWith(fontSize: 14),
                             );
                           }
                         },
                       ),
-                      const SizedBox(height: 5),
+                      const SizedBox(height: 15),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ListTile(
                             title: Text(
                               CommonStrings.deleteAccount,
-                              style: bodyDescription,
+                              style: bodyDescription.copyWith(fontSize: 14),
                             ),
                             textColor: AppColors.grey,
                             trailing: Icon(
@@ -267,7 +267,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ListTile(
                             title: Text(
                               CommonStrings.out,
-                              style: bodyDescription,
+                              style: bodyDescription.copyWith(fontSize: 14),
                             ),
                             textColor: AppColors.grey,
                             trailing: Icon(
@@ -290,16 +290,13 @@ class _ProfilePageState extends State<ProfilePage> {
                             },
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 24.0),
-                            child: AppVersion(),
+                            padding: const EdgeInsets.symmetric(vertical: 24.0),
+                            child: BannerAdmob(
+                              idAdMob: bannerId,
+                            ),
                           ),
+                          AppVersion(),
                         ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 24.0),
-                        child: BannerAdmob(
-                          idAdMob: bannerId,
-                        ),
                       ),
                     ],
                   ),

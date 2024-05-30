@@ -6,7 +6,7 @@ import 'package:safe_nails/common/text_styles.dart';
 
 class AppVersion extends StatelessWidget {
   TextStyle get textVersionStyle =>
-      sl<TextStyles>().resultBody.copyWith(fontSize: 14);
+      sl<TextStyles>().resultBody.copyWith(fontSize: 12);
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -22,11 +21,12 @@ class Result extends StatefulWidget {
   final bool? isSafe;
   final List<String> unhealthyIngredientsFounded;
 
-  Result(
-      {this.isSafe,
-      required this.photo,
-      required this.unhealthyIngredientsFounded,
-      this.noWord});
+  Result({
+    this.isSafe,
+    required this.photo,
+    required this.unhealthyIngredientsFounded,
+    this.noWord,
+  });
 
   @override
   State<Result> createState() => _ResultState();
@@ -34,6 +34,7 @@ class Result extends StatefulWidget {
 
 class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
   final analysisBloc = sl<AnalysisBloc>();
+  late List<String> ingredientDescriptionList;
 
   TextStyle get title => sl<TextStyles>().pageTitle;
   TextStyle get bodyDescription => sl<TextStyles>().bodyDescription;
@@ -55,6 +56,8 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
       parent: _controller,
       curve: Curves.fastLinearToSlowEaseIn,
     );
+    ingredientDescriptionList =
+        _getIngredientDescriptionList(widget.unhealthyIngredientsFounded);
   }
 
   _toggleContainer() {
@@ -67,11 +70,6 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    ScrollController _controller = ScrollController();
-
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      _controller.jumpTo(_controller.position.maxScrollExtent);
-    });
     return PopScope(
       onPopInvoked: (popDisposition) async {
         analysisBloc.add(ClearResultEvent());
@@ -102,20 +100,37 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 15.0),
+                    const SizedBox(height: 35.0),
                     Container(
                       padding: const EdgeInsets.all(16.0),
                       width: double.infinity,
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8.0)),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                       child: Text(
                         CommonStrings.imageTextNofFound,
                         style: bodyDescription.copyWith(fontSize: 14.0),
                         textAlign: TextAlign.justify,
                       ),
-                    )
+                    ),
                   ],
+                );
+              }
+
+              if (widget.unhealthyIngredientsFounded.isEmpty) {
+                return Container(
+                  padding: const EdgeInsets.all(16.0),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Text(
+                    'No ingredients found',
+                    style: bodyDescription.copyWith(fontSize: 14.0),
+                    textAlign: TextAlign.justify,
+                  ),
                 );
               }
 
@@ -123,14 +138,12 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                 children: [
                   const SizedBox(height: 26.0),
                   GestureDetector(
-                    onTap: () {
-                      _toggleContainer();
-                    },
+                    onTap: _toggleContainer,
                     child: Container(
                       padding: const EdgeInsets.all(14.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(8),
                           topRight: Radius.circular(8),
                         ),
@@ -145,7 +158,7 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                       padding: const EdgeInsets.symmetric(horizontal: 28.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(8),
                           bottomRight: Radius.circular(8),
                         ),
@@ -153,77 +166,86 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                       child: Column(
                         children: [
                           ListView.builder(
-                            controller: _controller,
+                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount:
                                 widget.unhealthyIngredientsFounded.length,
                             itemBuilder: (context, index) {
-                              return Column(
-                                children: [
-                                  SizedBox(height: 14),
-                                  Container(
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                    ),
-                                    child: SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.8,
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              SvgPicture.asset(
-                                                "assets/icons/close_circle.svg",
-                                                color: AppColors.pink,
-                                                height: 18,
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 8.0, bottom: 4.0),
-                                                child: Text(
-                                                  // key: key1,
-                                                  Capitalize().firstWord(widget
-                                                          .unhealthyIngredientsFounded[
-                                                      index]),
-                                                  style: bodyDescription
-                                                      .copyWith(fontSize: 14.0),
-                                                  textAlign: TextAlign.justify,
+                              // Certifique-se de que o índice está dentro dos limites
+                              if (index < ingredientDescriptionList.length) {
+                                return Column(
+                                  children: [
+                                    const SizedBox(height: 14),
+                                    Container(
+                                      width: double.infinity,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                      ),
+                                      child: SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.8,
+                                        child: Column(
+                                          children: [
+                                            Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                SvgPicture.asset(
+                                                  "assets/icons/close_circle.svg",
+                                                  color: AppColors.pink,
+                                                  height: 18,
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(height: 4),
-                                          Text(
-                                            _getIngredientDescriptionList(widget
-                                                    .unhealthyIngredientsFounded)[
-                                                index],
-                                            style: bodyDescription.copyWith(
-                                                fontSize: 14.0),
-                                          ),
-                                        ],
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 8.0,
+                                                          bottom: 4.0),
+                                                  child: Text(
+                                                    Capitalize().firstWord(widget
+                                                            .unhealthyIngredientsFounded[
+                                                        index]),
+                                                    style: bodyDescription
+                                                        .copyWith(
+                                                            fontSize: 14.0),
+                                                    textAlign:
+                                                        TextAlign.justify,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(height: 4),
+                                            Text(
+                                              ingredientDescriptionList[index],
+                                              style: bodyDescription.copyWith(
+                                                  fontSize: 14.0),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              );
+                                  ],
+                                );
+                              } else {
+                                // Retorne um widget vazio ou outro widget substituto
+                                return SizedBox.shrink();
+                              }
                             },
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 8.0),
                             child: Divider(height: 20),
                           ),
                           Text(
                             key: key1,
                             CommonStrings.source,
                             style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 11,
-                                color: AppColors.softGrey.withOpacity(0.3)),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 11,
+                              color: AppColors.softGrey.withOpacity(0.3),
+                            ),
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                         ],
                       ),
                     ),
@@ -276,7 +298,7 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                     color: textColor, fontSize: 14, height: 1.5),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 14),
+              const SizedBox(height: 14),
               Row(
                 children: [
                   Text(
@@ -285,7 +307,7 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                         color: AppColors.softGrey,
                         decoration: TextDecoration.underline),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.keyboard_arrow_down_sharp,
                     size: 20,
                     color: AppColors.softGrey,
@@ -302,13 +324,16 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
       List<String> unhealthyIngredientsFounded) {
     final List<String> ingredientDescriptionList = [];
     for (final ingredient in unhealthyIngredientsFounded) {
-      print(unhealthyIngredientsFounded);
-
-      IngredientType.values.forEach((element) {
+      for (final element in IngredientType.values) {
         if (element.name.toUpperCase() == ingredient.toUpperCase()) {
           ingredientDescriptionList.add(element.type);
         }
-      });
+      }
+    }
+    // Certifique-se de que a lista tenha o mesmo comprimento que unhealthyIngredientsFounded
+    while (
+        ingredientDescriptionList.length < unhealthyIngredientsFounded.length) {
+      ingredientDescriptionList.add('');
     }
     return ingredientDescriptionList;
   }

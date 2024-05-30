@@ -30,7 +30,7 @@ class TextStyles {
     fontWeight: FontWeight.w700,
     color: AppColors.regularBlack,
     fontStyle: FontStyle.normal,
-    fontSize: 30,
+    fontSize: 24,
   );
 
   final subTitle = const TextStyle(
@@ -38,7 +38,7 @@ class TextStyles {
     fontWeight: FontWeight.w700,
     color: AppColors.boldBlack,
     fontStyle: FontStyle.normal,
-    fontSize: 18,
+    fontSize: 14,
   );
 
   final bodyDescription = const TextStyle(
@@ -46,7 +46,7 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.lightGrey,
     fontStyle: FontStyle.normal,
-    fontSize: 16,
+    fontSize: 14,
   );
 
   final resultBody = const TextStyle(
@@ -54,13 +54,13 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.softGrey,
     fontStyle: FontStyle.normal,
-    fontSize: 16,
+    fontSize: 12,
   );
 
   final body = const TextStyle(
     fontFamily: "Cosmetic",
     fontWeight: FontWeight.w900,
-    fontSize: 16,
+    fontSize: 12,
     fontStyle: FontStyle.normal,
     color: AppColors.primary,
   );
@@ -68,7 +68,7 @@ class TextStyles {
   final linkText = const TextStyle(
       fontFamily: "DMSans",
       fontWeight: FontWeight.w500,
-      fontSize: 16,
+      fontSize: 12,
       color: AppColors.blue,
       decoration: TextDecoration.underline);
 
