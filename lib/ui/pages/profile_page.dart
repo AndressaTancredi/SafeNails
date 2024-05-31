@@ -295,10 +295,13 @@ class _ProfilePageState extends State<ProfilePage> {
                               );
                             },
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 24.0),
-                            child: BannerAdmob(
-                              idAdMob: bannerId,
+                          Center(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 24.0),
+                              child: BannerAdmob(
+                                idAdMob: bannerId,
+                              ),
                             ),
                           ),
                           AppVersion(),

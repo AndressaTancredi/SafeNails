@@ -19,11 +19,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(FLUTTER_BUILD_NAME)</string>
+    <string>3.0.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
+    <string>4</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-6850065566204568~5888662716</string>
 	<key>LSRequiresIPhoneOS</key>

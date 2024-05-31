@@ -47,8 +47,6 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
         }
       }
     }
-    // flutter: [INGREDIENTES:, BUTYL, ACETATE;, ETHYLACETATE;, NITROCELLULOSE;, TOSYLAMIDE/FORMALDEHYDE, RESIN;, ISOPROPYLALCOHOL;, DIISOBUTYLADIPATE;, CAMPHOR;, SUCROSE, ACETATE, ISOBUTYRATE;, TOSYLAMIDE/EPOXY, RESIN;, STEARALKONIUM, HECTORITE;, ACETYL, TRIBUTYL, CITRATE;, PANTHENOL;2-METHYLPROPANAL;, CALCIUM, PANTOTHENATE;, POLYPERFLUOROMETHYLISOPROPYL, ETHER;, DIAMOND, POWDER., PUEDE, CONTENER:, 0CTOCRYLENE;, BENZOPHENONE-3;, ALCOHOL;, MICA/CI, 77019;, CI, 77891;, CI, 77000;, CI, 15850;, C1, 42090;, C, 77491;, C, 77492;, CI, 77499;, CI, 77510;, CI, 19140:, CALCIUM, ALUMINUM, BOROSILICATE;, SILICA;, CI, 15880;, OXIDIZED, POLYETHYLENE,, CI, 77163.]
-    // flutter: [Camphor, Formaldehyde]
 
     String removeSpecialCharacters(String text) {
       return text
@@ -66,8 +64,6 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
         for (final String scannedWord in scannedText) {
           final cleanedScannedWord =
               removeSpecialCharacters(scannedWord).toUpperCase();
-          print(cleanedScannedWord);
-
           if (cleanedScannedWord.contains(ingredient.toUpperCase())) {
             unhealthyIngredientsFounded.add(ingredient);
           }
@@ -81,7 +77,7 @@ class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
       }
     }
 
-    final bool result = true;
+    final bool result = hasUnhealthyIngredients();
 
     if (scannedText.isEmpty) {
       emit(NoWordState(noWord: true, photo: pickedImage));
