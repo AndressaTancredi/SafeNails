@@ -1,5 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -8,6 +9,7 @@ import 'package:safe_nails/common/app_router.dart';
 import 'package:safe_nails/common/injection_container.dart' as get_it;
 import 'package:safe_nails/firebase_options.dart';
 import 'package:safe_nails/ui/pages/welcome_page.dart';
+import 'package:safe_nails/web/ui/landing_page.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -51,7 +53,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const WelcomePage(),
+      home: kIsWeb ? const LandingPage() : const WelcomePage(),
       onGenerateRoute: _appRouter.onGeneratedRoute,
       navigatorKey: navigatorKey,
     );

@@ -1,38 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="$FLUTTER_BASE_HREF">
-
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
-
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="safe_nails">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <title>safe_nails</title>
-  <link rel="manifest" href="manifest.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Safe Nails - Landing Page</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+<header>
+  <div class="container">
+    <h1>Safe Nails</h1>
+    <!-- Navegação opcional
+    <nav>
+        <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#download">Download</a></li>
+        </ul>
+    </nav>
+    -->
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h2>Mantenha sua saúde e o planeta seguros</h2>
+      <p>Baixe nosso aplicativo na Apple Store e Google Play Store</p>
+      <div class="download-buttons">
+        <a href="LINK_DA_APPLE_STORE" class="button apple">Baixar na Apple Store</a>
+        <a href="LINK_DA_GOOGLE_PLAY_STORE" class="button google">Baixar na Google Play</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="app_screenshot.png" alt="Screenshot do aplicativo Safe Nails">
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="container">
+    <h3>Funcionalidades</h3>
+    <div class="features-grid">
+      <div class="feature-item">
+        <h4>Funcionalidade 1</h4>
+        <p>Descrição da funcionalidade 1.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Funcionalidade 2</h4>
+        <p>Descrição da funcionalidade 2.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Funcionalidade 3</h4>
+        <p>Descrição da funcionalidade 3.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <h3>Depoimentos</h3>
+    <div class="testimonials-grid">
+      <div class="testimonial-item">
+        <p>"Este aplicativo mudou minha vida!" - Usuário satisfeito</p>
+      </div>
+      <div class="testimonial-item">
+        <p>"Nunca vi nada igual." - Outro usuário satisfeito</p>
+      </div>
+      <div class="testimonial-item">
+        <p>"Recomendo a todos." - Mais um usuário satisfeito</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2024 Safe Nails. Todos os direitos reservados.</p>
+  </div>
+</footer>
 </body>
 </html>
